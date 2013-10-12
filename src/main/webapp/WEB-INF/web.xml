@@ -12,6 +12,18 @@
         <servlet-name>Teste</servlet-name>
         <servlet-class>br.com.javamagazine.sfcb.FacebookServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Foto</servlet-name>
+        <servlet-class>br.com.javamagazine.sfcb.FotoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageProxy</servlet-name>
+        <servlet-class>br.com.javamagazine.sfcb.ImageProxy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ColagemServlet</servlet-name>
+        <servlet-class>br.com.javamagazine.sfcb.ColagemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>sign</servlet-name>
         <url-pattern>/sign</url-pattern>
@@ -20,7 +32,19 @@
         <servlet-name>Teste</servlet-name>
         <url-pattern>/Teste</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Foto</servlet-name>
+        <url-pattern>/Fotos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageProxy</servlet-name>
+        <url-pattern>/Fotos/ImageProxy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ColagemServlet</servlet-name>
+        <url-pattern>/Colagem</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>guestbook.jsp</welcome-file>
+        <welcome-file>collage.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

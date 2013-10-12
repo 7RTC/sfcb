@@ -20,12 +20,14 @@ import java.io.PrintWriter;
  * To change this template use File | Settings | File Templates.
  */
 public class FacebookServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private static final long serialVersionUID = 1962734670711460780L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
         FacebookClient facebookClient = new DefaultFacebookClient("INCLUIR TOKEN");
         response.setContentType("text/plain");
