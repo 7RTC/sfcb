@@ -1,4 +1,4 @@
-package br.com.javamagazine.sfcb;
+package br.com.javamagazine.sfcb.servlets;
 
 import java.io.IOException;
 import java.util.Date;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.javamagazine.sfcb.negocio.LoginFacebookClient;
 import com.restfb.FacebookClient;
 
 public class LoginServlet extends HttpServlet {
@@ -31,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.setAttribute("accessToken", accessToken);
         
-        request.getRequestDispatcher("/Colagem").forward(request, response);
+        response.sendRedirect("/Colagem");
 		
 	}
 	

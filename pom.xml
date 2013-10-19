@@ -65,9 +65,12 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.8</version>
 		</dependency>
-            
-            
-		
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+
 
         <!-- Test Dependencies -->
         <dependency>
@@ -132,8 +135,8 @@
                 <version>${appengine.target.version}</version>
                 <configuration>
 			        <jvmFlags>
-			            <jvmFlag>-Xdebug</jvmFlag>
-			            <jvmFlag>-Xrunjdwp:transport=dt_socket,address=8080,server=y,suspend=y</jvmFlag>
+			           <!--  <jvmFlag>-Xdebug</jvmFlag>
+			            <jvmFlag>-Xrunjdwp:transport=dt_socket,address=8080,server=y,suspend=y</jvmFlag> -->
 			        </jvmFlags>
 			        <disableUpdateCheck>true</disableUpdateCheck>
 			    </configuration>

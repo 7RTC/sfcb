@@ -6,19 +6,19 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
         <servlet-name>Foto</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.FotoServlet</servlet-class>
+        <servlet-class>br.com.javamagazine.sfcb.servlets.FotoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ImageProxy</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.ImageProxy</servlet-class>
+        <servlet-class>br.com.javamagazine.sfcb.servlets.ImageProxy</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PostServlet</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.PostServlet</servlet-class>
+        <servlet-class>br.com.javamagazine.sfcb.servlets.PostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.LoginServlet</servlet-class>
+        <servlet-class>br.com.javamagazine.sfcb.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
     	<servlet-name>Colagem</servlet-name>

@@ -1,4 +1,4 @@
-package br.com.javamagazine.sfcb;
+package br.com.javamagazine.sfcb.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -4,9 +4,19 @@ $(document).ready(function() {
 	jCollage.setBackgroundColor("#fff");
 	
 	$(document).on("click", ".fotos img", function() {
-		jCollage.addLayer($(this).context).setTitle($(this).attr("title"));
-		updateLayers(jCollage.getLayers());
-		$("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
+        var img = $(this);
+        var imgUrl = document.createElement("img");
+        imgUrl.onload = function() {
+            var widthProportion = imgUrl.width / 360;
+            var heightProportion = imgUrl.height / 240;
+            var proportion = Math.max(widthProportion,heightProportion);
+            imgUrl.width =  imgUrl.width / proportion;
+            imgUrl.height = imgUrl.height / proportion;
+            jCollage.addLayer(imgUrl).setTitle(img.attr("title"));
+            updateLayers(jCollage.getLayers());
+            $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
+        }
+        imgUrl.src = img.data("proxy-url");
 	});
 	
 	$(document).on("click", ".camadas .layer", function() {
@@ -89,10 +99,11 @@ $(document).ready(function() {
 	
 	
 	$("#recuperarFotos").click(function(){
-		$.getJSON("Fotos", function(data) {
+		$.getJSON("/Fotos", function(data) {
 			$.each(data.fotos, function(i, foto) {
-				var img = $("<img/>").attr("src", foto.url);
+				var img = $("<img/>").attr("src", foto.picture);
 				img.attr("title", "Camada ");
+                img.data("proxy-url", foto.source);
 				$("<li></li>").append(img).appendTo(".fotos ul");
 				if ( i == 8 ) return false;
 			});

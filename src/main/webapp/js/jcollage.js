@@ -34,6 +34,7 @@ function Collage(canvasId) {
 	canvas.addEventListener('mousedown', mouseDownEvent, false);
 	
 	this.addLayer = function(img) {
+
 		var layer = new Layer(img);
 		layers.push(layer);
 		

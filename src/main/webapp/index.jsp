@@ -15,6 +15,7 @@
 	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="formFacebook">
 		<input type="hidden" name="client_id" value=""/>
 		<input type="hidden" name="redirect_uri" value="http://jm-sfcb.appspot.com:8080/Login"/>
+        <input type="hidden" name="scope" value="user_photos,friends_photos,publish_stream,photo_upload"/>
 		<input type="image" src="imagens/botao-login-facebook.png" alt="Entrar pelo Facebook">
 	</form>
 	

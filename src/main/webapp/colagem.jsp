@@ -59,7 +59,7 @@
 			</div>
 		</aside>
 		<footer class="fotos">
-			<form id="formColagem" action="PostColagem" method="POST">
+			<form id="formColagem" action="/PostColagem" method="POST">
 				<input type="text" id="stringBase64Img" name="stringBase64Img">
 			</form>
 			
