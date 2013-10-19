@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.StyledEditorKit.ItalicAction;
 
 import com.restfb.Connection;
@@ -29,31 +30,36 @@ public class FotoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		FacebookClient facebookClient = new DefaultFacebookClient("INCLUIR TOKEN");
+		HttpSession session = request.getSession();
+		final String accessToken = (String) session.getAttribute("accessToken");
+		
+		
+		FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 
-		JsonObject photosConnection = facebookClient.fetchObject("me/photos", JsonObject.class);
+		JsonObject photosConnection = facebookClient.fetchObject("me/photos", JsonObject.class, Parameter.with("type", "uploaded"));
 		System.out.println(photosConnection.toString());
 
-		Connection<Photo> connection = facebookClient.fetchConnection("me/photos", Photo.class, Parameter.with("limit", 10));
-
-		
-		if (connection.hasNext()) {
-			int count = 0;
-			Iterator<List<Photo>> iterator = connection.iterator();
-			while (iterator.hasNext()) {
-				System.out.println("Pagina:" + ++count);
-				List<Photo> photos = iterator.next();
-				for (Photo photo : photos) {
-					String picStr = photo.getPicture();
-					System.out.println(picStr);
-				}
-			}
-			
-			System.out.println(connection.getNextPageUrl());
-		}
+//		Connection<Photo> connection = facebookClient.fetchConnection("me/photos", Photo.class, Parameter.with("limit", 10), Parameter.with("type", "uploaded"));
+//
+//
+//		//TODO Usar para paginação
+//		if (connection.hasNext()) {
+//			int count = 0;
+//			Iterator<List<Photo>> iterator = connection.iterator();
+//			while (iterator.hasNext()) {
+//				System.out.println("Pagina:" + ++count);
+//				List<Photo> photos = iterator.next();
+//				for (Photo photo : photos) {
+//					String picStr = photo.getPicture();
+//					System.out.println(picStr);
+//				}
+//			}
+//			
+//			System.out.println(connection.getNextPageUrl());
+//		}
 		
 		
 		

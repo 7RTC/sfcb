@@ -8,4 +8,5 @@
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
     <ssl-enabled>true</ssl-enabled>
+    <sessions-enabled>true</sessions-enabled>
 </appengine-web-app>

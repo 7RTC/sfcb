@@ -1,7 +1,7 @@
 body {
-	background-color: #080808;
-	font-family: Helvetica;
-	color: #fff;
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, sans-serif;
+	color: #555;
 	margin: 0;
 	padding: 0;
 	text-align: center;
@@ -9,22 +9,28 @@ body {
 canvas {
 	margin: 0;
 	padding: 0;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px;
+	border-top: 2px solid #333;
+	border-right: 2px solid #333;
+	border-left: 2px solid #333;
+	border-bottom: 2px solid #333;
 }
 h1 {
 	font-size: 38px;
 }
 a {
-	color: #fff;
+	color: #555;
 }
-aside.layers {
+aside.camadas {
 	position: absolute;
 	top: 15px;
 	right: 15px;
 	width: 200px;
-	background-color: #242424;
+	background-color: #fff;
 	-moz-border-radius: 8px; 
 	-webkit-border-radius: 8px; 
-	border: 1px solid #999;
+	border: 1px solid #333;
 	font-size: 12px;
 }
 aside h2 {
@@ -51,10 +57,10 @@ aside ul li img {
 	width: 40px;
 	height: 40px;
 	vertical-align: middle;
-	border: 1px solid #999;
+	border: 1px solid #333;
 }
 aside ul li.selected img {
-	border: 1px solid #fff;
+	border: 1px solid #555;
 }
 aside ul li h3 {
 	display: inline-block;
@@ -64,7 +70,7 @@ aside ul li .visible {
 	margin: 14px 4px 0px 0px;
 	width: 12px;
 	height: 12px;
-	border: 1px solid #fff;
+	border: 1px solid #555;
 	-moz-border-radius: 2px; 
 	-webkit-border-radius: 2px;
 	font-size: 14px;
@@ -73,7 +79,7 @@ aside ul li .visible {
 	text-shadow: 1px 1px 1px #333;
 }
 aside .options {
-	border-top: 1px solid #999;
+	border-top: 1px solid #333;
 	padding: 4px 0;
 }
 aside .options span {
@@ -97,7 +103,7 @@ aside .buttons .down {
 aside .buttons {
 	display: block;
 	position: relative;
-	border-top: 1px solid #999;
+	border-top: 1px solid #333;
 	padding: 4px 12px 2px 0px;
 	text-align: right;
 }
@@ -114,7 +120,7 @@ aside .buttons ul li {
 	width: 16px;
 	height: 16px;
 }
-footer.search {
+footer.fotos {
 	display: block;
 	position: absolute;
 	bottom: 0px;
@@ -123,23 +129,24 @@ footer.search {
 	padding: 0;
 	text-align: left;
 }
-.search form {
-	width: 220px;
-	-moz-border-radius-topright: 8px; 
-	-webkit-border-top-right-radius: 8px; 
-	border-top: 1px solid #fff;
-	border-right: 1px solid #fff;
-	background-color: #5f94e2;
-	padding: 4px;
+.fotos form {
+	display:none
 }
-.search ul {
+.fotos ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	background-color: #242424;
-	border-top: 1px solid #999;
+	background-color: #fff;
+	-moz-border-radius-topright: 8px; 
+	-moz-border-radius-topleft: 8px; 
+	-webkit-border-top-right-radius: 8px; 
+	-webkit-border-top-left-radius: 8px; 
+	border-right: 1px solid #333;
+	border-left: 1px solid #333;
+	border-top: 2px solid #333;
+	
 }
-.search ul li {
+.fotos ul li {
 	display: inline-block;
 	margin: 8px 0px 0px 8px;
 }
@@ -155,10 +162,14 @@ footer ul li img {
 	-moz-border-radius-bottomleft: 8px; 
 	-webkit-border-bottom-right-radius: 8px; 
 	-webkit-border-bottom-left-radius: 8px; 
-	border-bottom: 2px solid #999;
-	border-right: 0px solid #999;
-	border-left: 0px solid #999;
+	border-bottom: 2px solid #333;
+	border-right: 1px solid #333;
+	border-left: 1px solid #333;
+	border-top: 1px solid #333;
 	font-size: 12px;
 	padding: 4px 0;
-	color: #fff;
+	color: #555;
+}
+.formFacebook {
+	padding-top:100px;
 }

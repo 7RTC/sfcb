@@ -3,21 +3,19 @@
 
 <html><head>
 		<title>Colagens</title>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jcollage.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
-		<script type="text/javascript" src="js/base64.js"></script>
-		<script type="text/javascript" src="js/canvas2image.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 	</head>
 	<body>
 		<h1>Colagens</h1>
 		<canvas id="collage" width="720" height="480"></canvas>
 		<div class="about">
-			Demonstração retirada do site: <a href="http://radikalfx.com/2009/10/16/canvas-collage/">radikalFX</a>
+			Demonstração de colagem retirada do site: <a href="http://radikalfx.com/2009/10/16/canvas-collage/">radikalFX</a>
 		</div>
-		<aside class="layers">
-			<h2>Layers</h2>
+		<aside class="camadas">
+			<h2>Camadas</h2>
 			<ul>
 				<li class="background">
 					<img src="imagens/background.png">
@@ -60,12 +58,8 @@
 				</ul>
 			</div>
 		</aside>
-		<footer class="search">
-			<!-- <form action="#">
-				<input type="text" name="q" value="funny cats">
-				<input type="submit" value="search">
-			</form> -->
-			<form id="formColagem" action="Colagem" method="POST" style="display:none">
+		<footer class="fotos">
+			<form id="formColagem" action="PostColagem" method="POST">
 				<input type="text" id="stringBase64Img" name="stringBase64Img">
 			</form>
 			

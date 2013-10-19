@@ -3,21 +3,21 @@ $(document).ready(function() {
 	jCollage = new Collage("#collage");
 	jCollage.setBackgroundColor("#fff");
 	
-	$(".search img").live("click", function() {
+	$(document).on("click", ".fotos img", function() {
 		jCollage.addLayer($(this).context).setTitle($(this).attr("title"));
 		updateLayers(jCollage.getLayers());
 		$("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
 	});
 	
-	$(".layers .layer").live("click", function() {
-		$(".layers .layer").removeClass("selected");
+	$(document).on("click", ".camadas .layer", function() {
+		$(".camadas .layer").removeClass("selected");
 		$(this).addClass("selected");
 		setSettings($(this).attr("id").substr(6));
 	});
 	
-	$(".layers .background .visible").click(function() {
+	$(".camadas .background .visible").click(function() {
 		if ($(this).html() == "") {
-			jCollage.setBackgroundImage($(".layers .background img")[0]);
+			jCollage.setBackgroundImage($(".camadas .background img")[0]);
 			$(this).html("&radic;");
 		} else {
 			jCollage.setBackgroundImage(null);
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(".layers .layer .visible").live("click", function() {
+	$(document).on("click", ".camadas .layer .visible",function() {
 		if ($(this).html() == "") {
 			$(this).html("&radic;");
 		} else {
@@ -62,14 +62,14 @@ $(document).ready(function() {
 	
 	$(".remove").click(function() {
 		if (getSelectedLayer() != null) {
-			jCollage.removeLayer($(".layers .selected").attr("id").substr(6));
+			jCollage.removeLayer($(".camadas .selected").attr("id").substr(6));
 			updateLayers(jCollage.getLayers());
 		}
 	});
 	
 	$(".up").click(function() {
 		if (getSelectedLayer() != null) {
-			var selectedLayer = $(".layers .selected").attr("id").substr(6);
+			var selectedLayer = $(".camadas .selected").attr("id").substr(6);
 			if (jCollage.moveLayerUp(selectedLayer)) {
 				updateLayers(jCollage.getLayers());
 				$("#layer_" + (parseInt(selectedLayer) + 1)).addClass("selected");
@@ -79,7 +79,7 @@ $(document).ready(function() {
 	
 	$(".down").click(function() {
 		if (getSelectedLayer() != null) {
-			var selectedLayer = $(".layers .selected").attr("id").substr(6);
+			var selectedLayer = $(".camadas .selected").attr("id").substr(6);
 			if (jCollage.moveLayerDown(selectedLayer)) {
 				updateLayers(jCollage.getLayers());
 				$("#layer_" + (parseInt(selectedLayer) - 1)).addClass("selected");
@@ -92,8 +92,8 @@ $(document).ready(function() {
 		$.getJSON("Fotos", function(data) {
 			$.each(data.fotos, function(i, foto) {
 				var img = $("<img/>").attr("src", foto.url);
-				img.attr("title", "titulo");
-				$("<li></li>").append(img).appendTo(".search ul");
+				img.attr("title", "Camada ");
+				$("<li></li>").append(img).appendTo(".fotos ul");
 				if ( i == 8 ) return false;
 			});
 			
@@ -131,10 +131,10 @@ $(document).ready(function() {
 });
 
 function getSelectedLayer() {
-	if ($(".layers .selected").length == 0) {
+	if ($(".camadas .selected").length == 0) {
 		return null;
 	}
-	return jCollage.getLayer($(".layers .selected").attr("id").substr(6));
+	return jCollage.getLayer($(".camadas .selected").attr("id").substr(6));
 }
 
 function setSettings(id) {
@@ -150,16 +150,19 @@ function setSettings(id) {
 }
 
 function updateLayers(layers) {
-	$(".layers li.layer").remove();
+	$(".camadas li.layer").remove();
+	var countCamadas = 0;
 	for (i in layers) {
-		$(".layers > ul").prepend(createLayerRow(i, layers[i]));
+		$(".camadas > ul").prepend(createLayerRow(i, layers[i], ++countCamadas));
 	}
 }
 
-function createLayerRow(id, layer) {
+function createLayerRow(id, layer, count) {
 	var row = $("<li></li>").addClass("layer").attr("id", "layer_" + id);
 	var icon = $("<img/>").attr("src", layer.getImage().src);
-	var heading = $("<h3></h3>").text(layer.getTitle().substr(0,14));
+	var heading = $("<h3></h3>").text(function (){
+		return layer.getTitle() + (count);
+		});
 	var visible = $("<div></div>").addClass("visible");
 	if (layer.isVisible()) {
 		visible.html("&radic;");
