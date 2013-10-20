@@ -17,5 +17,5 @@ temp-testng-customsuite.xml
 test-output
 .externalToolBuilders
 *~
-/src/resources/config/facebook-app.properties
+/src/main/resources/facebook-app.properties
 
