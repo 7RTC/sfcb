@@ -1,0 +1,9 @@
+# Copie esse arquivo para facebook-app-id.properties e altere as propriedades
+# Conforme os valores para seu aplicativo em
+# https://developers.facebook.com/apps
+facebok.app.id= 999999999999999
+facebook.app.secret=99999999999999aaaaaaaaaaaaaaaaaa
+# Atencao: A / no final eh necessaria
+facebook.app.site_url=http://my-app.appspot.com/Login/
+facebook.app.permissions=user_photos,friends_photos,publish_stream,photo_upload
+

@@ -7,11 +7,6 @@ $(document).ready(function() {
         var img = $(this);
         var imgUrl = document.createElement("img");
         imgUrl.onload = function() {
-            var widthProportion = imgUrl.width / 360;
-            var heightProportion = imgUrl.height / 240;
-            var proportion = Math.max(widthProportion,heightProportion);
-            imgUrl.width =  imgUrl.width / proportion;
-            imgUrl.height = imgUrl.height / proportion;
             jCollage.addLayer(imgUrl).setTitle(img.attr("title"));
             updateLayers(jCollage.getLayers());
             $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
@@ -119,23 +114,6 @@ $(document).ready(function() {
 		
 		$("#stringBase64Img").val(dataURL);
 		$("#formColagem").submit();
-
-		
-//		//Cria um novo canvas
-//	    var newCanvas = document.createElement('canvas');
-//	    var context = newCanvas.getContext('2d');
-//
-//	    //Seta as dimensões
-//	    newCanvas.width = canvas.width; //Aplicar constante de proporção
-//	    newCanvas.height = canvas.height;
-//
-//	    //apply the old canvas to the new one
-//	    context.drawImage(canvas, 0, 0);
-//		
-//	    var dataURLNewCanvas = newCanvas.toDataURL();
-
-	    
-	    
 
 	});
 	

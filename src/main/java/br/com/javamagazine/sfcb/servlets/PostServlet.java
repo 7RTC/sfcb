@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -35,23 +36,17 @@ public class PostServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-//
-//		final GcsService gcsService =
-//				GcsServiceFactory.createGcsService(RetryParams.getDefaultInstance());
-//
-//		BlobKey blobKey = null;
 
 		String imagemBase64 = request.getParameter("stringBase64Img");
 
 		// Decoda o string da imagem do canvas
-        String tipo = imagemBase64.substring(0, 14);
+        String tipo = imagemBase64.substring(Math.min(imagemBase64.length(), 5), Math.min(imagemBase64.length(), 14));
+        String extensao = tipo.substring(Math.max(0, tipo.length() - 3));
 		byte[] decodedBytes = Base64.decodeBase64(imagemBase64.split("^data:image/(png|jpg);base64,")[1]);
-        log.info("Tipo: " + tipo);
-        log.info("Extensão: " + tipo.substring(Math.max(0, tipo.length() - 3)));
+        log.warning("Tipo: " + tipo);
+        log.warning("Extensao: " + extensao);
 
-		InputStream input = new ByteArrayInputStream(decodedBytes);
-		
+
 //		OutputStream output = response.getOutputStream();
 		
 //		//Teste decode (funcionando)
@@ -67,26 +62,22 @@ public class PostServlet extends HttpServlet {
 
         FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 
-		try {
-			String nomeArquivo = String.valueOf(Calendar.getInstance().getTimeInMillis());
+		try (InputStream input = new ByteArrayInputStream(decodedBytes); OutputStream out = response.getOutputStream()) {
+			final String nomeArquivo = String.valueOf(Calendar.getInstance().getTimeInMillis());
 			FacebookType publishPhotoResponse = facebookClient.publish("me/photos", FacebookType.class,
-					BinaryAttachment.with("sfcb. " +  tipo.substring(Math.max(0, tipo.length() - 3)), input),
+					BinaryAttachment.with("sfcb. " +  extensao, input),
 					Parameter.with("message", "Via Graph API"));
 
-			System.out.println("Published photo ID: " + publishPhotoResponse.getId());
-        } catch (FacebookOAuthException fbException) {
-            fbException.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("Published photo ID: " + publishPhotoResponse.getId());
+            response.setContentType(tipo);
+            out.write(decodedBytes);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Não foi possível fazer upload da colagem", e);
+            response.getOutputStream().println("<html><body><h1>Erro inesperado</h1></body></html>");
 		}
 
 
-		OutputStream output = response.getOutputStream();
-		response.setContentType("image/png");
-		ByteStreams.copy(input, output);
-		output.flush();
-		output.close();
-		
+
 
 //		// Salva objeto
 //		String objName = String.valueOf(Calendar.getInstance().getTimeInMillis());

@@ -5,12 +5,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>Foto</servlet-name>
+        <servlet-name>FotoServlet</servlet-name>
         <servlet-class>br.com.javamagazine.sfcb.servlets.FotoServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ImageProxy</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.servlets.ImageProxy</servlet-class>
+        <servlet-name>ProxyServlet</servlet-name>
+        <servlet-class>br.com.javamagazine.sfcb.servlets.ProxyServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PostServlet</servlet-name>
@@ -24,14 +24,14 @@
     	<servlet-name>Colagem</servlet-name>
 		<jsp-file>/colagem.jsp</jsp-file>
     </servlet>
-    
+
     
     <servlet-mapping>
-        <servlet-name>Foto</servlet-name>
+        <servlet-name>FotoServlet</servlet-name>
         <url-pattern>/Fotos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ImageProxy</servlet-name>
+        <servlet-name>ProxyServlet</servlet-name>
         <url-pattern>/Fotos/ImageProxy</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -40,7 +40,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <url-pattern>/Login/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Colagem</servlet-name>

@@ -1,16 +1,15 @@
 package br.com.javamagazine.sfcb.servlets;
 
-import java.io.IOException;
-import java.util.Date;
+import br.com.javamagazine.sfcb.negocio.LoginFacebookClient;
+import com.restfb.FacebookClient;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import br.com.javamagazine.sfcb.negocio.LoginFacebookClient;
-import com.restfb.FacebookClient;
+import java.io.IOException;
+import java.util.Date;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,17 +17,13 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String code = request.getParameter("code");
-		String redirectUrl = "http://jm-sfcb.appspot.com:8080/Login";
+		final String code = request.getParameter("code");
+		final LoginFacebookClient loginFacebookClient = new LoginFacebookClient(code);
 		
-		LoginFacebookClient loginFacebookClient = new LoginFacebookClient();
-		
-		FacebookClient.AccessToken token = loginFacebookClient.getFacebookUserToken(code, redirectUrl);
+		FacebookClient.AccessToken token = loginFacebookClient.getFacebookUserToken();
 		String accessToken = token.getAccessToken();
 		Date expires = token.getExpires();
-		System.out.println(accessToken);
-		System.out.println(expires.getTime());
-		
+
         HttpSession session = request.getSession(true);
         session.setAttribute("accessToken", accessToken);
         

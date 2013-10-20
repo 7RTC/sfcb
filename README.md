@@ -1,15 +1,16 @@
-Social Facebook Collage Builder 
+Social Facebook Collage Builder
+======
 
-## Demonstração de aplicação web que utiliza HTML5, Google App Engine e RetFB para fazer colagens com fotos e publicá-las no conta do usuário no Facebook. 
+## Demonstração de aplicação web que utiliza HTML5, Google App Engine e RestFB para criar colagens de fotos e publicá-las no conta do usuário no Facebook.
 
-Requer:
+### Requer:
 [JDK 7](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html)
 [Eclipse](http://www.eclipse.org/downloads/)
 [Apache Maven](http://maven.apache.org) 3.1 ou superior
 [App Engine Maven Plugin](http://code.google.com/p/appengine-maven-plugin/)
 [Google Plugin](https://developers.google.com/eclipse/)
 
-Setup:
+### Setup:
 1) Instale o JDK 7 (http://www.oracle.com/technetwork/java/javase/downloads/index.html);
 
 2) Baixe o Eclipse IDE para Java EE (http://www.eclipse.org/downloads/);
@@ -38,8 +39,14 @@ Caso queira utilizar o Maven por linha de comando:
 
 	mvn archetype:generate -B -DarchetypeGroupId=com.google.appengine.archetypes -DarchetypeArtifactId=guestbook-archetype -DarchetypeVersion=1.8.4 -DgroupId=br.com.javamagazine -DartifactId=sfcb -Dversion=1.0 -Dpackage=br.com.javamagazine.sfcb
 
+### Configuração:
 
-Intruções de uso:
+1) Na `src/main/resources` copie o arquivo `facebook-app.properties.template` para `facebook-app.properties`.
+
+2) Edite o arquivo `facebook-app.properties` e insira as credenciais do aplicativo criado no Facebook e URL para redirect
+do login no Google App Engine conforme instruções do artigo na Java Magazine.
+
+### Intruções de uso:
 
 Para construir, execute
 
