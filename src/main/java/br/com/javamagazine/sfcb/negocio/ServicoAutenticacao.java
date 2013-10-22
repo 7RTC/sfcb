@@ -1,18 +1,17 @@
 package br.com.javamagazine.sfcb.negocio;
 
+import com.restfb.DefaultWebRequestor;
+import com.restfb.FacebookClient;
+import com.restfb.WebRequestor;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.restfb.DefaultFacebookClient;
-import com.restfb.DefaultWebRequestor;
-import com.restfb.FacebookClient;
-import com.restfb.WebRequestor;
-
-public class LoginFacebookClient extends DefaultFacebookClient implements FacebookClient {
-    private static final Logger log = Logger.getLogger(LoginFacebookClient.class.getName());
+public class ServicoAutenticacao extends ServicoFacebook {
+    private static final Logger log = Logger.getLogger(ServicoAutenticacao.class.getName());
 
     private final String appId;
     private final String appSecret;
@@ -20,10 +19,7 @@ public class LoginFacebookClient extends DefaultFacebookClient implements Facebo
     private final String scope;
     private final String code;
 
-    public LoginFacebookClient(String code) {
-
-        this.code = code;
-
+    public ServicoAutenticacao(String code) {
         final Properties p = new Properties();
         try (InputStream inputStream = getClass().getResourceAsStream("/facebook-app.properties")) {
             p.load(inputStream);
@@ -35,10 +31,11 @@ public class LoginFacebookClient extends DefaultFacebookClient implements Facebo
         appSecret = p.getProperty("facebook.app.secret");
         scope = p.getProperty("facebook.app.permissions");
         redirectUrl = p.getProperty("facebook.app.url");
+        this.code = code;
 
     }
 
-    public AccessToken getFacebookUserToken() throws IOException {
+    public FacebookClient.AccessToken getFacebookUserToken() throws IOException {
 
         final WebRequestor wr = new DefaultWebRequestor();
         final String urlCall = String.format("https://graph.facebook.com/oauth/access_token" +
@@ -47,8 +44,7 @@ public class LoginFacebookClient extends DefaultFacebookClient implements Facebo
         );
         log.info("URL called: " + urlCall);
         WebRequestor.Response accessTokenResponse = wr.executeGet(urlCall);
-
-        return AccessToken.fromQueryString(accessTokenResponse.getBody());
+        return FacebookClient.AccessToken.fromQueryString(accessTokenResponse.getBody());
     }
 }
 
