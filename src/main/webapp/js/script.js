@@ -94,11 +94,11 @@ $(document).ready(function() {
 	
 	
 	$("#recuperarFotos").click(function(){
-		$.getJSON("/Fotos", function(data) {
+		$.getJSON("/fotos", function(data) {
 			$.each(data.fotos, function(i, foto) {
 				var img = $("<img/>").attr("src", foto.picture);
 				img.attr("title", "Camada ");
-                img.data("proxy-url", foto.source);
+                img.data("proxy-url", foto.proxyURL);
 				$("<li></li>").append(img).appendTo(".fotos ul");
 				if ( i == 8 ) return false;
 			});
@@ -112,7 +112,7 @@ $(document).ready(function() {
 		var canvas = document.getElementById('collage');
 		var dataURL = canvas.toDataURL();
 		
-		$("#stringBase64Img").val(dataURL);
+		$("#dataColagem").val(dataURL);
 		$("#formColagem").submit();
 
 	});

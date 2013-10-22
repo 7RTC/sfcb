@@ -1,23 +1,22 @@
 package br.com.javamagazine.sfcb.servlets;
 
-import java.io.ByteArrayOutputStream;
+import br.com.javamagazine.sfcb.modelo.Imagem;
+import br.com.javamagazine.sfcb.negocio.ServicoImagem;
+import com.google.common.io.ByteStreams;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import br.com.javamagazine.sfcb.negocio.ImageTransformer;
-import com.google.common.io.ByteStreams;
 
 public class ProxyServlet  extends HttpServlet {
     private static final Logger log = Logger.getLogger(ProxyServlet.class.getName());
@@ -26,31 +25,49 @@ public class ProxyServlet  extends HttpServlet {
     private static final int readTimeout = 60000;
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final URLConnection url = new URL(request.getParameter("urlImagemFb")).openConnection();
-        url.setConnectTimeout(connectTimeout); // Timeouts
-        url.setReadTimeout(readTimeout);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        log.info("Proxy headers");
-        for(Map.Entry<String, List<String>> entry : url.getHeaderFields().entrySet()) {
+        final ServicoImagem servicoImagem = new ServicoImagem();
+
+        final URLConnection connection;
+        try {
+            connection = new URL(request.getParameter("urlImagemFb")).openConnection();
+            connection.setConnectTimeout(connectTimeout); // Timeouts
+            connection.setReadTimeout(readTimeout);
+        } catch (IOException e) {
+            log.log(Level.SEVERE, "Não foi possível recuperar a imagem", e);
+            // TODO: Tratar e redirecionar o usuário para uma página de erro
+           throw e;
+        }
+
+        log.info("Cabecalhos da imagem original");
+        for(Map.Entry<String, List<String>> entry : connection.getHeaderFields().entrySet()) {
             log.info(entry.getKey() + " = " + entry.getValue());
         }
 
-        // Headers
-        response.setContentType(url.getContentType()); // seta headers
-        response.setContentLength(url.getContentLength());
-        response.setDateHeader("last-modified", url.getHeaderFieldDate("last-modified", new Date().getTime()));
-        response.setDateHeader("date", url.getHeaderFieldDate("date", new Date().getTime()));
-        response.setHeader("keep-alive", url.getHeaderField("keep-alive"));
+        // Copia cabecalhos para o proxy
+        response.setContentType(connection.getContentType());
+        response.setContentLength(connection.getContentLength());
+        response.setDateHeader("last-modified", connection.getHeaderFieldDate("last-modified", new Date().getTime()));
+        response.setDateHeader("date", connection.getHeaderFieldDate("date", new Date().getTime()));
+        response.setHeader("keep-alive", connection.getHeaderField("keep-alive"));
         // O facebook costuma manter imagens em cache por aproximadamente  14 dias
-        response.setDateHeader("max-age", url.getHeaderFieldDate("max-age", new Date().getTime()));
+        response.setDateHeader("max-age", connection.getHeaderFieldDate("max-age", new Date().getTime()));
 
-        try (InputStream input = url.getInputStream(); OutputStream out = response.getOutputStream()) {
-            final byte[] original = ByteStreams.toByteArray(input);
-            final ImageTransformer it = new ImageTransformer();
-            byte[] resized = it.resizeImage(original);
-            out.write(resized);
-       }
+        final ServletOutputStream out = response.getOutputStream();
+
+        try (InputStream input = connection.getInputStream()) {
+            final String mimeType = connection.getContentType();
+            final byte[] corpo = ByteStreams.toByteArray(input);
+
+            final Imagem original = new Imagem(corpo, mimeType);
+            final Imagem redimensionada = servicoImagem.redimensionar(original);
+            out.write(redimensionada.getCorpo());
+       } catch (Exception e) {
+            log.log(Level.SEVERE, "Não foi possível tratar a imagem do facebook", e);
+            // TODO: Tratar e redirecionar o usuário para uma página de erro
+
+        }
     }
 
 }

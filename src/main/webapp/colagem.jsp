@@ -59,8 +59,8 @@
 			</div>
 		</aside>
 		<footer class="fotos">
-			<form id="formColagem" action="/PostColagem" method="POST">
-				<input type="text" id="stringBase64Img" name="stringBase64Img">
+			<form id="formColagem" action="/postColagem" method="POST">
+				<input type="text" id="dataColagem" name="dataColagem">
 			</form>
 			
 			<input type="button" value="Obter Fotos" id="recuperarFotos"/>
