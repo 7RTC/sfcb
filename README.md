@@ -1,7 +1,7 @@
 Social Facebook Collage Builder
 ======
 
-## Demonstração de aplicação web que utiliza HTML5, Google App Engine e RestFB para criar colagens de fotos e publicá-las no conta do usuário no Facebook.
+## Demonstração de aplicação web que utiliza HTML5, Google App Engine e RestFB para criar colagens de fotos e publicá-las na conta do usuário no Facebook.
 
 ### Requer:
 [JDK 7](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html)
@@ -35,7 +35,7 @@ Caso queira usar o plugin do Maven para o Eclipse [m2e](http://eclipse.org/m2e/)
 
 Caso queira utilizar o Maven por linha de comando:
 
-10) Crie um novo projeto com o arquétipo [Guestbook](http://search.maven.org/#search%7Cga%7C1%7Ccom.google.appengine.archetypes).
+10) Crie um novo projeto com o arquétipo [Guestbook](http://search.maven.org/#search%7Cga%7C1%7Ccom.google.appengine.archetypes) utilizando o comando:
 
 	mvn archetype:generate -B -DarchetypeGroupId=com.google.appengine.archetypes -DarchetypeArtifactId=guestbook-archetype -DarchetypeVersion=1.8.4 -DgroupId=br.com.javamagazine -DartifactId=sfcb -Dversion=1.0 -Dpackage=br.com.javamagazine.sfcb
 
