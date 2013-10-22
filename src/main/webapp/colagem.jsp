@@ -3,7 +3,7 @@
 
 <html><head>
 		<title>Colagens</title>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jcollage.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
@@ -59,6 +59,7 @@
 			</div>
 		</aside>
 		<footer class="fotos">
+            <input type="hidden" value="${sessionScope.sfcbToken}" id="sfcb-token" />
 			<form id="formColagem" action="/postColagem" method="POST">
 				<input type="text" id="dataColagem" name="dataColagem">
 			</form>
