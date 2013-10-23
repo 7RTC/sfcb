@@ -22,6 +22,7 @@ public class PostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         final String accessToken = (String) request.getSession().getAttribute("accessToken");
+        log.warning("Access Token: " + accessToken);
 		final String imagemBase64 = request.getParameter("dataColagem");
         log.info("Em Base64: " + imagemBase64);
 

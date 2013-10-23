@@ -183,7 +183,6 @@
                     <disableUpdateCheck>true</disableUpdateCheck>
                 </configuration>
                 <!-- Descomente para gerar endpoints toda vez que inicializar o server-->
-<!--
                 <executions>
                     <execution>
                         <goals>
@@ -191,7 +190,6 @@
                         </goals>
                     </execution>
                 </executions>
--->
             </plugin>
         </plugins>
     </build>

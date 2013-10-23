@@ -1,6 +1,5 @@
 package br.com.javamagazine.sfcb.endpoints;
 
-import br.com.javamagazine.sfcb.modelo.Foto;
 import br.com.javamagazine.sfcb.modelo.Fotos;
 import br.com.javamagazine.sfcb.modelo.Imagem;
 import br.com.javamagazine.sfcb.modelo.Publicacao;
@@ -10,6 +9,8 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 
 import javax.annotation.Nullable;
+import javax.cache.Cache;
+import javax.cache.CacheManager;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Level;
@@ -31,29 +32,27 @@ public class FotoEndpoint {
 
     private static final Logger log = Logger.getLogger(FotoEndpoint.class.getName());
 
+    private final Cache cache = CacheManager.getInstance().getCache("sfcbCache");
+
     @ApiMethod(
             name = "sfcb.foto.list",
             path = "foto",
             httpMethod = ApiMethod.HttpMethod.GET
     )
-    public Fotos listar(HttpServletRequest req) {
-        final String accessToken = (String) req.getSession().getAttribute("accessToken");
-        log.info("Access Token: " + accessToken);
-
-        final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken);
+    public Fotos listar(HttpServletRequest req, @Nullable @Named("limit") Integer limit) {
+        final String accessToken = getAccessToken(req);
+        final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken, limit);
 
         return imagensFB.listarTodas();
     }
 
     @ApiMethod(
             name = "sfcb.foto.pagina",
-            path = "foto/{pagina}",
+            path = "foto/cursor",
             httpMethod = ApiMethod.HttpMethod.GET
     )
-    public Fotos recuperarPagina(HttpServletRequest req, @Named String pagina) {
-        final String accessToken = (String) req.getSession().getAttribute("accessToken");
-        log.info("Access Token: " + accessToken);
-
+    public Fotos recuperarPagina(HttpServletRequest req, @Nullable @Named("pagina") String pagina) {
+        final String accessToken = getAccessToken(req);
         final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken);
 
         return imagensFB.buscarPagina(pagina);
@@ -65,8 +64,7 @@ public class FotoEndpoint {
             httpMethod = ApiMethod.HttpMethod.POST
     )
     public Publicacao publicar(HttpServletRequest req, @Named String dataColagem) {
-        final String accessToken = (String) req.getSession().getAttribute("accessToken");
-        log.info("Access Token: " + accessToken);
+        final String accessToken = getAccessToken(req);
 
         log.info("Em Base64: " + dataColagem);
 
@@ -89,5 +87,14 @@ public class FotoEndpoint {
         }
 
         return publicacao;
+    }
+
+    private String getAccessToken(HttpServletRequest req) {
+        final String sfcbToken = req.getHeader("sfcb-token");
+        log.info("SFCB Token: " + sfcbToken);
+        final String accessToken = (String) cache.get(sfcbToken);
+        log.info("Access Token: " + accessToken);
+
+        return accessToken;
     }
 }
