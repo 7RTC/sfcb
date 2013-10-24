@@ -99,9 +99,9 @@ $(document).ready(function () {
 
 
     $("#recuperarFotos").click(function () {
-        alert($("#sfcb-token").val())
         $.ajax({
-            url: '//jm-sfcb.appspot.com/_ah/api/sfcb/v1/foto',
+            url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                + '/_ah/api/sfcb/v1/foto',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
