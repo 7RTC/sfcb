@@ -99,9 +99,9 @@ $(document).ready(function () {
 
 
     $("#recuperarFotos").click(function () {
-        alert($("#sfcb-token").val())
         $.ajax({
-            url: '//jm-sfcb.appspot.com/_ah/api/sfcb/v1/foto',
+            url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                + '/_ah/api/sfcb/v1/foto',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -123,7 +123,7 @@ $(document).ready(function () {
     $("#gerarColagem").click(function () {
 
         var canvas = document.getElementById('collage');
-        var dataURL = canvas.toDataURL();
+        var dataURL = canvas.toDataURL('image/jpeg');
 
         $("#dataColagem").val(dataURL);
         $("#formColagem").submit();
