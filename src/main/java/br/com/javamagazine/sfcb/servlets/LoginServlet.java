@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         session.setAttribute("sfcbToken", sfcbToken.getUUID());
-        session.setAttribute("accessToken", sfcbToken.getUUID());
+        session.setAttribute("accessToken", sfcbToken.getAccessToken());
 
         log.info("SFCB Token: " + sfcbToken);
         log.info("Data de expiracao confirma? " + expires.equals(sfcbToken.getExpiracao()));
