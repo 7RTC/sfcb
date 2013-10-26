@@ -30,7 +30,7 @@ public class ServicoAutenticacao extends ServicoFacebook {
         appId = p.getProperty("facebok.app.id");
         appSecret = p.getProperty("facebook.app.secret");
         scope = p.getProperty("facebook.app.permissions");
-        redirectUrl = p.getProperty("facebook.app.url");
+        redirectUrl = p.getProperty("facebook.app.site_url");
         this.code = code;
 
     }

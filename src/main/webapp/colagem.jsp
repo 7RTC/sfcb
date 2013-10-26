@@ -6,7 +6,33 @@
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jcollage.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css" />
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+		
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+			    jQuery('#mycarousel').jcarousel({
+			        itemLoadCallback: itemLoadCallbackFunction
+			    });
+			});
+		</script>
+		<script type="text/javascript">
+			function itemLoadCallbackFunction(carousel, state)
+			{
+			    for (var i = carousel.first; i <= carousel.last; i++) {
+			        // Check if the item already exists
+			        if (!carousel.has(i)) {
+			            // Add the item
+			 //           carousel.add(i, "I'm item #" + i);
+			            
+			// TODO Tratar next e previous     
+	          
+		
+			        }
+			    }
+			};
+		</script>
 	</head>
 	<body>
 		<h1>Colagens</h1>
@@ -66,7 +92,11 @@
 			
 			<input type="button" value="Obter Fotos" id="recuperarFotos"/>
 			<input type="button" value="Gerar Colagem" id="gerarColagem"/>
-			<ul></ul>
+			<input type="button" value="Página Anterior" id="paginaAnterior" style="display: none"/>
+			<input type="button" value="Próxima Página" id="proximaPagina" style="display: none"/>
+			<ul id="mycarousel" class="jcarousel-skin-tango">
+   				<!-- The content goes in here -->
+			</ul>
 		</footer>
 		
 	

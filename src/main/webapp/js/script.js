@@ -99,9 +99,9 @@ $(document).ready(function () {
 
 
     $("#recuperarFotos").click(function () {
-        alert($("#sfcb-token").val())
+        alert($("#sfcb-token").val());
         $.ajax({
-            url: '//jm-sfcb.appspot.com/_ah/api/sfcb/v1/foto',
+            url: '//jm-sfcb.appspot.com:8080/_ah/api/sfcb/v1/foto?limit=12',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -109,7 +109,8 @@ $(document).ready(function () {
                     var img = $("<img/>").attr("src", foto.picture);
                     img.attr("title", "Camada ");
                     img.data("proxy-url", foto.proxyURL);
-                    $("<li></li>").append(img).appendTo(".fotos ul");
+              //      $("<li></li>").append(img).appendTo(".fotos ul");
+                    jQuery('#mycarousel').jcarousel('add', i, img);
                 });
             },
             error: function () {
@@ -121,15 +122,13 @@ $(document).ready(function () {
     });
 
     $("#gerarColagem").click(function () {
-
         var canvas = document.getElementById('collage');
         var dataURL = canvas.toDataURL();
 
         $("#dataColagem").val(dataURL);
         $("#formColagem").submit();
-
     });
-
+    
 });
 
 function getSelectedLayer() {

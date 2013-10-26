@@ -14,7 +14,7 @@
 	
 	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="formFacebook">
 		<input type="hidden" name="client_id" value="${facebok.app.id}"/>
-		<input type="hidden" name="redirect_uri" value="${facebook.app.url}"/>
+		<input type="hidden" name="redirect_uri" value="${facebook.app.site_url}"/>
         <input type="hidden" name="scope" value="${facebook.app.permissions}"/>
 		<input type="image" src="imagens/botao-login-facebook.png" alt="Entrar pelo Facebook">
 	</form>
