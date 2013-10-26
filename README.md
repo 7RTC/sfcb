@@ -11,13 +11,13 @@ Social Facebook Collage Builder
 [Google Plugin](https://developers.google.com/eclipse/)
 
 ### Setup:
-1) Instale o JDK 7 (http://www.oracle.com/technetwork/java/javase/downloads/index.html);
+1) Instale o [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html);
 
-2) Baixe o Eclipse IDE para Java EE (http://www.eclipse.org/downloads/);
+2) Baixe o [Eclipse IDE](http://www.eclipse.org/downloads/) para Java EE;
 
-3) Instale o plugin do Google App Engine (GAE) para Eclipse. (https://developers.google.com/eclipse/?hl=pt-BR);
+3) Instale o [plugin](https://developers.google.com/eclipse/?hl=pt-BR) do Google App Engine (GAE) para Eclipse;
 
-4) Instale o SDK do GAE (https://developers.google.com/appengine/downloads?hl=pt-br);
+4) Instale o [SDK](https://developers.google.com/appengine/downloads?hl=pt-br) do GAE;
 
 *Caso esteja utilizando o plugin do GAE para o Eclipse, basta instalar o componente "Google App Engine Java SDK" via Atualização de Software do Eclipse. Mais informações na documentação do [Plugin do GAE](https://developers.google.com/eclipse/docs/getting_started?hl=pt-BR);
 
