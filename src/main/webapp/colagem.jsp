@@ -10,29 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css" />
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 		
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-			    jQuery('#mycarousel').jcarousel({
-			        itemLoadCallback: itemLoadCallbackFunction
-			    });
-			});
-		</script>
-		<script type="text/javascript">
-			function itemLoadCallbackFunction(carousel, state)
-			{
-			    for (var i = carousel.first; i <= carousel.last; i++) {
-			        // Check if the item already exists
-			        if (!carousel.has(i)) {
-			            // Add the item
-			 //           carousel.add(i, "I'm item #" + i);
-			            
-			// TODO Tratar next e previous     
-	          
-		
-			        }
-			    }
-			};
-		</script>
 	</head>
 	<body>
 		<h1>Colagens</h1>

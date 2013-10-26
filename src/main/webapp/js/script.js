@@ -1,4 +1,6 @@
 var jCollage = null;
+var proximaPagina;
+var paginaAnterior;
 
 function setHeader(xhr) {
     xhr.setRequestHeader('sfcb-token', $("#sfcb-token").val());
@@ -7,6 +9,10 @@ function setHeader(xhr) {
 $(document).ready(function () {
     jCollage = new Collage("#collage");
     jCollage.setBackgroundColor("#fff");
+    
+    $('#mycarousel').jcarousel({
+        itemLoadCallback: itemLoadCallbackFunction
+    });
 
     $(document).on("click", ".fotos img", function () {
         var img = $(this);
@@ -15,7 +21,7 @@ $(document).ready(function () {
             jCollage.addLayer(imgUrl).setTitle(img.attr("title"));
             updateLayers(jCollage.getLayers());
             $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
-        }
+        };
         imgUrl.src = img.data("proxy-url");
     });
 
@@ -105,6 +111,10 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
+            	alert("data.paginaAnterior" + data.paginaAnterior);
+            	alert("data.proximaPagina" + data.proximaPagina);
+            	proximaPagina = data.proximaPagina;
+                paginaAnterior = data.paginaAnterior;
                 $.each(data.fotos, function (i, foto) {
                     var img = $("<img/>").attr("src", foto.picture);
                     img.attr("title", "Camada ");
@@ -130,6 +140,52 @@ $(document).ready(function () {
     });
     
 });
+
+
+function itemLoadCallbackFunction(carousel, state) {
+///////	 //testando    
+//carousel.size(10);
+	alert("state: " + state);
+	if(state != 'init') {
+        alert("paginaAnterior: " + paginaAnterior);
+        alert("proximaPagina: " + proximaPagina);
+
+	// Check if the requested items already exist
+    	/* if (carousel.has(carousel.first, carousel.last)) {
+       		return;
+    	} */
+
+            alert($("#sfcb-token").val());
+            $.ajax({
+                url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                + '/_ah/api/sfcb/v1/foto/cursor?pagina=' + proximaPagina,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data.fotos, function (i, foto) {
+                        var img = $("<img/>").attr("src", foto.picture);
+                        img.attr("title", "Camada ");
+                        img.data("proxy-url", foto.proxyURL);
+                        $("<li></li>").append(img).appendTo(".fotos ul");
+                        carousel.add(carousel.first+1, img);
+                        alert("carousel.first: " + carousel.first);
+                        alert("carousel.last: " + carousel.last);
+
+                    });
+                },
+                error: function () {
+                    alert('Erro ao obter lista de fotos');
+                },
+                beforeSend: setHeader
+            });
+
+	}
+///////	 //testando           
+  
+
+};
+
+
 
 function getSelectedLayer() {
     if ($(".camadas .selected").length == 0) {

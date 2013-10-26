@@ -25,15 +25,29 @@ public class ServicoAutenticacao extends ServicoFacebook {
     private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     public ServicoAutenticacao() {
-        this(null);
-    }
+        final Properties p = new Properties();
+        try (InputStream inputStream = getClass().getResourceAsStream("/facebook-app.properties")) {
+            p.load(inputStream);
+        } catch (IOException e) {
+            log.log(Level.SEVERE, "Não foi possível abrir o arquivo facebook-app-id.properties", e);
+        }
 
+        appId = p.getProperty("facebok.app.id");
+        appSecret = p.getProperty("facebook.app.secret");
+        scope = p.getProperty("facebook.app.permissions");
+        redirectUrl = p.getProperty("facebook.app.site_url");
+        // Não utilizado
+        this.code = null;
+    }
+    
+    // Code é apenas necessário para login sem a utlização do Javascript SDK
+    // Utilizado o Javascript SDK é possível obter o access token direto do response
     public ServicoAutenticacao(String code) {
         final Properties p = new Properties();
         try (InputStream inputStream = getClass().getResourceAsStream("/facebook-app.properties")) {
             p.load(inputStream);
         } catch (IOException e) {
-            log.log(Level.SEVERE, "Não foi possível abrir o arquivo acebook-app-id.properties", e);
+            log.log(Level.SEVERE, "Não foi possível abrir o arquivo facebook-app-id.properties", e);
         }
 
         appId = p.getProperty("facebok.app.id");
@@ -54,6 +68,13 @@ public class ServicoAutenticacao extends ServicoFacebook {
         log.info("URL called: " + urlCall);
         WebRequestor.Response accessTokenResponse = wr.executeGet(urlCall);
         return FacebookClient.AccessToken.fromQueryString(accessTokenResponse.getBody());
+    }
+    
+    public FacebookClient.AccessToken getFacebookUserToken(String accessToken, String tempoExpiracao) throws IOException {
+    	
+    	return FacebookClient.AccessToken.fromQueryString(
+				"access_token=" + accessToken 
+				+ "&expires=" + tempoExpiracao);
     }
 
     private String generateUUID() {

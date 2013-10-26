@@ -14,51 +14,67 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 public class LoginServlet extends HttpServlet {
-    private static final Logger log = Logger.getLogger(LoginServlet.class.getName());
+	private static final Logger log = Logger.getLogger(LoginServlet.class.getName());
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        final String code = request.getParameter("code");
+		/*		
+		final String code = request.getParameter("code");
 
-        if (code == null || code.isEmpty()) {
-            // TODO: Autenticacao falhou, exibir mensagem
-            response.sendRedirect("/index.jsp");
-        }
-        final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao(code);
+		if (code == null || code.isEmpty()) {
+			// TODO: Autenticacao falhou, exibir mensagem
+			response.sendRedirect("/index.jsp");
+		}
 
-        final FacebookClient.AccessToken token = servicoAutenticacao.getFacebookUserToken();
-        final String accessToken = token.getAccessToken();
-        final Date expires = token.getExpires();
+		final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao(code);
 
-        log.info("FB Access Token: " + accessToken);
-        log.info("Expiração Token: " + expires);
+		final FacebookClient.AccessToken token = servicoAutenticacao.getFacebookUserToken();
+		 */
 
-        // insere token na sessao
-        final HttpSession session = request.getSession();
+		final String accessTokenGeradoSDK = request.getParameter("accessToken");
+		final String tempoExpiracaoGeradoSDK = request.getParameter("expiresIn");
 
-        // TODO: Buscar token por user id, não accessToken
-        // recupera ou gera um token da aplicacao para ser trocado pelo token do facebook
-        Token sfcbToken = servicoAutenticacao.getSFCBAccessToken(accessToken);
-        if (sfcbToken == null) {
-            log.info("Criando access Token");
-            sfcbToken = servicoAutenticacao.createAccessToken(token);
-        }
-        else {
-            // TODO: Validar token
-        }
-        if (sfcbToken.getExpiracao().before(expires)) {
-            log.info("Atualizando data de expiracao");
-            servicoAutenticacao.updateExpirationDate(sfcbToken, expires);
-        }
+		if (accessTokenGeradoSDK == null || accessTokenGeradoSDK.isEmpty()) {
+			// TODO: Autenticacao falhou, exibir mensagem
+			response.sendRedirect("/index.jsp");
+		}
 
-        session.setAttribute("sfcbToken", sfcbToken.getUUID());
-        session.setAttribute("accessToken", sfcbToken.getAccessToken());
+		final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao();
 
-        log.info("SFCB Token: " + sfcbToken);
-        log.info("Data de expiracao confirma? " + expires.equals(sfcbToken.getExpiracao()));
 
-        response.sendRedirect("/colagem");
-    }
+		final FacebookClient.AccessToken token = servicoAutenticacao.getFacebookUserToken(accessTokenGeradoSDK, tempoExpiracaoGeradoSDK);
+		final String accessToken = token.getAccessToken();
+		final Date expires = token.getExpires();
+
+		log.info("FB Access Token: " + accessToken);
+		log.info("Expiração Token: " + expires);
+
+		// insere token na sessao
+		final HttpSession session = request.getSession();
+
+		// TODO: Buscar token por user id, não accessToken
+		// recupera ou gera um token da aplicacao para ser trocado pelo token do facebook
+		Token sfcbToken = servicoAutenticacao.getSFCBAccessToken(accessToken);
+		if (sfcbToken == null) {
+			log.info("Criando access Token");
+			sfcbToken = servicoAutenticacao.createAccessToken(token);
+		}
+		else {
+			// TODO: Validar token
+		}
+		if (sfcbToken.getExpiracao().before(expires)) {
+			log.info("Atualizando data de expiracao");
+			servicoAutenticacao.updateExpirationDate(sfcbToken, expires);
+		}
+
+		session.setAttribute("sfcbToken", sfcbToken.getUUID());
+		session.setAttribute("accessToken", sfcbToken.getAccessToken());
+
+		log.info("SFCB Token: " + sfcbToken);
+		log.info("Data de expiracao confirma? " + expires.equals(sfcbToken.getExpiracao()));
+
+		response.sendRedirect("/colagem");
+	}
 
 }
