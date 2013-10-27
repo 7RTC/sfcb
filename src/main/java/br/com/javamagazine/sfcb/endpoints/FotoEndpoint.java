@@ -1,21 +1,21 @@
 package br.com.javamagazine.sfcb.endpoints;
 
-import br.com.javamagazine.sfcb.modelo.Fotos;
-import br.com.javamagazine.sfcb.modelo.Imagem;
-import br.com.javamagazine.sfcb.modelo.Publicacao;
-import br.com.javamagazine.sfcb.negocio.ServicoAutenticacao;
-import br.com.javamagazine.sfcb.negocio.ServicoImagem;
-import br.com.javamagazine.sfcb.negocio.ServicoImagensFB;
-import com.google.api.server.spi.config.Api;
-import com.google.api.server.spi.config.ApiMethod;
-import com.google.api.server.spi.response.UnauthorizedException;
-import com.google.appengine.api.datastore.EntityNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import br.com.javamagazine.sfcb.modelo.Fotos;
+import br.com.javamagazine.sfcb.modelo.Imagem;
+import br.com.javamagazine.sfcb.modelo.Publicacao;
+import br.com.javamagazine.sfcb.negocio.ServicoImagem;
+import br.com.javamagazine.sfcb.negocio.ServicoImagensFB;
+
+import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.response.UnauthorizedException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,6 +54,8 @@ public class FotoEndpoint {
         final String accessToken = getAccessToken(req);
         final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken);
 
+        log.info("Página: " + pagina);
+        
         return imagensFB.buscarPagina(pagina);
     }
 
@@ -89,16 +91,10 @@ public class FotoEndpoint {
     }
 
     private String getAccessToken(HttpServletRequest req) throws UnauthorizedException {
-        final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao();
-        final String sfcbToken = req.getHeader("sfcb-token");
-        log.info("SFCB Token: " + sfcbToken);
-        final String accessToken;
-        try {
-            accessToken = servicoAutenticacao.getAccessToken(sfcbToken);
-            log.info("Access Token: " + accessToken);
-        } catch (EntityNotFoundException e) {
-            throw new UnauthorizedException("Falha de autenticacao", e);
-        }
+    	final String accessToken = req.getHeader("access-token");
+    	if (accessToken == null) {
+    		throw new UnauthorizedException("Falha de autenticacao");
+    	}
 
         return accessToken;
     }

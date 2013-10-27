@@ -15,8 +15,9 @@ public class Fotos {
     private List<Foto> fotos;
     private String proximaPagina;
     private String paginaAnterior;
+    private int count = 13;
 
-    public Fotos () {
+	public Fotos () {
         this.fotos = new ArrayList<Foto>();
     }
 
@@ -43,4 +44,13 @@ public class Fotos {
     public void setProximaPagina(String proximaPagina) {
         this.proximaPagina = proximaPagina;
     }
+    
+    public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 }

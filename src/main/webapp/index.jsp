@@ -79,10 +79,10 @@
 		<h1>Aplicação demonstração de colagens</h1>
 		
 		<div class="loginFacebook"> 
-			<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+			<fb:login-button show-faces="true" max-rows="1" size="xlarge" scope="${facebook.app.permissions}">Login Facebook</fb:login-button>
 		</div>
 		
-<%-- 	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="loginFacebook">
+<%--  	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="loginFacebook">
 		<input type="hidden" name="client_id" value="${facebok.app.id}"/>
 		<input type="hidden" name="redirect_uri" value="${facebook.app.site_url}"/>
         <input type="hidden" name="scope" value="${facebook.app.permissions}"/>

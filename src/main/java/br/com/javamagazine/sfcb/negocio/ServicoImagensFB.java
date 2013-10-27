@@ -52,7 +52,7 @@ public class ServicoImagensFB extends ServicoFacebook {
     }
 
     public Fotos listarTodas() {
-        final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
+        final Connection<Photo> photos = client.fetchConnection("1587030566700/photos", Photo.class,
                 Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"),
                 Parameter.with("type", "uploaded"));
 
