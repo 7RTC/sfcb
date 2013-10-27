@@ -5,8 +5,8 @@
 		<title>Colagens</title>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jcollage.js"></script>
-		<script type="text/javascript" src="js/script.js"></script>
 		<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css" />
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 		
@@ -107,7 +107,7 @@
 					<option value="copy">Copy</option>
 					<option value="lighter">Lighter</option>
 				</select>
-				<span>Opacity:</span>
+				<span>Opacidade:</span>
 				<select name="opacity">
 					<option value="1" selected="selected">100%</option>
 					<option value="0.9">90%</option>
@@ -120,10 +120,10 @@
 					<option value="0.2">20%</option>
 					<option value="0.1">10%</option>
 				</select>
-				<span>Shadow:</span>
+				<span>Sombra:</span>
 				<select name="shadow">
-					<option value="true">On</option>
-					<option value="false">Off</option>
+					<option value="true">Ativada</option>
+					<option value="false">Desativada</option>
 				</select>
 			</div>
 			<div class="buttons">
@@ -134,7 +134,10 @@
 				</ul>
 			</div>
 		</aside>
-		<footer class="fotos">
+        <footer class="fotos" id="loading_footer" style="margin: 0 auto;">
+            <h3>Carregando fotos</h3>
+        </footer>
+		<footer class="fotos" id="sfcb_footer" style="display: none">
             <input type="hidden" value="${sessionScope.accessToken}" id="access-token" />
 			<form id="formColagem" action="/postColagem" method="POST">
 				<input type="text" id="dataColagem" name="dataColagem">

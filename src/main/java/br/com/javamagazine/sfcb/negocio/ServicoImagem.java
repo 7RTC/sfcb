@@ -7,6 +7,10 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
 import org.apache.commons.codec.binary.Base64;
 
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created with IntelliJ IDEA.
  * User: a.accioly
@@ -16,18 +20,28 @@ import org.apache.commons.codec.binary.Base64;
  */
 public class ServicoImagem {
 
+    private static final Logger log = Logger.getLogger(ServicoImagem.class.getName());
+
     private final ImagesService imagesService;
+
+    private final Pattern pattern = Pattern.compile("^data:(image/(png|jpg|jpeg));base64,");
 
     public ServicoImagem() {
         imagesService = ImagesServiceFactory.getImagesService();
     }
 
     public Imagem recuperarDaDataURL(String dataURL) {
+        log.info("Base 64 String: " + dataURL);
+        final Matcher matcher = pattern.matcher(dataURL);
+        if(!matcher.find()) {
+            throw new IllegalArgumentException("Formato da iamgem invalido, apenas png e jpeg são suportados");
+        }
         // Decoda o string da imagem do canvas
         // Extrai image/tipo de uma string data:image/png|;base64
-        final String mimeType = dataURL.substring(5, 14);
+        final String mimeType = matcher.group(1);
+        final String corpoEmBase64 = pattern.split(dataURL)[1];
         // Descarta o mimeType e decoda o corpo da imagem
-        byte[] corpo = Base64.decodeBase64(dataURL.split("^data:image/(png|jpg);base64,")[1]);
+        byte[] corpo = Base64.decodeBase64(corpoEmBase64);
 
         return new Imagem(corpo, mimeType);
     }

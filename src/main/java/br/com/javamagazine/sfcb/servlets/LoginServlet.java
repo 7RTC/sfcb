@@ -20,23 +20,12 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-/*				
-		final String code = request.getParameter("code");
 
-		if (code == null || code.isEmpty()) {
-			// TODO: Autenticacao falhou, exibir mensagem
-			response.sendRedirect("/index.jsp");
-		}
-
-		final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao(code);
-
-		final FacebookClient.AccessToken token = servicoAutenticacao.getFacebookUserToken();
-*/
-		
 		final String accessTokenGeradoSDK = request.getParameter("accessToken");
 		final String tempoExpiracaoGeradoSDK = request.getParameter("expiresIn");
 
 		if (accessTokenGeradoSDK == null || accessTokenGeradoSDK.isEmpty()) {
+            log.info("login inválido");
 			// TODO: Autenticacao falhou, exibir mensagem
 			response.sendRedirect("/index.jsp");
 		}
@@ -54,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		// insere token na sessao
 		final HttpSession session = request.getSession();
 		session.setAttribute("accessToken", accessToken);
-
+        log.info("Redirecionando");
 		response.sendRedirect("/colagem");
 	}
 

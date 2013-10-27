@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -29,23 +30,35 @@ public class ProxyServlet  extends HttpServlet {
 
         final ServicoImagem servicoImagem = new ServicoImagem();
 
-        final URLConnection connection;
+        final HttpURLConnection connection;
         try {
-            connection = new URL(request.getParameter("urlImagemFb")).openConnection();
+            connection = (HttpURLConnection) new URL(request.getParameter("urlImagemFb")).openConnection();
             connection.setConnectTimeout(connectTimeout); // Timeouts
             connection.setReadTimeout(readTimeout);
+
+            log.info("Headers do request");
+            final Enumeration<String> headerNames = request.getHeaderNames();
+            while(headerNames.hasMoreElements()) {
+                final String headerName = headerNames.nextElement();
+                final String headerValue = request.getHeader(headerName) ;
+                log.info(headerName + " + " + headerValue);
+              //  connection.setRequestProperty(headerName, headerValue);
+            }
         } catch (IOException e) {
             log.log(Level.SEVERE, "Não foi possível recuperar a imagem", e);
             // TODO: Tratar e redirecionar o usuário para uma página de erro
            throw e;
         }
 
-        log.info("Cabecalhos da imagem original");
+        log.info("Headers da resposta");
         for(Map.Entry<String, List<String>> entry : connection.getHeaderFields().entrySet()) {
             log.info(entry.getKey() + " = " + entry.getValue());
         }
 
+        log.info("Status code: " + connection.getResponseCode());
+
         // Copia cabecalhos para o proxy
+        response.setStatus(connection.getResponseCode());
         response.setContentType(connection.getContentType());
         response.setContentLength(connection.getContentLength());
         response.setDateHeader("last-modified", connection.getHeaderFieldDate("last-modified", new Date().getTime()));

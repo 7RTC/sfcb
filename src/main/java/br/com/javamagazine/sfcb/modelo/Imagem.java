@@ -27,6 +27,6 @@ public class Imagem {
 
     public String getExtensao() {
         // Para um mime type image/png volta png
-        return mimeType != null ? mimeType.substring(Math.max(0, mimeType.length() - 3)) : "";
+        return mimeType != null ? mimeType.substring(Math.min(6, mimeType.length())) : "";
     }
 }

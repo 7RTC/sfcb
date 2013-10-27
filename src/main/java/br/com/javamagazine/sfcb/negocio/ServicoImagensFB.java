@@ -32,7 +32,7 @@ import java.util.logging.Logger;
  */
 public class ServicoImagensFB extends ServicoFacebook {
 
-    public static final int FOTOS_POR_PAGINA_PADRAO = 10;
+    public static final int FOTOS_POR_PAGINA_PADRAO = 25;
     private static final int connectTimeout = 25000;
     private static final Logger log = Logger.getLogger(ServicoImagensFB.class.getName());
 
@@ -52,7 +52,7 @@ public class ServicoImagensFB extends ServicoFacebook {
     }
 
     public Fotos listarTodas() {
-        final Connection<Photo> photos = client.fetchConnection("1587030566700/photos", Photo.class,
+        final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
                 Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"),
                 Parameter.with("type", "uploaded"));
 
