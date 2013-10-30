@@ -3,7 +3,7 @@ body {
 	font-family: Verdana, Helvetica, sans-serif;
 	color: #555;
 	margin: 0;
-	padding: 0;
+	padding-top: 50px;
 	text-align: center;
 }
 canvas {
@@ -17,14 +17,14 @@ canvas {
 	border-bottom: 2px solid #333;
 }
 h1 {
-	font-size: 38px;
+	font-size: 30px;
 }
 a {
 	color: #555;
 }
 aside.camadas {
 	position: absolute;
-	top: 15px;
+	top: 120px;
 	right: 15px;
 	width: 200px;
 	background-color: #fff;
@@ -154,4 +154,29 @@ footer ul li img {
 }
 .loginFacebook {
 	padding-top:100px;
+}
+.loginFacebookColagem {
+	position: fixed;
+	height: 40px;
+	float: left;
+	top: 0px;
+	left: 0px;
+	padding-top: 5px;
+	padding-left: 10px;
+	width: 100%;
+	background-color: #F0F6F9;
+	border-bottom: 1px solid #346F97;
+}
+.pushLeft {
+	float: left;
+}
+.imagemUsuario {
+	vertical-align: middle;
+}
+.nomeUsuario {
+	vertical-align: middle;
+	font-size: 14px;
+}
+.botaoFb {
+	vertical-align: middle;
 }

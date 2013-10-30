@@ -30,33 +30,19 @@
 						function(response) {
 							// Here we specify what we do with the response anytime this event occurs. 
 							if (response.status === 'connected') {
-								// The response object is returned with a status field that lets the app know the current
-								// login status of the person. In this case, we're handling the situation where they 
-								// have logged in to the app.
-								testAPI();
-								var accessToken = response.authResponse.accessToken;
-								var expiresIn = response.authResponse.expiresIn;
+								setaDadosUsuario();
 							} else if (response.status === 'not_authorized') {
-								// In this case, the person is logged into Facebook, but not into the app, so we call
-								// FB.login() to prompt them to do so. 
-								// In real-life usage, you wouldn't want to immediately prompt someone to login 
-								// like this, for two reasons:
-								// (1) JavaScript created popup windows are blocked by most browsers unless they 
-								// result from direct interaction from people using the app (such as a mouse click)
-								// (2) it is a bad experience to be continually prompted to login upon page load.
-								FB.login();
+								FB.logout();
+								window.top.location = '/logout';
 							} else {
-								// In this case, the person is not logged into Facebook, so we call the login() 
-								// function to prompt them to do so. Note that at this stage there is no indication
-								// of whether they are logged into the app. If they aren't then they'll see the Login
-								// dialog right after they log in to Facebook. 
-								// The same caveats as above apply to the FB.login() call here.
-								FB.login();
+								FB.logout();
+								window.top.location = '/logout';
 							}
 						});
+				  FB.Event.subscribe("auth.logout", function() {window.location = '/logout';});
 			};
 
-			// Load the SDK asynchronously
+			// Carrega o SDK do Facebook de modo assíncrono
 			(function(d) {
 				var js, id = 'facebook-jssdk', ref = d
 						.getElementsByTagName('script')[0];
@@ -70,25 +56,31 @@
 				ref.parentNode.insertBefore(js, ref);
 			}(document));
 			
-			  function testAPI() {
+			  function setaDadosUsuario() {
 				    console.log('Welcome!  Fetching your information.... ');
 				    FB.api('/me', function(response) {
 				      console.log('Good to see you, ' + response.name + '.');
 				      $("#nomeUsuario").text(response.name);
-				      
 				      $("#imagemUsuario").attr("src", "https://graph.facebook.com/"+response.id+"/picture?width=25&height=25");
 				    });
 				  }
 		</script>
 				
-		<div class="loginFacebookColagem"> 
+		<div class="loginFacebookColagem">
+			<div class="pushLeft">
+				<img src="" id="imagemUsuario" class="imagemUsuario"/> <span id="nomeUsuario" class="nomeUsuario"></span> <span id="botaoFb" class="botaoFb"><fb:login-button show-faces="false" autologoutlink="true"></fb:login-button></span>
+			</div>
 		</div>
-				
-		<h1>Colagens <img src="" id="imagemUsuario"/> <span id="nomeUsuario"></span> <fb:login-button show-faces="false" autologoutlink="true"></fb:login-button>
-		</h1>
+		
+		<h1>Colagens</h1>
 		<canvas id="collage" width="720" height="480"></canvas>
 		<div class="about">
-			Demonstração de colagem retirada do site: <a href="http://radikalfx.com/2009/10/16/canvas-collage/">radikalFX</a>
+			Motor de colagem <a href="http://radikalfx.com/2009/10/16/canvas-collage/">jCollage</a>
+			</br>
+			<a href="http://sorgalla.com/jcarousel/">jCarousel</a>
+			</br>
+			<img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
+		
 		</div>
 		<aside class="camadas">
 			<h2>Camadas</h2>
@@ -143,10 +135,6 @@
 				<input type="text" id="dataColagem" name="dataColagem">
 			</form>
 			
-			<input type="button" value="Obter Fotos" id="recuperarFotos"/>
-			<input type="button" value="Gerar Colagem" id="gerarColagem"/>
-			<input type="button" value="Página Anterior" id="paginaAnterior" style="display: none"/>
-			<input type="button" value="Próxima Página" id="proximaPagina" style="display: none"/>
 			<ul id="mycarousel" class="jcarousel-skin-tango">
    				<!-- The content goes in here -->
 			</ul>
