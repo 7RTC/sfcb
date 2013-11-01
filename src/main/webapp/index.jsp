@@ -5,7 +5,7 @@
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-		<title>SCB- Demo</title>
+		<title>SFCB - Demo</title>
 	</head>
 
 	<body>
@@ -23,7 +23,6 @@
 				FB.Event.subscribe('auth.authResponseChange',
 					function(response) {
 						if (response.status === 'connected') {
-							setaDadosUsuario();
 							var accessToken = response.authResponse.accessToken;
 							var expiresIn = response.authResponse.expiresIn;
 							window.top.location = '${facebook.app.site_url}' + "?accessToken=" + accessToken + "&expiresIn=" + expiresIn;
@@ -49,12 +48,6 @@
 				ref.parentNode.insertBefore(js, ref);
 			}(document));
 			
-			  function setaDadosUsuario() {
-				    console.log('Welcome!  Fetching your information.... ');
-				    FB.api('/me', function(response) {
-				      console.log('Good to see you, ' + response.name + '.');
-				    });
-				  }
 		</script>
 	
 		<h1>Aplicação demonstração de colagens</h1>

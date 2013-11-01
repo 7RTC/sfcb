@@ -5,10 +5,12 @@ import br.com.javamagazine.sfcb.modelo.Publicacao;
 import br.com.javamagazine.sfcb.negocio.ServicoImagem;
 import br.com.javamagazine.sfcb.negocio.ServicoImagensFB;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -34,21 +36,21 @@ public class PostServlet extends HttpServlet {
         log.info("MIME type: " + imagem.getMimeType());
         log.info("Extensao: " + imagem.getExtensao());
 
-
-        final OutputStream out = response.getOutputStream();
-
         try {
             Publicacao publicacao = imagensFB.publicarGraphAPI(imagem);
             log.info("Retorno Facebook: " + publicacao);
 
-            response.setContentType(imagem.getMimeType());
-            out.write(imagem.getCorpo());
-            // TODO: Ao inves de mostrar a imagem deve mostrar uma tela de sucesso com links para visualizar colagem
-            // publicada e criar uma nova colagem
+            String[] ids = publicacao.getPostId().split("_");
+            request.setAttribute("imagemBase64Src", imagemBase64);
+            request.setAttribute("idUsuario", ids[0]);
+            request.setAttribute("idPost", ids[1]);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/sucesso");
+            dispatcher.forward(request, response);
 
         } catch (Exception e) {
             log.log(Level.SEVERE, "Não foi possível fazer o upload para o Facebook", e);
-            // TODO: Tratar e redirecionar o usuário para uma página de erro
+            response.sendRedirect("/erro");
+
         }
 
 	}

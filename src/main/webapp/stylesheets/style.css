@@ -180,3 +180,53 @@ footer ul li img {
 .botaoFb {
 	vertical-align: middle;
 }
+.botaoGenerico {
+    border: 1px solid #346F97;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    background-color: #346F97;
+    font-family: Verdana, Helvetica, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 16px;
+    color: #F0F6F9;
+    padding: 10px;
+	
+}
+.botaoPostar {
+	position: absolute;
+    right: 20px;
+    bottom: 160px;
+    display: block;
+}
+.colagemSucesso {
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.mensagemGenerica {
+	margin-left:auto;
+	margin-right:auto;
+	width: 700px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 5px;
+	font-family: Verdana, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 14px;
+}
+.mensagemSucesso {
+	border: 1px solid #009900;
+    background-color: #D4FFD4;
+    color: #009900;
+    display: block;
+}
+.mensagemErro {
+	border: 1px solid #CC0000;
+    background-color: #FFB2B2;
+    color: #CC0000;
+    display: block;
+}

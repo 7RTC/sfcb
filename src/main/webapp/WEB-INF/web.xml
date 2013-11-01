@@ -28,6 +28,14 @@
     	<servlet-name>Colagem</servlet-name>
 		<jsp-file>/colagem.jsp</jsp-file>
     </servlet>
+    <servlet>
+    	<servlet-name>Sucesso</servlet-name>
+		<jsp-file>/sucesso.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    	<servlet-name>Erro</servlet-name>
+		<jsp-file>/erro.jsp</jsp-file>
+    </servlet>
 
     
     <servlet-mapping>
@@ -53,6 +61,14 @@
     <servlet-mapping>
         <servlet-name>Colagem</servlet-name>
         <url-pattern>/colagem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sucesso</servlet-name>
+        <url-pattern>/sucesso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Erro</servlet-name>
+        <url-pattern>/erro</url-pattern>
     </servlet-mapping>
     
     <welcome-file-list>

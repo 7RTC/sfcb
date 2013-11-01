@@ -145,6 +145,8 @@
                             <includes>
                                 <include>index.jsp</include>
                                 <include>colagem.jsp</include>
+                                <include>sucesso.jsp</include>
+                                <include>erro.jsp</include>
                             </includes>
                         </resource>
                         <resource>

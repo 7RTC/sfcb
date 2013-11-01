@@ -46,7 +46,7 @@ public class ProxyServlet  extends HttpServlet {
             }
         } catch (IOException e) {
             log.log(Level.SEVERE, "Não foi possível recuperar a imagem", e);
-            // TODO: Tratar e redirecionar o usuário para uma página de erro
+            response.sendRedirect("/erro");
            throw e;
         }
 
@@ -78,8 +78,7 @@ public class ProxyServlet  extends HttpServlet {
             out.write(redimensionada.getCorpo());
        } catch (Exception e) {
             log.log(Level.SEVERE, "Não foi possível tratar a imagem do facebook", e);
-            // TODO: Tratar e redirecionar o usuário para uma página de erro
-
+            response.sendRedirect("/erro");
         }
     }
 
