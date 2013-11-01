@@ -5,16 +5,10 @@ import com.google.appengine.api.datastore.Entity;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: a.accioly
- * Date: 10/24/13
- * Time: 12:14 AM
- * To change this template use File | Settings | File Templates.
- */
 public class Token implements Serializable {
 
-    private final String UUID;
+	private static final long serialVersionUID = 1L;
+	private final String UUID;
     private final String accessToken;
     private Date expiracao;
 

@@ -3,13 +3,6 @@ package br.com.javamagazine.sfcb.modelo;
 import com.google.gson.annotations.SerializedName;
 import com.restfb.Facebook;
 
-/**
- * Created with IntelliJ IDEA.
- * User: a.accioly
- * Date: 10/22/13
- * Time: 4:57 AM
- * To change this template use File | Settings | File Templates.
- */
 public class Publicacao {
 
     @Facebook

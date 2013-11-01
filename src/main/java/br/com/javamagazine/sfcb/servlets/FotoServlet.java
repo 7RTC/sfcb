@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
-/**
- * Servlet implementation class FotoServlet
- */
 public class FotoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(FotoServlet.class.getName());

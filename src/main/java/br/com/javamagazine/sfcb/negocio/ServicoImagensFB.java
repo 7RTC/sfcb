@@ -23,13 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-/**
- * Created with IntelliJ IDEA.
- * User: a.accioly
- * Date: 10/21/13
- * Time: 8:57 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ServicoImagensFB extends ServicoFacebook {
 
     public static final int FOTOS_POR_PAGINA_PADRAO = 25;

@@ -11,13 +11,6 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created with IntelliJ IDEA.
- * User: a.accioly
- * Date: 10/19/13
- * Time: 8:12 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ServicoImagem {
 
     private static final Logger log = Logger.getLogger(ServicoImagem.class.getName());

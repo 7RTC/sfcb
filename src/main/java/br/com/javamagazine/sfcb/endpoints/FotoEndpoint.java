@@ -17,13 +17,6 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.response.UnauthorizedException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: a.accioly
- * Date: 10/22/13
- * Time: 2:55 AM
- * To change this template use File | Settings | File Templates.
- */
 @Api(
         name = "sfcb",
         version = "v1",

@@ -3,13 +3,6 @@ package br.com.javamagazine.sfcb.negocio;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 
-/**
- * Created with IntelliJ IDEA.
- * User: a.accioly
- * Date: 10/21/13
- * Time: 8:42 PM
- * To change this template use File | Settings | File Templates.
- */
 public abstract class ServicoFacebook {
 
     final protected String accessToken;

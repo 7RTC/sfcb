@@ -4,13 +4,6 @@ import com.restfb.types.Photo;
 
 import java.io.Serializable;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Anthony Accioly
- * Date: 19/10/13
- * Time: 15:57
- * To change this template use File | Settings | File Templates.
- */
 public class Foto implements Serializable {
 
     private String picture;
