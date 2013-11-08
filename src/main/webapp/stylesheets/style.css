@@ -6,33 +6,38 @@ body {
 	padding-top: 50px;
 	text-align: center;
 }
+
 canvas {
 	margin: 0;
 	padding: 0;
-	-moz-border-radius: 4px; 
+	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-top: 2px solid #333;
 	border-right: 2px solid #333;
 	border-left: 2px solid #333;
 	border-bottom: 2px solid #333;
 }
+
 h1 {
 	font-size: 30px;
 }
+
 a {
 	color: #555;
 }
+
 aside.camadas {
 	position: absolute;
 	top: 120px;
 	right: 15px;
 	width: 200px;
 	background-color: #fff;
-	-moz-border-radius: 8px; 
-	-webkit-border-radius: 8px; 
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
 	border: 1px solid #333;
 	font-size: 12px;
 }
+
 aside h2 {
 	display: block;
 	font-size: 12px;
@@ -40,66 +45,80 @@ aside h2 {
 	padding: 2px 0px;
 	margin: 0px;
 }
+
 aside ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
+
 aside ul li {
 	padding: 3px;
 	cursor: pointer;
 	text-align: left;
 }
+
 aside ul li.selected {
 	background-color: #5f94e2;
 }
+
 aside ul li img {
 	width: 40px;
 	height: 40px;
 	vertical-align: middle;
 	border: 1px solid #333;
 }
+
 aside ul li.selected img {
 	border: 1px solid #555;
 }
+
 aside ul li h3 {
 	display: inline-block;
 }
+
 aside ul li .visible {
 	float: right;
 	margin: 14px 4px 0px 0px;
 	width: 12px;
 	height: 12px;
 	border: 1px solid #555;
-	-moz-border-radius: 2px; 
+	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
 	text-shadow: 1px 1px 1px #333;
 }
+
 aside .options {
 	border-top: 1px solid #333;
 	padding: 4px 0;
 }
+
 aside .options span {
 	display: inline-block;
 	width: 60px;
 	text-align: right;
 	margin-right: 10px;
 }
+
 aside .options select {
 	width: 100px;
 }
+
 aside .buttons .remove {
 	background: transparent url(remove.png) no-repeat top left;
 }
+
 aside .buttons .up {
 	background: transparent url(up_button.png) no-repeat top left;
 }
+
 aside .buttons .down {
 	background: transparent url(down_button.png) no-repeat top left;
 }
+
 aside .buttons {
 	display: block;
 	position: relative;
@@ -107,11 +126,13 @@ aside .buttons {
 	padding: 4px 12px 2px 0px;
 	text-align: right;
 }
+
 aside .buttons ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
+
 aside .buttons ul li {
 	display: inline-block;
 	margin: 0 2px;
@@ -120,30 +141,34 @@ aside .buttons ul li {
 	width: 16px;
 	height: 16px;
 }
+
 footer.fotos {
 	display: block;
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	text-align: left;
 }
+
 .fotos form {
-	display:none
+	display: none
 }
+
 footer ul li img {
 	width: 100px;
 	height: 100px;
 	cursor: pointer;
 }
+
 .about {
 	margin: 0 auto;
 	width: 718px;
-	-moz-border-radius-bottomright: 8px; 
-	-moz-border-radius-bottomleft: 8px; 
-	-webkit-border-bottom-right-radius: 8px; 
-	-webkit-border-bottom-left-radius: 8px; 
+	-moz-border-radius-bottomright: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
 	border-bottom: 2px solid #333;
 	border-right: 1px solid #333;
 	border-left: 1px solid #333;
@@ -152,9 +177,11 @@ footer ul li img {
 	padding: 4px 0;
 	color: #555;
 }
+
 .loginFacebook {
-	padding-top:100px;
+	padding-top: 100px;
 }
+
 .loginFacebookColagem {
 	position: fixed;
 	height: 40px;
@@ -167,48 +194,55 @@ footer ul li img {
 	background-color: #F0F6F9;
 	border-bottom: 1px solid #346F97;
 }
+
 .pushLeft {
 	float: left;
 }
+
 .imagemUsuario {
 	vertical-align: middle;
 }
+
 .nomeUsuario {
 	vertical-align: middle;
 	font-size: 14px;
 }
+
 .botaoFb {
 	vertical-align: middle;
 }
+
 .botaoGenerico {
-    border: 1px solid #346F97;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    background-color: #346F97;
-    font-family: Verdana, Helvetica, sans-serif;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 16px;
-    color: #F0F6F9;
-    padding: 10px;
-	
+	border: 1px solid #346F97;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	background-color: #346F97;
+	font-family: Verdana, Helvetica, sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 16px;
+	color: #F0F6F9;
+	padding: 10px;
 }
+
 .botaoPostar {
 	position: absolute;
-    right: 20px;
-    bottom: 160px;
-    display: block;
+	right: 20px;
+	bottom: 160px;
+	display: block;
 }
+
 .colagemSucesso {
 	display: block;
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 .mensagemGenerica {
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 	width: 700px;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -218,15 +252,44 @@ footer ul li img {
 	text-align: center;
 	font-size: 14px;
 }
+
 .mensagemSucesso {
 	border: 1px solid #009900;
-    background-color: #D4FFD4;
-    color: #009900;
-    display: block;
+	background-color: #D4FFD4;
+	color: #009900;
+	display: block;
 }
+
 .mensagemErro {
 	border: 1px solid #CC0000;
-    background-color: #FFB2B2;
-    color: #CC0000;
-    display: block;
+	background-color: #FFB2B2;
+	color: #CC0000;
+	display: block;
+}
+
+.comboAlbuns {
+	position: absolute;
+	left: 20px;
+	bottom: 160px;
+	display: block;
+}
+
+.comboGenerico {
+	border: 1px solid #346F97;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	background-color: #346F97;
+	font-family: Verdana, Helvetica, sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 12px;
+	color: #F0F6F9;
+	padding: 5px;
+}
+
+.main {
+	height: 700px;
+	overflow: auto;
 }

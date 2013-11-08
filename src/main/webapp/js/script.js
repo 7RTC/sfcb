@@ -149,7 +149,7 @@
         }
 
         if (state == "prev") {
-            alert("Tentou chamar previous");
+   //         alert("Tentou chamar previous");
             return;
         }
 
@@ -171,8 +171,8 @@
                 + '/_ah/api/sfcb/v1/foto/cursor?pagina=' + encodeURIComponent(proximaPagina);
         }
 
-        alert("entrou " + " first: " + first + " last: " + last + " state: " + state);
-        alert("url:" + urlRequest);
+  //      alert("entrou " + " first: " + first + " last: " + last + " state: " + state);
+  //      alert("url:" + urlRequest);
 
         $.ajax({
             url: urlRequest,
@@ -195,7 +195,7 @@
             carousel.size(data.count);
             qtdFotos = data.count;
             $(".fotos").toggle(); // Esconde footer temporario e habilita footer final
-            alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
+  //          alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
         }
 
         $.each(data.fotos, function (i, foto) {
@@ -206,11 +206,11 @@
         if (typeof proximaPagina === 'undefined') {
             carousel.size(qtdFotosCarregadas > 0 ? qtdFotosCarregadas++ : 0);
             qtdFotos = qtdFotosCarregadas;
-            alert("Ultima pagina, carregou: " + qtdFotosCarregadas)
+ //           alert("Ultima pagina, carregou: " + qtdFotosCarregadas)
         }
         carousel.unlock();
 
-        alert("Número de items carregados: " + qtdFotosCarregadas)
+  //      alert("Número de items carregados: " + qtdFotosCarregadas)
 
     };
 
