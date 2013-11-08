@@ -8,10 +8,10 @@ public class Fotos {
     private List<Foto> fotos;
     private String proximaPagina;
     private String paginaAnterior;
-    private int count = 100;
+    private int count = Integer.MAX_VALUE;
 
 	public Fotos () {
-        this.fotos = new ArrayList<Foto>();
+        this.fotos = new ArrayList<>();
     }
 
     public List<Foto> getFotos() {

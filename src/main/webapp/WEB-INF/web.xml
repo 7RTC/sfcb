@@ -5,10 +5,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>FotoServlet</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.servlets.FotoServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ProxyServlet</servlet-name>
         <servlet-class>br.com.javamagazine.sfcb.servlets.ProxyServlet</servlet-class>
     </servlet>
@@ -37,11 +33,6 @@
 		<jsp-file>/erro.jsp</jsp-file>
     </servlet>
 
-    
-    <servlet-mapping>
-        <servlet-name>FotoServlet</servlet-name>
-        <url-pattern>/fotos</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProxyServlet</servlet-name>
         <url-pattern>/imageProxy</url-pattern>

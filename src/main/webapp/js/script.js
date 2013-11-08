@@ -4,19 +4,21 @@
     var paginaAnterior;
     var qtdFotos = -1;
     var qtdFotosCarregadas = 0;
+    var debug = true;
 
     function setHeader(xhr) {
-        xhr.setRequestHeader('access-token', $("#access-token").val());
+        xhr.setRequestHeader('token-uuid', $("#token-uuid").val());
     }
 
     $(document).ready(function () {
-    	
-    	$('#mycarousel').jcarousel({
-    		itemLoadCallback: mycarousel_itemLoadCallback
-    	});
 
-    	jCollage = new Collage("#collage");
-    	jCollage.setBackgroundColor("#fff");
+        $('#mycarousel').jcarousel({
+            itemLoadCallback: mycarousel_itemLoadCallback,
+            scroll: 5
+        });
+
+        jCollage = new Collage("#collage");
+        jCollage.setBackgroundColor("#fff");
 
         $(document).on("click", ".fotos img", function () {
             var img = $(this);
@@ -121,7 +123,6 @@
                         var img = $("<img/>").attr("src", foto.picture);
                         img.attr("title", "Camada ");
                         img.data("proxy-url", foto.proxyURL);
-                        //      $("<li></li>").append(img).appendTo(".fotos ul");
                         jQuery('#mycarousel').jcarousel('add', i, img);
                     });
                 },
@@ -140,14 +141,21 @@
             $("#dataColagem").val(dataURL);
             $("#formColagem").submit();
         });
-        
-        $("#comboAlbuns").change(function (){
-        	alert("Mudou album");
-        	alert("id do album: " + this.value);
-        	$("#albumId").val(this.value);
-        	var carousel = jQuery('#mycarousel').data('jcarousel');
-            $(".fotos").toggle(); // Esconde footer temporario e habilita footer final
-        	carousel.reset();
+
+        $("#comboAlbuns").change(function () {
+            if (debug) alert("Mudou album");
+            if (debug) alert("id do album: " + this.value);
+            $("#albumId").val(this.value);
+            var carousel = jQuery('#mycarousel').data('jcarousel');
+            $("#comboAlbuns").prop("disabled", true); // desabilita combo de albuns
+            $("#sfcb_footer").hide(); // Esconde footer normal
+            $("#loading_footer").show(); // Exibe footer de carregamento
+            if (carousel.size() == 0) {
+                if (debug) alert("Resetando carousel com 0 elementos");
+                mycarousel_itemLoadCallback(carousel, "init");
+            } else {
+                carousel.reset();
+            }
         });
     });
 
@@ -157,59 +165,64 @@
 
     function mycarousel_itemLoadCallback(carousel, state) {
 
- //       alert("mycarousel_itemLoadCallback album id: " + albumId);
-    	
+        if (state == "init") {
+            if (debug) alert("itemLoadCallback inicial");
+            qtdFotos != -1;
+            qtdFotosCarregadas = 0;
+        }
+
         if (qtdFotos != -1 && qtdFotosCarregadas >= qtdFotos) {
+            if (debug) alert("Chamou " + state + " com todos os items carregados");
+            return;
+        }
+
+        if (carousel.has(carousel.first, carousel.last)) {
+            if (debug) alert("Intervalo [" + carousel.first + ", " + carousel.last + "] Já foi carregado");
             return;
         }
 
         if (state == "prev") {
-   //         alert("Tentou chamar previous");
+            if (debug) alert("Tentou chamar previous");
             return;
         }
 
         mycarousel_makeRequest(carousel, carousel.first, carousel.last, state);
 
-    };
+    }
 
     function mycarousel_makeRequest(carousel, first, last, state) {
 
         carousel.lock();
 
         var albumId = $("#albumId").val();
-        alert("album id hidden: " +albumId);
         var urlRequest = "";
- 
-        alert("state: " + state);
-        
+
+        if (debug) alert("albumId hidden: " + albumId);
+        if (debug) alert("state: " + state);
+
         if (state == "init") {
-        	if (!(typeof albumId === "undefined") && albumId != 0) {
-        		alert("albumid: " + albumId);
-        		//TODO novo metodo
-        		urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                + '/_ah/api/sfcb/v1/album/'+ albumId +'?limit=25';	
-        		console.log(urlRequest);
-        	} else {
-	        	urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-	                + '/_ah/api/sfcb/v1/foto?limit=25';	
-        	}
-        	
+            if (!(typeof albumId === "undefined") && albumId != 0) {
+                urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                    + '/_ah/api/sfcb/v1/album/' + albumId + '?limit=25';
+            } else {
+                urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                    + '/_ah/api/sfcb/v1/foto?limit=25';
+            }
+
         } else if (state == "next") {
             urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
                 + '/_ah/api/sfcb/v1/foto/cursor?pagina=' + encodeURIComponent(proximaPagina);
         }
 
-  //      alert("entrou " + " first: " + first + " last: " + last + " state: " + state);
-  //      alert("url:" + urlRequest);
+        if (debug) alert("entrou " + " first: " + first + " last: " + last + " state: " + state);
+        if (debug) alert("url:" + urlRequest);
 
-        console.log(urlRequest);
-        
         $.ajax({
             url: urlRequest,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                mycarousel_itemAddCallback(carousel, first, last, state, data);
+                mycarousel_itemAddCallback(carousel, state, data);
             },
             error: function () {
                 alert('Erro ao obter lista de fotos');
@@ -217,36 +230,62 @@
             beforeSend: setHeader
         });
 
-    };
+    }
 
-    function mycarousel_itemAddCallback(carousel, first, last, state, data) {
+    function mycarousel_itemAddCallback(carousel, state, data) {
 
-    	console.log(data);
-    	
-    	alert("state itemAddCallback: " +state);
-    	
+        console.log(data);
+
+        if (debug) alert("state itemAddCallback: " + state);
+
+        var chamadaPossuiFotos = !(typeof data.fotos === 'undefined');
+
+        if (!chamadaPossuiFotos) {
+            if (debug) alert("Request não trouxe fotos");
+            carousel.size(qtdFotosCarregadas);
+            $("#comboAlbuns").prop("disabled", false); // habilita combo de albuns
+            $("#loading_footer").hide(); // Esconde footer temporario
+            $("#sfcb_footer").show(); //  Exibe footer normal
+            return;
+        }
+
         if (state == "init") {
             carousel.size(data.count);
             qtdFotos = data.count;
-            $(".fotos").toggle(); // Esconde footer temporario e habilita footer final
-  //          alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
+            qtdFotosCarregadas = 0;
+            $("#comboAlbuns").prop("disabled", false); // habilita combo de albuns
+            $("#loading_footer").hide(); // Esconde footer temporario
+            $("#sfcb_footer").show(); //  Exibe footer normal
+            if (debug) alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
         }
 
         $.each(data.fotos, function (i, foto) {
             carousel.add(qtdFotosCarregadas++, mycarousel_getItemHTML(foto));
         });
 
-        proximaPagina = data.proximaPagina;
-        if (typeof proximaPagina === 'undefined') {
-            carousel.size(qtdFotosCarregadas > 0 ? qtdFotosCarregadas++ : 0);
-            qtdFotos = qtdFotosCarregadas;
- //           alert("Ultima pagina, carregou: " + qtdFotosCarregadas)
-        }
         carousel.unlock();
 
-  //      alert("Número de items carregados: " + qtdFotosCarregadas)
+        if (typeof data.proximaPagina === 'undefined') {
+            carousel.size(qtdFotosCarregadas);
+            qtdFotos = qtdFotosCarregadas;
+            // Quando a primeira página eh a ultima
+            if (state == "init") {
+                // Calcula indices visiveis
+                var pos = carousel.pos(0, true);
+                if (debug) alert("[" + carousel.first + ", " + carousel.last + "]" + " => " + pos);
+                if (carousel.last >= qtdFotosCarregadas) {
+                    // Se todas as fotos carregas estao visiveis
+                    carousel.next();
+                }
+            }
+            if (debug) alert("Ultima pagina, carregou: " + carousel.size())
+        }
 
-    };
+        proximaPagina = data.proximaPagina;
+
+        if (debug) alert("Número de items carregados: " + qtdFotosCarregadas)
+
+    }
 
     /**
      * Global item html creation helper.
@@ -257,8 +296,7 @@
         img.data("proxy-url", foto.proxyURL);
 
         return img;
-    };
-    
+    }
 
 ///////////////////////////////////////////////
 

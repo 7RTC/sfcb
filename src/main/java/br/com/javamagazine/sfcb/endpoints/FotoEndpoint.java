@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import br.com.javamagazine.sfcb.modelo.Fotos;
 import br.com.javamagazine.sfcb.modelo.Imagem;
 import br.com.javamagazine.sfcb.modelo.Publicacao;
+import br.com.javamagazine.sfcb.modelo.Token;
+import br.com.javamagazine.sfcb.negocio.ServicoAutenticacao;
 import br.com.javamagazine.sfcb.negocio.ServicoImagem;
 import br.com.javamagazine.sfcb.negocio.ServicoImagensFB;
 
@@ -25,6 +27,7 @@ import com.google.api.server.spi.response.UnauthorizedException;
 public class FotoEndpoint {
 
     private static final Logger log = Logger.getLogger(FotoEndpoint.class.getName());
+    private final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao();
 
     @ApiMethod(
             name = "sfcb.foto.list",
@@ -96,11 +99,16 @@ public class FotoEndpoint {
     }
 
     private String getAccessToken(HttpServletRequest req) throws UnauthorizedException {
-    	final String accessToken = req.getHeader("access-token");
-    	if (accessToken == null) {
-    		throw new UnauthorizedException("Falha de autenticacao");
-    	}
+    	final String tokenUUID = req.getHeader("token-uuid");
+    	final Token token = servicoAutenticacao.getFromMemcache(tokenUUID);
+        if (tokenUUID == null) {
+    		throw new UnauthorizedException("UUID não consta no header");
+    	} else if (token == null) {
+            throw new UnauthorizedException("UUID invalido ou expirado");
+        }
 
-        return accessToken;
+        log.info("Token recuperado do cache: " + token);
+
+        return token.getAccessToken();
     }
 }

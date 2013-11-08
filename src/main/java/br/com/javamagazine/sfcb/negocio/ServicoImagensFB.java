@@ -45,14 +45,19 @@ public class ServicoImagensFB extends ServicoFacebook {
     }
 
     public Fotos listarAlbum(long albumId) {
+        log.info("Lista album: " + albumId);
+        log.info("Limit: " + fotosPorPagina );
         final Connection<Photo> photos = client.fetchConnection(albumId+"/photos", Photo.class,
-                Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"));
+                Parameter.with("fields", "source, picture"), Parameter.with("limit", fotosPorPagina));
         return criarFotos(photos);
     }
     
     public Fotos listarTodas() {
+        log.info("Lista todas as fotos: ");
+        log.info("Limit: " + fotosPorPagina );
     	final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
-    			Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"));
+                Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"),
+                Parameter.with("type", "uploaded"));
     	
     	return criarFotos(photos);
     }
@@ -145,6 +150,8 @@ public class ServicoImagensFB extends ServicoFacebook {
         fotos.setFotos(listaFotos);
         fotos.setPaginaAnterior(photos.getPreviousPageUrl());
         fotos.setProximaPagina(photos.getNextPageUrl());
+
+        log.info("Tamanho do array de fotos: " + listaFotos.size());
 
         return fotos;
     }

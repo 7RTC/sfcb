@@ -63,7 +63,7 @@ public class ProxyServlet  extends HttpServlet {
         response.setContentLength(connection.getContentLength());
         response.setDateHeader("last-modified", connection.getHeaderFieldDate("last-modified", new Date().getTime()));
         response.setDateHeader("date", connection.getHeaderFieldDate("date", new Date().getTime()));
-        response.setHeader("keep-alive", connection.getHeaderField("keep-alive"));
+        response.setHeader("connection", connection.getHeaderField("connection"));
         // O facebook costuma manter imagens em cache por aproximadamente  14 dias
         response.setDateHeader("max-age", connection.getHeaderFieldDate("max-age", new Date().getTime()));
 
