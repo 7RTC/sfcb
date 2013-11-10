@@ -44,12 +44,17 @@ public class ServicoImagensFB extends ServicoFacebook {
         return fotosPorPagina;
     }
 
-    public Fotos listarTodas() {
-        final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
-                Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"),
-                Parameter.with("type", "uploaded"));
-
+    public Fotos listarAlbum(long albumId) {
+        final Connection<Photo> photos = client.fetchConnection(albumId+"/photos", Photo.class,
+                Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"));
         return criarFotos(photos);
+    }
+    
+    public Fotos listarTodas() {
+    	final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
+    			Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"));
+    	
+    	return criarFotos(photos);
     }
 
     public Fotos buscarPagina(String pagina) {

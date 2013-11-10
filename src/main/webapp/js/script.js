@@ -10,8 +10,13 @@
     }
 
     $(document).ready(function () {
-        jCollage = new Collage("#collage");
-        jCollage.setBackgroundColor("#fff");
+    	
+    	$('#mycarousel').jcarousel({
+    		itemLoadCallback: mycarousel_itemLoadCallback
+    	});
+
+    	jCollage = new Collage("#collage");
+    	jCollage.setBackgroundColor("#fff");
 
         $(document).on("click", ".fotos img", function () {
             var img = $(this);
@@ -135,7 +140,15 @@
             $("#dataColagem").val(dataURL);
             $("#formColagem").submit();
         });
-
+        
+        $("#comboAlbuns").change(function (){
+        	alert("Mudou album");
+        	alert("id do album: " + this.value);
+        	$("#albumId").val(this.value);
+        	var carousel = jQuery('#mycarousel').data('jcarousel');
+            $(".fotos").toggle(); // Esconde footer temporario e habilita footer final
+        	carousel.reset();
+        });
     });
 
 
@@ -144,6 +157,8 @@
 
     function mycarousel_itemLoadCallback(carousel, state) {
 
+ //       alert("mycarousel_itemLoadCallback album id: " + albumId);
+    	
         if (qtdFotos != -1 && qtdFotosCarregadas >= qtdFotos) {
             return;
         }
@@ -161,11 +176,24 @@
 
         carousel.lock();
 
+        var albumId = $("#albumId").val();
+        alert("album id hidden: " +albumId);
         var urlRequest = "";
-
+ 
+        alert("state: " + state);
+        
         if (state == "init") {
-            urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                + '/_ah/api/sfcb/v1/foto?limit=25';
+        	if (!(typeof albumId === "undefined") && albumId != 0) {
+        		alert("albumid: " + albumId);
+        		//TODO novo metodo
+        		urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                + '/_ah/api/sfcb/v1/album/'+ albumId +'?limit=25';	
+        		console.log(urlRequest);
+        	} else {
+	        	urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+	                + '/_ah/api/sfcb/v1/foto?limit=25';	
+        	}
+        	
         } else if (state == "next") {
             urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
                 + '/_ah/api/sfcb/v1/foto/cursor?pagina=' + encodeURIComponent(proximaPagina);
@@ -174,6 +202,8 @@
   //      alert("entrou " + " first: " + first + " last: " + last + " state: " + state);
   //      alert("url:" + urlRequest);
 
+        console.log(urlRequest);
+        
         $.ajax({
             url: urlRequest,
             type: 'GET',
@@ -191,6 +221,10 @@
 
     function mycarousel_itemAddCallback(carousel, first, last, state, data) {
 
+    	console.log(data);
+    	
+    	alert("state itemAddCallback: " +state);
+    	
         if (state == "init") {
             carousel.size(data.count);
             qtdFotos = data.count;
@@ -224,13 +258,7 @@
 
         return img;
     };
-
-    jQuery(document).ready(function () {
-        jQuery('#mycarousel').jcarousel({
-            itemLoadCallback: mycarousel_itemLoadCallback
-        });
-    });
-
+    
 
 ///////////////////////////////////////////////
 

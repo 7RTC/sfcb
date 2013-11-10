@@ -68,14 +68,12 @@
 		function recuperaAlbuns() {
 			
 		    FB.api('me/albums?fields=id,name,count&limit=100', function(response){
-		        console.log(response);
 		        
 		        var arrayData = response.data;
-		        console.log(arrayData);
 		        for (var i=0; i<arrayData.length; i++ ) {
-		        	$("#comboAlbuns").append($("<option></option>")
+		        	 $("#comboAlbuns").append($("<option></option>")
 		        		.attr("value",arrayData[i].id)
-		        		.text(arrayData[i].name)); 
+		        		.text(arrayData[i].name));
 		        }
 		    });
 
@@ -147,9 +145,11 @@
 	
 	<a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">POSTAR</a>
 	
-	<select id="comboAlbuns" class="comboGenerico comboAlbuns">
+	<select id="comboAlbuns" class="comboGenerico comboAlbuns" >
 		<option value="0">Timeline</option>
 	</select>
+	
+	<input type="hidden" id="albumId" value="0"/>
 	
 	<footer class="fotos" id="loading_footer" style="margin: 0 auto;">
 		<h3>Carregando fotos</h3>

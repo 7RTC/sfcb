@@ -37,6 +37,18 @@ public class FotoEndpoint {
 
         return imagensFB.listarTodas();
     }
+    
+    @ApiMethod(
+    		name = "sfcb.album.foto.list",
+    		path = "album/{id}",
+    		httpMethod = ApiMethod.HttpMethod.GET
+    		)
+    public Fotos recuperarAlbum(HttpServletRequest req, @Named("id") long albumId, @Nullable @Named("limit") Integer limit) throws UnauthorizedException {
+    	final String accessToken = getAccessToken(req);
+    	final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken, limit);
+    	
+    	return imagensFB.listarAlbum(albumId);
+    }
 
     @ApiMethod(
             name = "sfcb.foto.pagina",
