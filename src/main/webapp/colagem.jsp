@@ -87,14 +87,15 @@
 			<img src="" id="imagemUsuario" class="imagemUsuario" />
 			<span id="nomeUsuario" class="nomeUsuario"></span> 
 			<span id="botaoFb" class="botaoFb">
-				<fb:login-button show-faces="false" autologoutlink="true"></fb:login-button>
+				<fb:login-button show-faces="false" autologoutlink="true" scope="${facebook.app.permissions}"></fb:login-button>
 			</span>
 		</div>
 	</div>
+	
+	<h1>Colagem</h1>
 
 	<div class="main">
 	
-		<h1>Colagem</h1>
 		<canvas id="collage" width="720" height="480"></canvas>
 		<div class="about">
 			Motor de colagem <a	href="http://radikalfx.com/2009/10/16/canvas-collage/">jCollage</a> 
@@ -146,7 +147,9 @@
 	
 	<a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">POSTAR</a>
 	
-	<select id="comboAlbuns" class="comboGenerico comboAlbuns"></select>
+	<select id="comboAlbuns" class="comboGenerico comboAlbuns">
+		<option value="0">Timeline</option>
+	</select>
 	
 	<footer class="fotos" id="loading_footer" style="margin: 0 auto;">
 		<h3>Carregando fotos</h3>

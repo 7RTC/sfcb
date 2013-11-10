@@ -229,7 +229,7 @@ footer ul li img {
 
 .botaoPostar {
 	position: absolute;
-	right: 20px;
+	right: 10px;
 	bottom: 160px;
 	display: block;
 }
@@ -269,9 +269,10 @@ footer ul li img {
 
 .comboAlbuns {
 	position: absolute;
-	left: 20px;
+	left: 10px;
 	bottom: 160px;
 	display: block;
+	max-width:270px;
 }
 
 .comboGenerico {
@@ -282,7 +283,6 @@ footer ul li img {
 	background-color: #346F97;
 	font-family: Verdana, Helvetica, sans-serif;
 	text-align: center;
-	text-transform: uppercase;
 	text-decoration: none;
 	font-size: 12px;
 	color: #F0F6F9;
