@@ -116,6 +116,36 @@
                     + '/_ah/api/sfcb/v1/foto',
                 type: 'GET',
                 dataType: 'json',
+                statusCode: {
+                	400: function (data) {
+                		alert('BadRequestException');
+                        window.top.location = '/index.jsp';
+                	},
+                	401: function (data) {
+                		alert('UnauthorizedException');
+                		window.top.location = '/index.jsp';
+                	},
+                	403: function (data) {
+                		alert('ForbiddenException');
+                		window.top.location = '/index.jsp';
+                	},
+                	404: function (data) {
+                		alert('NotFoundException');
+                		window.top.location = '/index.jsp';
+                	},
+                	409: function (data) {
+                		alert('ConflictException');
+                		window.top.location = '/index.jsp';
+                	},
+                	500: function (data) {
+                		alert('InternalServerErrorException');
+                		window.top.location = '/index.jsp';
+                	},
+                	503: function (data) {
+                		alert('ServiceUnavailableException');
+                		window.top.location = '/index.jsp';
+                	}
+                },
                 success: function (data) {
                     proximaPagina = data.proximaPagina;
                     paginaAnterior = data.paginaAnterior;
@@ -221,8 +251,38 @@
             url: urlRequest,
             type: 'GET',
             dataType: 'json',
+            statusCode: {
+            	400: function (data) {
+            		alert('BadRequestException');
+                    window.top.location = '/index.jsp';
+            	},
+            	401: function (data) {
+            		alert('UnauthorizedException');
+            		window.top.location = '/index.jsp';
+            	},
+            	403: function (data) {
+            		alert('ForbiddenException');
+            		window.top.location = '/index.jsp';
+            	},
+            	404: function (data) {
+            		alert('NotFoundException');
+            		window.top.location = '/index.jsp';
+            	},
+            	409: function (data) {
+            		alert('ConflictException');
+            		window.top.location = '/index.jsp';
+            	},
+            	500: function (data) {
+            		alert('InternalServerErrorException');
+            		window.top.location = '/index.jsp';
+            	},
+            	503: function (data) {
+            		alert('ServiceUnavailableException');
+            		window.top.location = '/index.jsp';
+            	}
+            },
             success: function (data) {
-                mycarousel_itemAddCallback(carousel, state, data);
+                mycarousel_itemAddCallback(carousel, state, data, albumId);
             },
             error: function () {
                 alert('Erro ao obter lista de fotos');
@@ -232,7 +292,7 @@
 
     }
 
-    function mycarousel_itemAddCallback(carousel, state, data) {
+    function mycarousel_itemAddCallback(carousel, state, data, albumId) {
 
         console.log(data);
 
@@ -250,13 +310,17 @@
         }
 
         if (state == "init") {
-            carousel.size(data.count);
-            qtdFotos = data.count;
-            qtdFotosCarregadas = 0;
-            $("#comboAlbuns").prop("disabled", false); // habilita combo de albuns
-            $("#loading_footer").hide(); // Esconde footer temporario
-            $("#sfcb_footer").show(); //  Exibe footer normal
-            if (debug) alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
+        	var photoCount = $('option[value="' + albumId + '"]').data('photo-count');
+        	if (typeof photoCount === 'undefined') {
+        		photoCount = 9999;
+        	}
+        	carousel.size(photoCount);
+        	qtdFotos = photoCount;
+        	qtdFotosCarregadas = 0;
+        	$("#comboAlbuns").prop("disabled", false); // habilita combo de albuns
+        	$("#loading_footer").hide(); // Esconde footer temporario
+        	$("#sfcb_footer").show(); //  Exibe footer normal
+        	if (debug) alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
         }
 
         $.each(data.fotos, function (i, foto) {

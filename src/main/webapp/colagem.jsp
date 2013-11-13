@@ -22,7 +22,7 @@
             appId: '${facebok.app.id}',
             channelUrl: myDomain + '/channel.html', // Channel File
             status: true,
-            cookie: true,
+            cookie: false,
             xfbml: true
         });
 
@@ -69,16 +69,18 @@
 
     function recuperaAlbuns() {
 
-        FB.api('me/albums?fields=id,name,count&limit=100', function (response) {
-
-            var arrayData = response.data;
+    	var query = "SELECT object_id, name, photo_count FROM album WHERE owner = me() AND photo_count > 0";
+    	var queryEncoded = encodeURIComponent(query);
+    	
+        FB.api("/fql?q=" + queryEncoded , function(response) {
+        	console.log(response);
+        	var arrayData = response.data;
             for (var i = 0; i < arrayData.length; i++) {
                 $("#comboAlbuns").append($("<option></option>")
-                        .attr("value", arrayData[i].id)
-                        .text(arrayData[i].name));
+                        .attr("value", arrayData[i].object_id)
+                        .text(arrayData[i].name).data("photo-count", arrayData[i].photo_count));
             }
         });
-
     }
 </script>
 
@@ -153,7 +155,7 @@
 <a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">POSTAR</a>
 
 <select id="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
-    <option value="0">Timeline</option>
+    <option value="0">Todas</option>
 </select>
 
 <input type="hidden" id="albumId" value="0"/>

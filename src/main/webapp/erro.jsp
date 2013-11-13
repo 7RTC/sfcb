@@ -15,8 +15,9 @@
 		window.fbAsyncInit = function() {
 			FB.init({
 				appId : '${facebok.app.id}',
+	            channelUrl: myDomain + '/channel.html', // Channel File
 				status : true,
-				cookie : true,
+				cookie : false,
 				xfbml : true
 			});
 
