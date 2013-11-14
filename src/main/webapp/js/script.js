@@ -4,7 +4,7 @@
     var paginaAnterior;
     var qtdFotos = -1;
     var qtdFotosCarregadas = 0;
-    var debug = true;
+    var debug = false;
 
     function setHeader(xhr) {
         xhr.setRequestHeader('token-uuid', $("#token-uuid").val());
@@ -118,31 +118,38 @@
                 dataType: 'json',
                 statusCode: {
                 	400: function (data) {
-                		alert('BadRequestException');
+                		if (debug) alert('BadRequestException');
+                		alert('Ocorreu um erro!');
                         window.top.location = '/index.jsp';
                 	},
                 	401: function (data) {
-                		alert('UnauthorizedException');
+                		if (debug) alert('UnauthorizedException');
+                		alert('Ocorreu um erro!');
                 		window.top.location = '/index.jsp';
                 	},
                 	403: function (data) {
-                		alert('ForbiddenException');
+                		if (debug) alert('ForbiddenException');
+                		alert('Ocorreu um erro!');
                 		window.top.location = '/index.jsp';
                 	},
                 	404: function (data) {
-                		alert('NotFoundException');
+                		if (debug) alert('NotFoundException');
+                		alert('Ocorreu um erro!');
                 		window.top.location = '/index.jsp';
                 	},
                 	409: function (data) {
-                		alert('ConflictException');
+                		if (debug) alert('ConflictException');
+                		alert('Ocorreu um erro!');
                 		window.top.location = '/index.jsp';
                 	},
                 	500: function (data) {
-                		alert('InternalServerErrorException');
+                		if (debug) alert('InternalServerErrorException');
+                		alert('Ocorreu um erro!');
                 		window.top.location = '/index.jsp';
                 	},
                 	503: function (data) {
-                		alert('ServiceUnavailableException');
+                		if (debug) alert('ServiceUnavailableException');
+                		alert('Ocorreu um erro!');
                 		window.top.location = '/index.jsp';
                 	}
                 },
@@ -253,31 +260,38 @@
             dataType: 'json',
             statusCode: {
             	400: function (data) {
-            		alert('BadRequestException');
+            		if (debug) alert('BadRequestException');
+            		alert('Ocorreu um erro!');
                     window.top.location = '/index.jsp';
             	},
             	401: function (data) {
-            		alert('UnauthorizedException');
+            		if (debug) alert('UnauthorizedException');
+            		alert('Ocorreu um erro!');
             		window.top.location = '/index.jsp';
             	},
             	403: function (data) {
-            		alert('ForbiddenException');
+            		if (debug) alert('ForbiddenException');
+            		alert('Ocorreu um erro!');
             		window.top.location = '/index.jsp';
             	},
             	404: function (data) {
-            		alert('NotFoundException');
+            		if (debug) alert('NotFoundException');
+            		alert('Ocorreu um erro!');
             		window.top.location = '/index.jsp';
             	},
             	409: function (data) {
-            		alert('ConflictException');
+            		if (debug) alert('ConflictException');
+            		alert('Ocorreu um erro!');
             		window.top.location = '/index.jsp';
             	},
             	500: function (data) {
-            		alert('InternalServerErrorException');
+            		if (debug) alert('InternalServerErrorException');
+            		alert('Ocorreu um erro!');
             		window.top.location = '/index.jsp';
             	},
             	503: function (data) {
-            		alert('ServiceUnavailableException');
+            		if (debug) alert('ServiceUnavailableException');
+            		alert('Ocorreu um erro!');
             		window.top.location = '/index.jsp';
             	}
             },
@@ -293,8 +307,6 @@
     }
 
     function mycarousel_itemAddCallback(carousel, state, data, albumId) {
-
-        console.log(data);
 
         if (debug) alert("state itemAddCallback: " + state);
 

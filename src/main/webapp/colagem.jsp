@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <title>SFCB - Colagens</title>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -10,7 +10,8 @@
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-
+	<meta property="og:image" content="http://jm-sfcb.appspot.com/imagens/bannerlike.png"/>
+	<meta property="og:image:secure_url" content="https://jm-sfcb.appspot.com/imagens/bannerlike.png" />
 </head>
 <body>
 
@@ -73,7 +74,6 @@
     	var queryEncoded = encodeURIComponent(query);
     	
         FB.api("/fql?q=" + queryEncoded , function(response) {
-        	console.log(response);
         	var arrayData = response.data;
             for (var i = 0; i < arrayData.length; i++) {
                 $("#comboAlbuns").append($("<option></option>")
@@ -85,17 +85,18 @@
 </script>
 
 <div class="loginFacebookColagem">
-    <div class="pushLeft">
+    <div class="pushRight">
         <img src="" id="imagemUsuario" class="imagemUsuario"/>
         <span id="nomeUsuario" class="nomeUsuario"></span>
 			<span id="botaoFb" class="botaoFb">
-				<fb:login-button show-faces="false" autologoutlink="true"
-                                 scope="${facebook.app.permissions}"></fb:login-button>
+				<fb:login-button show-faces="false" autologoutlink="true" scope="${facebook.app.permissions}"></fb:login-button>
 			</span>
     </div>
+    <div class="pushLeft">
+		<fb:like href="https://jm-sfcb.appspot.com/" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
+	</div>
+	<h1 class="tituloLogado">Colagem</h1>
 </div>
-
-<h1>Colagem</h1>
 
 <div class="main">
 

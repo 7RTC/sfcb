@@ -18,8 +18,16 @@ canvas {
 	border-bottom: 2px solid #333;
 }
 
-h1 {
+h1  {
 	font-size: 30px;
+}
+
+.tituloLogado {
+	clear: both;
+	margin: 0px;
+	top: 5px;
+	left: 45%;
+	position: fixed;
 }
 
 a {
@@ -197,6 +205,12 @@ footer ul li img {
 
 .pushLeft {
 	float: left;
+	line-height: 40px;
+}
+
+.pushRight {
+	float: right;
+	margin-right: 20px;
 }
 
 .imagemUsuario {
