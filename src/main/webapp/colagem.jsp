@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
-<html xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <title>SFCB - Colagens</title>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -12,6 +14,15 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 	<meta property="og:image" content="http://jm-sfcb.appspot.com/imagens/bannerlike.png"/>
 	<meta property="og:image:secure_url" content="https://jm-sfcb.appspot.com/imagens/bannerlike.png" />
+	
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-19890822-3', 'jm-sfcb.appspot.com');
+		ga('send', 'pageview');
+	</script>
 </head>
 <body>
 
