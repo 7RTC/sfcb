@@ -9,17 +9,21 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <title>SFCB - Demo</title>
-    <meta property="og:image" content="http://jm-sfcb.appspot.com/imagens/bannerlike.png"/>
-	<meta property="og:image:secure_url" content="https://jm-sfcb.appspot.com/imagens/bannerlike.png" />
-    
-    <script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-19890822-3', 'jm-sfcb.appspot.com');
-		ga('send', 'pageview');
-	</script>
+    <meta property="og:image" content="${facebook.app.site_url}/imagens/bannerlike.png" />
+	<meta property="og:image:secure_url" content="${facebook.app.site_url}/imagens/bannerlike.png" />
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19890822-4']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </head>
 
 <body>
@@ -43,7 +47,7 @@
                         var expiresIn = response.authResponse.expiresIn;
                         var userID = response.authResponse.userID;
                         $("#carregando").show();
-                        window.top.location = '${facebook.app.site_url}' + "?accessToken=" + accessToken + "&expiresIn=" + expiresIn + "&userID=" + userID;
+                        window.top.location = '${facebook.app.site_url}' + "/login?accessToken=" + accessToken + "&expiresIn=" + expiresIn + "&userID=" + userID;
                     } else if (response.status === 'not_authorized') {
                         FB.login();
                     } else {
@@ -83,7 +87,7 @@
 
 <%--  	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="loginFacebook">
 		<input type="hidden" name="client_id" value="${facebok.app.id}"/>
-		<input type="hidden" name="redirect_uri" value="${facebook.app.site_url}"/>
+		<input type="hidden" name="redirect_uri" value="${facebook.app.site_url}/login"/>
         <input type="hidden" name="scope" value="${facebook.app.permissions}"/>
 		<input type="image" src="imagens/botao-login-facebook.png" alt="Entrar pelo Facebook">
 	</form> --%>

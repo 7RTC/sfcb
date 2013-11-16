@@ -3,7 +3,6 @@
 # https://developers.facebook.com/apps
 facebok.app.id= 999999999999999
 facebook.app.secret=99999999999999aaaaaaaaaaaaaaaaaa
-# Atencao: A / no final eh necessaria
-facebook.app.site_url=https://my-app.appspot.com/login/
+facebook.app.site_url=https://my-app.appspot.com
 facebook.app.permissions=user_photos,friends_photos,publish_stream,photo_upload
 

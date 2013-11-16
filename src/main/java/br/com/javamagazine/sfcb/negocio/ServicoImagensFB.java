@@ -124,7 +124,7 @@ public class ServicoImagensFB extends ServicoFacebook {
             Gson gson = new Gson();
             resposta = gson.fromJson(jsonResposta, Publicacao.class);
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                log.fine("Upload realizado com sucesso: " + resposta);
+                log.info("Upload realizado com sucesso: " + resposta);
             } else {
                 log.severe("Falha no upload do arquivo: " + jsonResposta);
                 // TODO: Limpar
