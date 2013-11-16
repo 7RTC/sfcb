@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -9,17 +9,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <title>Social Facebook Collage Builder</title>
-    <!-- Open Graph -->
-    <meta property="og:title" content="Social Facebook Collage Builder" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:url" content="${facebook.app.site_url}">
-    <meta property="og:description" content="Crie e publique suas montagens! O Social Facebook Collage Builder permite que você crie colagens com fotos do Facebook, publique-as e compartilhe com os amigos." />
-    <meta property="og:image" content="${facebook.app.site_url}/imagens/bannerlike.png" />
-    <meta property="og:image:secure_url" content="${facebook.app.site_url}/imagens/bannerlike.png" />
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="400">
-    <meta property="og:image:height" content="250">
-    <meta property="fb:app_id" content="${facebok.app.id}">
+    <%@ include file="include/fognmeta.html" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -55,6 +45,7 @@
                         var accessToken = response.authResponse.accessToken;
                         var expiresIn = response.authResponse.expiresIn;
                         var userID = response.authResponse.userID;
+                        $("#loginMain").hide();
                         $("#carregando").show();
                         window.top.location = '${facebook.app.site_url}' + "/login?accessToken=" + accessToken + "&expiresIn=" + expiresIn + "&userID=" + userID;
                     } else if (response.status === 'not_authorized') {
@@ -85,13 +76,20 @@
 <h1>Aplicação demonstração de colagens</h1>
 
 <div class="loginFacebook">
-    <div id="carregando" style="display: none; margin-bottom: 20px;">
+    <div id="loginMain">
+        <img src="${pageContext.request.contextPath}/imagens/bannerlike.png" alt="Social Facebook Collage Builder" />
+    </div>
+    <div id="carregando" style="display: none">
         <h2>Carregando...</h2>
         <br/>
-        <img src="${req.contextPath}/imagens/ajax-loader.gif"/>
+        <img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/>
     </div>
     <fb:login-button show-faces="true" max-rows="1" size="xlarge" scope="${facebook.app.permissions}">Logar com
         Facebook</fb:login-button>
+    <hr style="width: 500px"/>
+    <footer>
+        <%@ include file="include/footerInfo.html" %>
+    </footer>
 </div>
 
 <%--  	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="loginFacebook">

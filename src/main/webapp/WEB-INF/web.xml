@@ -21,16 +21,16 @@
         <servlet-class>br.com.javamagazine.sfcb.servlets.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-    	<servlet-name>Colagem</servlet-name>
-		<jsp-file>/colagem.jsp</jsp-file>
+        <servlet-name>Colagem</servlet-name>
+        <jsp-file>/colagem.jsp</jsp-file>
     </servlet>
     <servlet>
-    	<servlet-name>Sucesso</servlet-name>
-		<jsp-file>/sucesso.jsp</jsp-file>
+        <servlet-name>Sucesso</servlet-name>
+        <jsp-file>/sucesso.jsp</jsp-file>
     </servlet>
     <servlet>
-    	<servlet-name>Erro</servlet-name>
-		<jsp-file>/erro.jsp</jsp-file>
+        <servlet-name>Erro</servlet-name>
+        <jsp-file>/erro.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -61,18 +61,18 @@
         <servlet-name>Erro</servlet-name>
         <url-pattern>/erro</url-pattern>
     </servlet-mapping>
-    
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <security-constraint>
-    <web-resource-collection>
-        <web-resource-name>all</web-resource-name>
-        <url-pattern>/*</url-pattern>
-    </web-resource-collection>
-    <user-data-constraint>
-        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
-</security-constraint>
+        <web-resource-collection>
+            <web-resource-name>all</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>

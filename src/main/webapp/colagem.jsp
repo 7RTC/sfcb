@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -12,17 +12,7 @@
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Social Facebook Collage Builder" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:url" content="${facebook.app.site_url}">
-    <meta property="og:description" content="Crie e publique suas montagens! O Social Facebook Collage Builder permite que você crie colagens com fotos do Facebook, publique-as e compartilhe com os amigos." />
-    <meta property="og:image" content="${facebook.app.site_url}/imagens/bannerlike.png" />
-    <meta property="og:image:secure_url" content="${facebook.app.site_url}/imagens/bannerlike.png" />
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="400">
-    <meta property="og:image:height" content="250">
-    <meta property="fb:app_id" content="${facebok.app.id}">
+    <%@ include file="include/fognmeta.html" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -119,7 +109,7 @@
 			</span>
     </div>
     <div class="pushLeft">
-		<fb:like href="https://jm-sfcb.appspot.com/" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
+		<fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
 	</div>
 	<h1 class="tituloLogado">Colagem</h1>
 </div>
@@ -134,6 +124,8 @@
         <br/>
         <img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif"
              alt="Powered by Google App Engine"/>
+        <hr />
+        <%@ include file="include/footerInfo.html" %>
 
     </div>
     <aside class="camadas">
@@ -188,7 +180,7 @@
 <input type="hidden" id="albumId" value="0"/>
 
 <footer class="fotos" id="loading_footer" style="margin: 0 auto;">
-    <h3><img src="${req.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
+    <h3><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
 </footer>
 <footer class="fotos" id="sfcb_footer" style="display: none">
     <input type="hidden" value="${sessionScope.tokenUUID}" id="token-uuid"/>
@@ -198,7 +190,6 @@
     </form>
 
     <ul id="mycarousel" class="jcarousel-skin-tango">
-        <!-- The content goes in here -->
     </ul>
 </footer>
 

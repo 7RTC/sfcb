@@ -187,7 +187,11 @@ footer ul li img {
 }
 
 .loginFacebook {
-	padding-top: 100px;
+	padding-top: 20px;
+}
+
+.loginFacebook div {
+    padding-bottom: 20px;
 }
 
 .loginFacebookColagem {

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -8,17 +8,7 @@
 	<title>SFCB - Colagens</title>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Social Facebook Collage Builder" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:url" content="${facebook.app.site_url}">
-    <meta property="og:description" content="Crie e publique suas montagens! O Social Facebook Collage Builder permite que você crie colagens com fotos do Facebook, publique-as e compartilhe com os amigos." />
-    <meta property="og:image" content="${facebook.app.site_url}/imagens/bannerlike.png" />
-    <meta property="og:image:secure_url" content="${facebook.app.site_url}/imagens/bannerlike.png" />
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="400">
-    <meta property="og:image:height" content="250">
-    <meta property="fb:app_id" content="${facebok.app.id}">
+    <%@ include file="include/fognmeta.html" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -97,12 +87,17 @@
 			</span>
 		</div>
 		<div class="pushLeft">
-			<fb:like href="https://jm-sfcb.appspot.com/" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
+			<fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
 		</div>
 		<h1 class="tituloLogado">Colagem</h1>
 	</div>
 
 	<p class="mensagemGenerica mensagemErro">Ocorreu um erro!</p>
+
+    <hr style="width: 500px"/>
+    <footer>
+        <%@ include file="include/footerInfo.html" %>
+    </footer>
 
 </body>
 </html>
