@@ -119,7 +119,7 @@
                 statusCode: {
                 	400: function (data) {
                 		if (debug) alert('BadRequestException');
-                		alert('Ocorreu um erro!');
+                		alert('Ocorreu um erro!'); // TODO: Tratar exibir algo melor do que um alert
                         window.top.location = '/index.jsp';
                 	},
                 	401: function (data) {
@@ -172,6 +172,7 @@
         });
 
         $("#gerarColagem").click(function () {
+            jCollage.redraw();
             var canvas = document.getElementById('collage');
             var dataURL = canvas.toDataURL('image/jpeg');
 
