@@ -8,7 +8,7 @@
 	<title>SFCB - Colagens</title>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <%@ include file="include/fognmeta.html" %>
+    <%@ include file="include/fognmeta.jsp" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -96,7 +96,7 @@
 
     <hr style="width: 500px"/>
     <footer>
-        <%@ include file="include/footerInfo.html" %>
+        <%@ include file="include/footerInfo.jsp" %>
     </footer>
 
 </body>

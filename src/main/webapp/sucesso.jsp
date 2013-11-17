@@ -8,7 +8,7 @@
 	<title>SFCB - Colagens</title>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <%@ include file="include/fognmeta.html" %>
+    <%@ include file="include/fognmeta.jsp" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -100,7 +100,7 @@
 	<a href="https://www.facebook.com/${requestScope.idUsuario}/posts/${requestScope.idPost}" target="blank" id="colagemFacebook" class="botaoGenerico">VER COLAGEM NO FACEBOOK</a>
     <br /><br /><hr style="width: 700px"/>
     <footer>
-        <%@ include file="include/footerInfo.html" %>
+        <%@ include file="include/footerInfo.jsp" %>
     </footer>
 
 </body>

@@ -12,7 +12,7 @@
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <%@ include file="include/fognmeta.html" %>
+    <%@ include file="include/fognmeta.jsp" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -125,7 +125,7 @@
         <img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif"
              alt="Powered by Google App Engine"/>
         <hr />
-        <%@ include file="include/footerInfo.html" %>
+        <%@ include file="include/footerInfo.jsp" %>
 
     </div>
     <aside class="camadas">
