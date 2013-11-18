@@ -2,6 +2,7 @@ package br.com.javamagazine.sfcb.servlets;
 
 import br.com.javamagazine.sfcb.modelo.Imagem;
 import br.com.javamagazine.sfcb.negocio.ServicoImagem;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.io.ByteStreams;
 
 import javax.servlet.ServletOutputStream;
@@ -12,19 +13,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProxyServlet  extends HttpServlet {
+public class ProxyServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(ProxyServlet.class.getName());
     private static final long serialVersionUID = 1L;
     private static final int connectTimeout = 25000;
     private static final int readTimeout = 60000;
-
+    public static final ImmutableSet<String> excludedHeaders = ImmutableSet.of("Cookie", "Host");
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -38,34 +38,34 @@ public class ProxyServlet  extends HttpServlet {
 
             log.info("Headers do request");
             final Enumeration<String> headerNames = request.getHeaderNames();
-            while(headerNames.hasMoreElements()) {
+            while (headerNames.hasMoreElements()) {
                 final String headerName = headerNames.nextElement();
-                final String headerValue = request.getHeader(headerName) ;
-                log.info(headerName + " + " + headerValue);
-              //  connection.setRequestProperty(headerName, headerValue);
+                final String headerValue = request.getHeader(headerName);
+
+                if (!excludedHeaders.contains(headerName)) {
+                    log.info(headerName + " : " + headerValue);
+                    connection.setRequestProperty(headerName, headerValue);
+                }
             }
         } catch (IOException e) {
             log.log(Level.SEVERE, "Não foi possível recuperar a imagem", e);
             response.sendRedirect("/erro");
-           throw e;
+            throw e;
         }
+
+        final int httpCode = connection.getResponseCode();
+        response.setStatus(httpCode);
+
+        log.info("Status code: " + httpCode);
 
         log.info("Headers da resposta");
-        for(Map.Entry<String, List<String>> entry : connection.getHeaderFields().entrySet()) {
+        for (Map.Entry<String, List<String>> entry : connection.getHeaderFields().entrySet()) {
+            final String header = entry.getKey();
             log.info(entry.getKey() + " = " + entry.getValue());
+            for (String headerValue : entry.getValue()) {
+                response.addHeader(header, headerValue);
+            }
         }
-
-        log.info("Status code: " + connection.getResponseCode());
-
-        // Copia cabecalhos para o proxy
-        response.setStatus(connection.getResponseCode());
-        response.setContentType(connection.getContentType());
-        response.setContentLength(connection.getContentLength());
-        response.setDateHeader("last-modified", connection.getHeaderFieldDate("last-modified", new Date().getTime()));
-        response.setDateHeader("date", connection.getHeaderFieldDate("date", new Date().getTime()));
-        response.setHeader("connection", connection.getHeaderField("connection"));
-        // O facebook costuma manter imagens em cache por aproximadamente  14 dias
-        response.setDateHeader("max-age", connection.getHeaderFieldDate("max-age", new Date().getTime()));
 
         final ServletOutputStream out = response.getOutputStream();
 
@@ -73,10 +73,14 @@ public class ProxyServlet  extends HttpServlet {
             final String mimeType = connection.getContentType();
             final byte[] corpo = ByteStreams.toByteArray(input);
 
-            final Imagem original = new Imagem(corpo, mimeType);
-            final Imagem redimensionada = servicoImagem.redimensionar(original);
-            out.write(redimensionada.getCorpo());
-       } catch (Exception e) {
+            if (httpCode == HttpServletResponse.SC_OK) {
+                final Imagem original = new Imagem(corpo, mimeType);
+                final Imagem redimensionada = servicoImagem.redimensionar(original);
+                out.write(redimensionada.getCorpo());
+            } else {
+                out.write(corpo);
+            }
+        } catch (Exception e) {
             log.log(Level.SEVERE, "Não foi possível tratar a imagem do facebook", e);
             response.sendRedirect("/erro");
         }
