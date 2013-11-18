@@ -147,7 +147,7 @@
                                 <include>colagem.jsp</include>
                                 <include>sucesso.jsp</include>
                                 <include>erro.jsp</include>
-                                <include>include/fognmeta.html</include>
+                                <include>include/fognmeta.jsp</include>
                             </includes>
                         </resource>
                         <resource>
