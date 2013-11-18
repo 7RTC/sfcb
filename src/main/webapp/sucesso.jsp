@@ -5,103 +5,115 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-	<title>SFCB - Colagens</title>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <title>SFCB - Colagens</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <%@ include file="include/fognmeta.jsp" %>
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-19890822-4']);
         _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
 
             ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
 
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
         })();
     </script>
 </head>
 <body>
 
-	<div id="fb-root"></div>
-	<script>
-    	var myDomain = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId : '${facebok.app.id}',
-				channelUrl: myDomain + '/channel.html', // Channel File
-				status : true,
-				cookie : false,
-				xfbml : true
-			});
+<div id="fb-root"></div>
+<script>
+    var myDomain = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '${facebok.app.id}',
+            channelUrl: myDomain + '/channel.html', // Channel File
+            status: true,
+            cookie: false,
+            xfbml: true
+        });
 
-			FB.Event.subscribe('auth.authResponseChange', function(response) {
-				if (response.status === 'connected') {
-					setaDadosUsuario();
-				} else if (response.status === 'not_authorized') {
-					FB.logout();
-					window.top.location = '/logout';
-				} else {
-					FB.logout();
-					window.top.location = '/logout';
-				}
-			});
-			FB.Event.subscribe("auth.logout", function() {
-				window.location = '/logout';
-			});
-		};
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
+            if (response.status === 'connected') {
+                setaDadosUsuario();
+                carregaColagem();
+            } else if (response.status === 'not_authorized') {
+                FB.logout();
+                window.top.location = '/logout';
+            } else {
+                FB.logout();
+                window.top.location = '/logout';
+            }
+        });
+        FB.Event.subscribe("auth.logout", function () {
+            window.location = '/logout';
+        });
+    };
 
-		// Carrega o SDK do Facebook de modo assíncrono
-		(function(d) {
-			var js, id = 'facebook-jssdk', ref = d
-					.getElementsByTagName('script')[0];
-			if (d.getElementById(id)) {
-				return;
-			}
-			js = d.createElement('script');
-			js.id = id;
-			js.async = true;
-			js.src = "//connect.facebook.net/pt_BR/all.js";
-			ref.parentNode.insertBefore(js, ref);
-		}(document));
+    // Carrega o SDK do Facebook de modo assíncrono
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d
+                .getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/pt_BR/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
 
-		function setaDadosUsuario() {
-			FB.api('/me', function(response) {
-				$("#nomeUsuario").text(response.name);
-				$("#imagemUsuario").attr(
-						"src",
-						"https://graph.facebook.com/" + response.id
-								+ "/picture?width=25&height=25");
-			});
-		}
-	</script>
+    function setaDadosUsuario() {
+        FB.api('/me', function (response) {
+            $("#nomeUsuario").text(response.name);
+            $("#imagemUsuario").attr(
+                    "src",
+                    "https://graph.facebook.com/" + response.id
+                            + "/picture?width=25&height=25");
+        });
+    }
 
-	<div class="loginFacebookColagem">
-		<div class="pushRight">
-			<img src="" id="imagemUsuario" class="imagemUsuario" />
-			<span id="nomeUsuario" class="nomeUsuario"></span> 
+    function carregaColagem() {
+        FB.api('/${param.idImagem}?fields=source', function (response) {
+            $("#imagemColagem").attr("src", response.source);
+        });
+    }
+</script>
+
+<div class="loginFacebookColagem">
+    <div class="pushRight">
+        <img id="imagemUsuario" class="imagemUsuario"/>
+        <span id="nomeUsuario" class="nomeUsuario"></span>
 			<span id="botaoFb" class="botaoFb">
-				<fb:login-button show-faces="false" autologoutlink="true" />
+				<fb:login-button show-faces="false" autologoutlink="true"/>
 			</span>
-		</div>
-		<div class="pushLeft">
-			<fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true" />
-		</div>
-		<h1 class="tituloLogado">Colagem</h1>
-	</div>
+    </div>
+    <div class="pushLeft">
+        <fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true"/>
+    </div>
+    <h1 class="tituloLogado">Colagem</h1>
+</div>
 
-	<p class="mensagemGenerica mensagemSucesso">Colagem enviada com sucesso!</p>
-	
-	<img alt="colagem" class="colagemSucesso" src="${requestScope.imagemBase64Src}" />
-	
-	<a href="/colagem" id="novaColagem" class="botaoGenerico">GERAR NOVA COLAGEM</a>
-	<a href="https://www.facebook.com/${requestScope.idUsuario}/posts/${requestScope.idPost}" target="blank" id="colagemFacebook" class="botaoGenerico">VER COLAGEM NO FACEBOOK</a>
-    <br /><br /><hr style="width: 700px"/>
-    <footer>
-        <%@ include file="include/footerInfo.jsp" %>
-    </footer>
+<p class="mensagemGenerica mensagemSucesso">Colagem enviada com sucesso!</p>
+
+<img id="imagemColagem" alt="colagem" class="colagemSucesso"/>
+
+<a href="/colagem" id="novaColagem" class="botaoGenerico">GERAR NOVA COLAGEM</a>
+<a href="https://www.facebook.com/${param.idUsuario}/posts/${param.idPost}" target="blank" id="colagemFacebook"
+   class="botaoGenerico">VER COLAGEM NO FACEBOOK</a>
+<br/><br/>
+<hr style="width: 700px"/>
+<footer>
+    <%@ include file="include/footerInfo.jsp" %>
+</footer>
 
 </body>
 </html>

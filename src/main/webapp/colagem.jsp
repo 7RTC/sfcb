@@ -185,8 +185,10 @@
 <footer class="fotos" id="sfcb_footer" style="display: none">
     <input type="hidden" value="${sessionScope.tokenUUID}" id="token-uuid"/>
 
-    <form id="formColagem" action="/postColagem" method="POST">
-        <input type="text" id="dataColagem" name="dataColagem">
+    <form id="formSucesso" action="${pageContext.request.contextPath}/sucesso" method="POST">
+        <input type="text" id="idUsuario" name="idUsuario">
+        <input type="text" id="idPost" name="idPost">
+        <input type="text" id="idImagem" name="idImagem">
     </form>
 
     <ul id="mycarousel" class="jcarousel-skin-tango">

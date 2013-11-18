@@ -119,7 +119,7 @@
                 statusCode: {
                 	400: function (data) {
                 		if (debug) alert('BadRequestException');
-                		alert('Ocorreu um erro!'); // TODO: Tratar exibir algo melor do que um alert
+                		alert('Ocorreu um erro!'); // TODO: Tratar exibir algo melhor do que um alert e redirecionar para logout
                         window.top.location = '/index.jsp';
                 	},
                 	401: function (data) {
@@ -172,12 +172,73 @@
         });
 
         $("#gerarColagem").click(function () {
+            $(this).off('click');
             jCollage.redraw();
             var canvas = document.getElementById('collage');
             var dataURL = canvas.toDataURL('image/jpeg');
+            var requestData = JSON.stringify({ dataURL: dataURL });
+            console.log(requestData);
 
-            $("#dataColagem").val(dataURL);
-            $("#formColagem").submit();
+            $.ajax({
+                url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                    + '/_ah/api/sfcb/v1/foto',
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                data: requestData,
+                statusCode: {
+                    400: function (data) {
+                        if (debug) alert('BadRequestException');
+                        alert('Ocorreu um erro!'); // TODO: Tratar exibir algo melhor do que um alert e redirecionar para logout
+                        window.top.location = '/index.jsp';
+                    },
+                    401: function (data) {
+                        if (debug) alert('UnauthorizedException');
+                        alert('Ocorreu um erro!');
+                        window.top.location = '/index.jsp';
+                    },
+                    403: function (data) {
+                        if (debug) alert('ForbiddenException');
+                        alert('Ocorreu um erro!');
+                        window.top.location = '/index.jsp';
+                    },
+                    404: function (data) {
+                        if (debug) alert('NotFoundException');
+                        alert('Ocorreu um erro!');
+                        window.top.location = '/index.jsp';
+                    },
+                    409: function (data) {
+                        if (debug) alert('ConflictException');
+                        alert('Ocorreu um erro!');
+                        window.top.location = '/index.jsp';
+                    },
+                    500: function (data) {
+                        if (debug) alert('InternalServerErrorException');
+                        alert('Ocorreu um erro!');
+                        window.top.location = '/index.jsp';
+                    },
+                    503: function (data) {
+                        if (debug) alert('ServiceUnavailableException');
+                        alert('Ocorreu um erro!');
+                        window.top.location = '/index.jsp';
+                    }
+                },
+                success: function (data) {
+                    var idsDaPostagem = data.postId.split("_");
+                    $("#idUsuario").val(idsDaPostagem[0]);
+                    $("#idPost").val(idsDaPostagem[1]);
+                    $("#idImagem").val(data.id);
+                    if (debug) alert("id usuario: " + $("#idUsuario").val()
+                        + "\nid do post: " + $("#idPost").val()
+                        + "\nid da imagem: " + $("#idImagem").val());
+                    $("#formSucesso").submit();
+                },
+                error: function () {
+                    alert('Erro ao publicar foto');
+                },
+                beforeSend: setHeader
+            });
+
         });
 
         $("#comboAlbuns").change(function () {

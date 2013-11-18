@@ -7,10 +7,7 @@ import javax.annotation.Nullable;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.javamagazine.sfcb.modelo.Fotos;
-import br.com.javamagazine.sfcb.modelo.Imagem;
-import br.com.javamagazine.sfcb.modelo.Publicacao;
-import br.com.javamagazine.sfcb.modelo.Token;
+import br.com.javamagazine.sfcb.modelo.*;
 import br.com.javamagazine.sfcb.negocio.ServicoAutenticacao;
 import br.com.javamagazine.sfcb.negocio.ServicoImagem;
 import br.com.javamagazine.sfcb.negocio.ServicoImagensFB;
@@ -72,15 +69,15 @@ public class FotoEndpoint {
             path = "foto",
             httpMethod = ApiMethod.HttpMethod.POST
     )
-    public Publicacao publicar(HttpServletRequest req, @Named String dataColagem) throws UnauthorizedException {
+    public Publicacao publicar(HttpServletRequest req, Colagem colagem) throws UnauthorizedException {
         final String accessToken = getAccessToken(req);
 
-        log.info("Em Base64: " + dataColagem);
+        log.info("Em Base64: " + colagem.getDataURL());
 
         final ServicoImagem servicoImagem = new ServicoImagem();
         final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken);
 
-        final Imagem imagem = servicoImagem.recuperarDaDataURL(dataColagem);
+        final Imagem imagem = servicoImagem.recuperarDaDataURL(colagem.getDataURL());
 
         log.info("MIME type: " + imagem.getMimeType());
         log.info("Extensao: " + imagem.getExtensao());

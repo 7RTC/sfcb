@@ -27,7 +27,7 @@ public class ServicoImagem {
         log.info("Base 64 String: " + dataURL);
         final Matcher matcher = pattern.matcher(dataURL);
         if(!matcher.find()) {
-            throw new IllegalArgumentException("Formato da iamgem invalido, apenas png e jpeg são suportados");
+            throw new IllegalArgumentException("Formato da imagem invalido, apenas png e jpeg são suportados");
         }
         // Decoda o string da imagem do canvas
         // Extrai image/tipo de uma string data:image/png|;base64

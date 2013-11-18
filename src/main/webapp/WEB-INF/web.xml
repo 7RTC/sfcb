@@ -9,10 +9,6 @@
         <servlet-class>br.com.javamagazine.sfcb.servlets.ProxyServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PostServlet</servlet-name>
-        <servlet-class>br.com.javamagazine.sfcb.servlets.PostServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>br.com.javamagazine.sfcb.servlets.LoginServlet</servlet-class>
     </servlet>
@@ -40,10 +36,6 @@
     <servlet-mapping>
         <servlet-name>ProxyServlet</servlet-name>
         <url-pattern>/imageProxy</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PostServlet</servlet-name>
-        <url-pattern>/postColagem</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
