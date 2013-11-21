@@ -77,7 +77,7 @@
 
 <div class="loginFacebook">
     <div id="loginMain">
-        <img src="${pageContext.request.contextPath}/imagens/bannerlike.png" alt="Social Facebook Collage Builder" />
+        <img src="${pageContext.request.contextPath}/imagens/logoindex.jpg" alt="Social Facebook Collage Builder" />
     </div>
     <div id="carregando" style="display: none">
         <h2>Carregando...</h2>

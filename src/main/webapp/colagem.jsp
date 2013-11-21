@@ -179,20 +179,23 @@
 
 <input type="hidden" id="albumId" value="0"/>
 
-<footer class="fotos" id="loading_footer" style="margin: 0 auto;">
-    <h3><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
-</footer>
-<footer class="fotos" id="sfcb_footer" style="display: none">
-    <input type="hidden" value="${sessionScope.tokenUUID}" id="token-uuid"/>
+<footer class="fotos">
+	<div id="loading_footer" style="margin: 0 auto;">
+	    <h3><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
+	</div>
+	
+	<div id="sfcb_footer" style="display: none">
+	    <input type="hidden" value="${sessionScope.tokenUUID}" id="token-uuid"/>
 
-    <form id="formSucesso" action="${pageContext.request.contextPath}/sucesso" method="POST">
-        <input type="text" id="idUsuario" name="idUsuario">
-        <input type="text" id="idPost" name="idPost">
-        <input type="text" id="idImagem" name="idImagem">
-    </form>
-
-    <ul id="mycarousel" class="jcarousel-skin-tango">
-    </ul>
+	    <form id="formSucesso" action="${pageContext.request.contextPath}/sucesso" method="POST">
+	        <input type="text" id="idUsuario" name="idUsuario">
+	        <input type="text" id="idPost" name="idPost">
+	        <input type="text" id="idImagem" name="idImagem">
+	    </form>
+	
+	    <ul id="mycarousel" class="jcarousel-skin-tango">
+	    </ul>
+	</div>
 </footer>
 
 </body>
