@@ -130,14 +130,12 @@
     </div>
     <aside class="camadas">
         <h2>Camadas</h2>
-        <ul>
-            <li class="background"><img src="imagens/background.png">
-
-                <h3>Background</h3>
-
-                <div class="visible"></div>
-            </li>
-        </ul>
+	        <ul>
+	            <li class="background"><img src="imagens/background.png">
+	                <h3>Background</h3>
+	                <div class="visible"></div>
+	            </li>
+	        </ul>
         <div class="options">
             <span>Blending:</span> <select name="blending">
             <option value="source-over">Normal</option>

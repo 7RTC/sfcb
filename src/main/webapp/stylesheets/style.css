@@ -46,6 +46,11 @@ aside.camadas {
 	font-size: 12px;
 }
 
+.camadasWrapper {
+	height: 208px;
+	overflow: auto;
+}
+
 aside h2 {
 	display: block;
 	font-size: 12px;
@@ -58,6 +63,8 @@ aside ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	max-height: 208px;
+	overflow: auto;
 }
 
 aside ul li {
@@ -331,7 +338,7 @@ footer ul li img {
 .politicaPrivacidade {
 	text-align: left;
 	font-size: 12px;
-	padding-top:0px;
+	padding-top: 0px;
 }
 
 .politicaPrivacidadeWrapper {
@@ -340,6 +347,6 @@ footer ul li img {
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	margin:40px;
-	padding:15px 25px 25px 20px;
+	margin: 40px;
+	padding: 15px 25px 25px 20px;
 }
