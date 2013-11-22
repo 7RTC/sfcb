@@ -119,38 +119,31 @@
                 statusCode: {
                 	400: function (data) {
                 		if (debug) alert('BadRequestException');
-                		alert('Ocorreu um erro!'); // TODO: Tratar exibir algo melhor do que um alert e redirecionar para logout
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                 	},
                 	401: function (data) {
                 		if (debug) alert('UnauthorizedException');
-                		alert('Ocorreu um erro!');
-                		window.top.location = '/index.jsp';
+                		window.top.location = '/erro';
                 	},
                 	403: function (data) {
                 		if (debug) alert('ForbiddenException');
-                		alert('Ocorreu um erro!');
-                		window.top.location = '/index.jsp';
+                		window.top.location = '/erro';
                 	},
                 	404: function (data) {
                 		if (debug) alert('NotFoundException');
-                		alert('Ocorreu um erro!');
-                		window.top.location = '/index.jsp';
+                		window.top.location = '/erro';
                 	},
                 	409: function (data) {
                 		if (debug) alert('ConflictException');
-                		alert('Ocorreu um erro!');
-                		window.top.location = '/index.jsp';
+                		window.top.location = '/erro';
                 	},
                 	500: function (data) {
                 		if (debug) alert('InternalServerErrorException');
-                		alert('Ocorreu um erro!');
-                		window.top.location = '/index.jsp';
+                		window.top.location = '/erro';
                 	},
                 	503: function (data) {
                 		if (debug) alert('ServiceUnavailableException');
-                		alert('Ocorreu um erro!');
-                		window.top.location = '/index.jsp';
+                		window.top.location = '/erro';
                 	}
                 },
                 success: function (data) {
@@ -189,38 +182,31 @@
                 statusCode: {
                     400: function (data) {
                         if (debug) alert('BadRequestException');
-                        alert('Ocorreu um erro!'); // TODO: Tratar exibir algo melhor do que um alert e redirecionar para logout
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     },
                     401: function (data) {
                         if (debug) alert('UnauthorizedException');
-                        alert('Ocorreu um erro!');
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     },
                     403: function (data) {
                         if (debug) alert('ForbiddenException');
-                        alert('Ocorreu um erro!');
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     },
                     404: function (data) {
                         if (debug) alert('NotFoundException');
-                        alert('Ocorreu um erro!');
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     },
                     409: function (data) {
                         if (debug) alert('ConflictException');
-                        alert('Ocorreu um erro!');
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     },
                     500: function (data) {
                         if (debug) alert('InternalServerErrorException');
-                        alert('Ocorreu um erro!');
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     },
                     503: function (data) {
                         if (debug) alert('ServiceUnavailableException');
-                        alert('Ocorreu um erro!');
-                        window.top.location = '/index.jsp';
+                        window.top.location = '/erro';
                     }
                 },
                 success: function (data) {

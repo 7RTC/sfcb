@@ -296,7 +296,6 @@ footer ul li img {
 }
 
 .comboGenerico {
-	border: 1px solid #346F97;
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -312,4 +311,24 @@ footer ul li img {
 .main {
 	height: 700px;
 	overflow: auto;
+}
+
+.politicaPrivacidadeTitulo {
+	font-size: 14px;
+}
+
+.politicaPrivacidade {
+	text-align: left;
+	font-size: 12px;
+	padding-top:0px;
+}
+
+.politicaPrivacidadeWrapper {
+	background: #F0F6F9;
+	border: 1px solid #346F97;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	margin:40px;
+	padding:15px 25px 25px 20px;
 }
