@@ -100,7 +100,7 @@
     }
 </script>
 
-<div class="loginFacebookColagem">
+<header class="loginFacebookColagem">
     <div class="pushRight">
         <img src="" id="imagemUsuario" class="imagemUsuario"/>
         <span id="nomeUsuario" class="nomeUsuario"></span>
@@ -112,9 +112,9 @@
 		<fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
 	</div>
 	<h1 class="tituloLogado">Colagem</h1>
-</div>
+</header>
 
-<div class="main">
+<section id="conteudo" class="conteudo">
 
     <canvas id="collage" width="720" height="480"></canvas>
     <div class="about">
@@ -169,11 +169,12 @@
         </div>
     </aside>
 
-</div>
+</section>
 
 <a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">POSTAR</a>
 
-<select id="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
+<label for="comboAlbuns" class="labelComboAlbuns">Escolha um álbum do Facebook:</label>
+<select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
     <option value="0">Todas</option>
 </select>
 

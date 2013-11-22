@@ -3,7 +3,7 @@ body {
 	font-family: Verdana, Helvetica, sans-serif;
 	color: #555;
 	margin: 0;
-	padding-top: 50px;
+	padding-top: 55px;
 	text-align: center;
 }
 
@@ -205,6 +205,7 @@ footer ul li img {
 	width: 100%;
 	background-color: #F0F6F9;
 	border-bottom: 1px solid #346F97;
+	box-shadow: 0 0 10px;
 }
 
 .pushLeft {
@@ -295,6 +296,16 @@ footer ul li img {
 	max-width:270px;
 }
 
+.labelComboAlbuns {
+	position: fixed;
+	left: 15px;
+	bottom: 200px;
+	display: block;
+	max-width: 270px;
+	text-align: left;
+	font-size: 14px;
+}
+
 .comboGenerico {
 	border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -308,8 +319,8 @@ footer ul li img {
 	padding: 5px;
 }
 
-.main {
-	height: 700px;
+.conteudo {
+	height: 750px;
 	overflow: auto;
 }
 

@@ -88,7 +88,7 @@
     }
 </script>
 
-<div class="loginFacebookColagem">
+<header class="loginFacebookColagem">
     <div class="pushRight">
         <img id="imagemUsuario" class="imagemUsuario"/>
         <span id="nomeUsuario" class="nomeUsuario"></span>
@@ -100,7 +100,7 @@
         <fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true"/>
     </div>
     <h1 class="tituloLogado">Colagem</h1>
-</div>
+</header>
 
 <p class="mensagemGenerica mensagemSucesso">Colagem enviada com sucesso!</p>
 
