@@ -27,7 +27,7 @@
         })();
     </script>
 </head>
-<body>
+<body class="unselectable">
 
 <div id="fb-root"></div>
 <script>
@@ -173,7 +173,7 @@
 
 <label for="comboAlbuns" class="labelComboAlbuns">Escolha um álbum do Facebook:</label>
 <select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
-    <option value="0">Todas</option>
+    <option value="0">Todos</option>
 </select>
 
 <input type="hidden" id="albumId" value="0"/>

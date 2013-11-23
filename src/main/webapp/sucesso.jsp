@@ -78,6 +78,8 @@
                     "src",
                     "https://graph.facebook.com/" + response.id
                             + "/picture?width=25&height=25");
+            // Para o IE
+            $(".pushRight").css("display", "inline");
         });
     }
 

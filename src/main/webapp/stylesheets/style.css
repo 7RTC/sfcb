@@ -350,3 +350,12 @@ footer ul li img {
 	margin: 40px;
 	padding: 15px 25px 25px 20px;
 }
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
