@@ -4,6 +4,13 @@
     <version>3</version>
     <threadsafe>true</threadsafe>
 
+    <static-files>
+        <include path="/imagens/**" />
+        <include path="/js/**" />
+        <include path="/stylesheets/**" />
+        <include path="/politica.html" />
+    </static-files>
+
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
