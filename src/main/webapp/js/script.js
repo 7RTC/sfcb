@@ -6,8 +6,58 @@
     var qtdFotosCarregadas = 0;
     var debug = false;
 
-    function setHeader(xhr) {
-        xhr.setRequestHeader('token-uuid', $("#token-uuid").val());
+    function ajaxCall(method, path, callback, errorMessage, requestData) {
+        $("body").css('cursor', 'wait');
+        $.ajax({
+            url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + path,
+            type: method,
+            contentType: "application/json",
+            dataType: 'json',
+            data: requestData,
+            statusCode: {
+                400: function (data) {
+                    if (debug) alert('BadRequestException');
+                    window.top.location = '/erro';
+                },
+                401: function (data) {
+                    if (debug) alert('UnauthorizedException');
+                    window.top.location = '/erro';
+                },
+                403: function (data) {
+                    if (debug) alert('ForbiddenException');
+                    window.top.location = '/erro';
+                },
+                404: function (data) {
+                    if (debug) alert('NotFoundException');
+                    window.top.location = '/erro';
+                },
+                409: function (data) {
+                    if (debug) alert('ConflictException');
+                    window.top.location = '/erro';
+                },
+                500: function (data) {
+                    if (debug) alert('InternalServerErrorException');
+                    window.top.location = '/erro';
+                },
+                503: function (data) {
+                    if (debug) alert('ServiceUnavailableException');
+                    window.top.location = '/erro';
+                }
+            },
+            success: function (data) {
+                callback(data);
+                $('body').css('cursor', 'default');
+            },
+            error: function () {
+                $('body').css('cursor', 'default');
+                alert(errorMessage);
+                window.top.location = '/erro';
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('token-uuid', $("#token-uuid").val());
+            }
+        });
+
     }
 
     $(document).ready(function () {
@@ -21,12 +71,14 @@
         jCollage.setBackgroundColor("#fff");
 
         $(document).on("click", ".fotos img", function () {
+            $("body").css('cursor', 'wait');
             var img = $(this);
             var imgUrl = document.createElement("img");
             imgUrl.onload = function () {
                 jCollage.addLayer(imgUrl).setTitle(img.attr("title"));
                 updateLayers(jCollage.getLayers());
                 $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
+                $("body").css('cursor', 'default');
             };
             imgUrl.src = img.data("proxy-url");
         });
@@ -109,107 +161,16 @@
             }
         });
 
-
-        $("#recuperarFotos").click(function () {
-            $.ajax({
-                url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                    + '/_ah/api/sfcb/v1/foto',
-                type: 'GET',
-                dataType: 'json',
-                statusCode: {
-                	400: function (data) {
-                		if (debug) alert('BadRequestException');
-                        window.top.location = '/erro';
-                	},
-                	401: function (data) {
-                		if (debug) alert('UnauthorizedException');
-                		window.top.location = '/erro';
-                	},
-                	403: function (data) {
-                		if (debug) alert('ForbiddenException');
-                		window.top.location = '/erro';
-                	},
-                	404: function (data) {
-                		if (debug) alert('NotFoundException');
-                		window.top.location = '/erro';
-                	},
-                	409: function (data) {
-                		if (debug) alert('ConflictException');
-                		window.top.location = '/erro';
-                	},
-                	500: function (data) {
-                		if (debug) alert('InternalServerErrorException');
-                		window.top.location = '/erro';
-                	},
-                	503: function (data) {
-                		if (debug) alert('ServiceUnavailableException');
-                		window.top.location = '/erro';
-                	}
-                },
-                success: function (data) {
-                    proximaPagina = data.proximaPagina;
-                    paginaAnterior = data.paginaAnterior;
-                    $.each(data.fotos, function (i, foto) {
-                        var img = $("<img/>").attr("src", foto.picture);
-                        img.attr("title", "Camada ");
-                        img.data("proxy-url", foto.proxyURL);
-                        jQuery('#mycarousel').jcarousel('add', i, img);
-                    });
-                },
-                error: function () {
-                    alert('Erro ao obter lista de fotos');
-                },
-                beforeSend: setHeader
-            });
-
-        });
-
         $("#gerarColagem").click(function () {
             $(this).off('click');
             jCollage.redraw();
             var canvas = document.getElementById('collage');
             var dataURL = canvas.toDataURL('image/jpeg');
             var requestData = JSON.stringify({ dataURL: dataURL });
-            console.log(requestData);
+            // console.log(requestData);
 
-            $.ajax({
-                url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                    + '/_ah/api/sfcb/v1/foto',
-                type: 'POST',
-                contentType: "application/json",
-                dataType: 'json',
-                data: requestData,
-                statusCode: {
-                    400: function (data) {
-                        if (debug) alert('BadRequestException');
-                        window.top.location = '/erro';
-                    },
-                    401: function (data) {
-                        if (debug) alert('UnauthorizedException');
-                        window.top.location = '/erro';
-                    },
-                    403: function (data) {
-                        if (debug) alert('ForbiddenException');
-                        window.top.location = '/erro';
-                    },
-                    404: function (data) {
-                        if (debug) alert('NotFoundException');
-                        window.top.location = '/erro';
-                    },
-                    409: function (data) {
-                        if (debug) alert('ConflictException');
-                        window.top.location = '/erro';
-                    },
-                    500: function (data) {
-                        if (debug) alert('InternalServerErrorException');
-                        window.top.location = '/erro';
-                    },
-                    503: function (data) {
-                        if (debug) alert('ServiceUnavailableException');
-                        window.top.location = '/erro';
-                    }
-                },
-                success: function (data) {
+            ajaxCall('POST', '/_ah/api/sfcb/v1/foto',
+                function (data) {
                     var idsDaPostagem = data.postId.split("_");
                     $("#idUsuario").val(idsDaPostagem[0]);
                     $("#idPost").val(idsDaPostagem[1]);
@@ -219,11 +180,8 @@
                         + "\nid da imagem: " + $("#idImagem").val());
                     $("#formSucesso").submit();
                 },
-                error: function () {
-                    alert('Erro ao publicar foto');
-                },
-                beforeSend: setHeader
-            });
+                'Erro ao publicar foto',
+                requestData);
 
         });
 
@@ -287,71 +245,23 @@
 
         if (state == "init") {
             if (!(typeof albumId === "undefined") && albumId != 0) {
-                urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                    + '/_ah/api/sfcb/v1/album/' + albumId + '?limit=25';
+                urlRequest = '/_ah/api/sfcb/v1/album/' + albumId + '?limit=25';
             } else {
-                urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                    + '/_ah/api/sfcb/v1/foto?limit=25';
+                urlRequest = '/_ah/api/sfcb/v1/foto?limit=25';
             }
 
         } else if (state == "next") {
-            urlRequest = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-                + '/_ah/api/sfcb/v1/foto/cursor?pagina=' + encodeURIComponent(proximaPagina);
+            urlRequest = '/_ah/api/sfcb/v1/foto/cursor?pagina=' + encodeURIComponent(proximaPagina);
         }
 
         if (debug) alert("entrou " + " first: " + first + " last: " + last + " state: " + state);
         if (debug) alert("url:" + urlRequest);
 
-        $.ajax({
-            url: urlRequest,
-            type: 'GET',
-            dataType: 'json',
-            statusCode: {
-            	400: function (data) {
-            		if (debug) alert('BadRequestException');
-            		alert('Ocorreu um erro!');
-                    window.top.location = '/index.jsp';
-            	},
-            	401: function (data) {
-            		if (debug) alert('UnauthorizedException');
-            		alert('Ocorreu um erro!');
-            		window.top.location = '/index.jsp';
-            	},
-            	403: function (data) {
-            		if (debug) alert('ForbiddenException');
-            		alert('Ocorreu um erro!');
-            		window.top.location = '/index.jsp';
-            	},
-            	404: function (data) {
-            		if (debug) alert('NotFoundException');
-            		alert('Ocorreu um erro!');
-            		window.top.location = '/index.jsp';
-            	},
-            	409: function (data) {
-            		if (debug) alert('ConflictException');
-            		alert('Ocorreu um erro!');
-            		window.top.location = '/index.jsp';
-            	},
-            	500: function (data) {
-            		if (debug) alert('InternalServerErrorException');
-            		alert('Ocorreu um erro!');
-            		window.top.location = '/index.jsp';
-            	},
-            	503: function (data) {
-            		if (debug) alert('ServiceUnavailableException');
-            		alert('Ocorreu um erro!');
-            		window.top.location = '/index.jsp';
-            	}
-            },
-            success: function (data) {
+        ajaxCall('GET', urlRequest,
+            function (data) {
                 mycarousel_itemAddCallback(carousel, state, data, albumId);
             },
-            error: function () {
-                alert('Erro ao obter lista de fotos');
-            },
-            beforeSend: setHeader
-        });
-
+            'Erro ao obter lista de fotos');
     }
 
     function mycarousel_itemAddCallback(carousel, state, data, albumId) {
@@ -370,17 +280,17 @@
         }
 
         if (state == "init") {
-        	var photoCount = $('option[value="' + albumId + '"]').data('photo-count');
-        	if (typeof photoCount === 'undefined') {
-        		photoCount = 9999;
-        	}
-        	carousel.size(photoCount);
-        	qtdFotos = photoCount;
-        	qtdFotosCarregadas = 0;
-        	$("#comboAlbuns").prop("disabled", false); // habilita combo de albuns
-        	$("#loading_footer").hide(); // Esconde footer temporario
-        	$("#sfcb_footer").show(); //  Exibe footer normal
-        	if (debug) alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
+            var photoCount = $('option[value="' + albumId + '"]').data('photo-count');
+            if (typeof photoCount === 'undefined') {
+                photoCount = 9999;
+            }
+            carousel.size(photoCount);
+            qtdFotos = photoCount;
+            qtdFotosCarregadas = 0;
+            $("#comboAlbuns").prop("disabled", false); // habilita combo de albuns
+            $("#loading_footer").hide(); // Esconde footer temporario
+            $("#sfcb_footer").show(); //  Exibe footer normal
+            if (debug) alert("Inicilializando carousel com: " + data.fotos.length + " fotos de um total de " + qtdFotos);
         }
 
         $.each(data.fotos, function (i, foto) {
