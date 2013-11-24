@@ -12,20 +12,7 @@
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/skins/tango/skin.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <%@ include file="include/fognmeta.jsp" %>
-
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-19890822-4']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-
-            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+    <%@ include file="/include/fognmeta.jsp" %>
 </head>
 <body class="unselectable">
 
@@ -100,7 +87,7 @@
     }
 </script>
 
-<%@ include file="include/header.jsp" %>
+<%@ include file="/include/header.jsp" %>
 
 <section id="conteudo" class="conteudo">
 
@@ -113,7 +100,7 @@
         <img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif"
              alt="Powered by Google App Engine"/>
         <hr />
-        <%@ include file="include/footerInfo.jsp" %>
+        <%@ include file="/include/footerInfo.jsp" %>
 
     </div>
     <aside class="camadas">

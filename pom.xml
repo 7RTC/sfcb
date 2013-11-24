@@ -149,6 +149,7 @@
                                 <include>erro.jsp</include>
                                 <include>include/header.jsp</include>
                                 <include>include/fognmeta.jsp</include>
+                                <include>include/analytics.jsp</include>
                             </includes>
                         </resource>
                         <resource>

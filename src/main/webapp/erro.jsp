@@ -8,20 +8,7 @@
 	<title>SFCB - Colagens</title>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <%@ include file="include/fognmeta.jsp" %>
-
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-19890822-4']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-
-            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+    <%@ include file="/include/fognmeta.jsp" %>
 </head>
 <body>
 
@@ -80,13 +67,13 @@
 		}
 	</script>
 
-    <%@ include file="include/header.jsp" %>
+    <%@ include file="/include/header.jsp" %>
 
 	<p class="mensagemGenerica mensagemErro">Ocorreu um erro!</p>
 
     <hr style="width: 500px"/>
     <footer>
-        <%@ include file="include/footerInfo.jsp" %>
+        <%@ include file="/include/footerInfo.jsp" %>
     </footer>
 
 </body>

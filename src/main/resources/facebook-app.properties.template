@@ -6,3 +6,5 @@ facebook.app.secret=99999999999999aaaaaaaaaaaaaaaaaa
 facebook.app.site_url=https://my-app.appspot.com
 facebook.app.permissions=user_photos,friends_photos,publish_stream,photo_upload
 
+analytics.tracking.id=UA-99999999-9
+

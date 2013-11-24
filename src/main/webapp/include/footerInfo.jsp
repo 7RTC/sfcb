@@ -3,4 +3,4 @@ Aplicativo sob
 <a href="${pageContext.request.contextPath}/license" target="_blank">
     Licença MIT
 </a> | <a href="http://code.7rtc.com/sfcb" target="_blank">Código Fonte</a>
-| <a href="${pageContext.request.contextPath}/politica.html" target="_blank">Política de privacidade</a>
+| <a href="${pageContext.request.contextPath}/politica" target="_blank">Política de privacidade</a>

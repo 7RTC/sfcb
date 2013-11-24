@@ -9,20 +9,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <title>Social Facebook Collage Builder</title>
-    <%@ include file="include/fognmeta.jsp" %>
-
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-19890822-4']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-
-            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+    <%@ include file="/include/fognmeta.jsp" %>
 </head>
 
 <body>
@@ -77,7 +64,7 @@
 
 <div class="loginFacebook">
     <div id="loginMain">
-        <img src="${pageContext.request.contextPath}/imagens/logoindex.jpg" alt="Social Facebook Collage Builder" />
+        <img src="${pageContext.request.contextPath}/imagens/logoindex.jpg" alt="Social Facebook Collage Builder"/>
     </div>
     <div id="carregando" style="display: none">
         <h2>Carregando...</h2>
@@ -88,7 +75,7 @@
         Facebook</fb:login-button>
     <hr style="width: 500px"/>
     <footer>
-        <%@ include file="include/footerInfo.jsp" %>
+        <%@ include file="/include/footerInfo.jsp" %>
     </footer>
 </div>
 

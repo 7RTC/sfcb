@@ -10,3 +10,5 @@
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="500">
 <meta property="fb:app_id" content="${facebok.app.id}">
+
+<%@ include file="/include/analytics.jsp" %>

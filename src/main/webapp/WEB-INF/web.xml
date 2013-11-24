@@ -32,6 +32,10 @@
         <servlet-name>License</servlet-name>
         <jsp-file>/WEBSITE_LICENSE.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>Politica</servlet-name>
+        <jsp-file>/politica.jsp</jsp-file>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>ProxyServlet</servlet-name>
@@ -60,6 +64,10 @@
     <servlet-mapping>
         <servlet-name>License</servlet-name>
         <url-pattern>/license</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Politica</servlet-name>
+        <url-pattern>/politica</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
