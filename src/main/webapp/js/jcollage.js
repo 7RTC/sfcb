@@ -256,8 +256,8 @@ function Layer(img) {
 	this.img = img;	
 	this.offsetX = 0;
 	this.offsetY = 0;
-	this.width = img.naturalHeight;
-	this.height = img.naturalHeight;
+	this.width = img.naturalWidth / 2;
+	this.height = img.naturalHeight / 2;
 	
 	this.canvas = document.createElement('canvas');
 	this.canvas.width = this.width;
