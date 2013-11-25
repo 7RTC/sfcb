@@ -12,59 +12,18 @@
 </head>
 <body>
 
-<div id="fb-root"></div>
 <script>
-    var myDomain = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '${facebok.app.id}',
-            channelUrl: myDomain + '/channel.html', // Channel File
-            status: true,
-            cookie: false,
-            xfbml: true
-        });
-
-        FB.Event.subscribe('auth.authResponseChange', function (response) {
-            if (response.status === 'connected') {
-                setaDadosUsuario();
-                carregaColagem();
-            } else if (response.status === 'not_authorized') {
-                FB.logout();
-                window.top.location = '/logout';
-            } else {
-                FB.logout();
-                window.top.location = '/logout';
-            }
-        });
-        FB.Event.subscribe("auth.logout", function () {
-            window.location = '/logout';
-        });
-    };
-
-    // Carrega o SDK do Facebook de modo assíncrono
-    (function (d) {
-        var js, id = 'facebook-jssdk', ref = d
-                .getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {
-            return;
+    function authResponseChangeCallback(response) {
+        if (response.status === 'connected') {
+            setaDadosUsuario();
+            carregaColagem();
+        } else if (response.status === 'not_authorized') {
+            FB.logout();
+            window.top.location = '/logout';
+        } else {
+            FB.logout();
+            window.top.location = '/logout';
         }
-        js = d.createElement('script');
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/pt_BR/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
-
-    function setaDadosUsuario() {
-        FB.api('/me', function (response) {
-            $("#nomeUsuario").text(response.name);
-            $("#imagemUsuario").attr(
-                    "src",
-                    "https://graph.facebook.com/" + response.id
-                            + "/picture?width=25&height=25");
-            // Para o IE
-            $(".pushRight").css("display", "inline");
-        });
     }
 
     function carregaColagem() {
@@ -73,6 +32,8 @@
         });
     }
 </script>
+
+<%@ include file="/include/fb_auth.jsp" %>
 
 <%@ include file="/include/header.jsp" %>
 

@@ -14,51 +14,25 @@
 
 <body>
 
-<div id="fb-root"></div>
 <script>
-    var myDomain = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '${facebok.app.id}',
-            channelUrl: myDomain + '/channel.html', // Channel File
-            status: true,
-            cookie: false,
-            xfbml: true
-        });
-
-        FB.Event.subscribe('auth.authResponseChange',
-                function (response) {
-                    if (response.status === 'connected') {
-                        var accessToken = response.authResponse.accessToken;
-                        var expiresIn = response.authResponse.expiresIn;
-                        var userID = response.authResponse.userID;
-                        $("#loginMain").hide();
-                        $("#carregando").show();
-                        window.top.location = '${facebook.app.site_url}' + "/login?accessToken=" + accessToken + "&expiresIn=" + expiresIn + "&userID=" + userID;
-                    } else if (response.status === 'not_authorized') {
-                        FB.login();
-                    } else {
-                        FB.login();
-                    }
-                });
-
-    };
-
-    // Carrega o SDK do Facebook de modo assíncrono
-    (function (d) {
-        var js, id = 'facebook-jssdk', ref = d
-                .getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {
-            return;
+    function authResponseChangeCallback(response) {
+        if (response.status === 'connected') {
+            var accessToken = response.authResponse.accessToken;
+            var expiresIn = response.authResponse.expiresIn;
+            var userID = response.authResponse.userID;
+            $("#loginMain").hide();
+            $("#carregando").show();
+            window.top.location = myDomain + "/login?accessToken=" + accessToken + "&expiresIn=" + expiresIn
+                    + "&userID=" + userID;
+        } else if (response.status === 'not_authorized') {
+            FB.login();
+        } else {
+            FB.login();
         }
-        js = d.createElement('script');
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/pt_BR/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
-
+    }
 </script>
+
+<%@ include file="/include/fb_auth.jsp" %>
 
 <h1>Aplicação demonstração de colagens</h1>
 

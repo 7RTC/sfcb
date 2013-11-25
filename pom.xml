@@ -144,12 +144,10 @@
                             <filtering>true</filtering>
                             <includes>
                                 <include>index.jsp</include>
-                                <include>colagem.jsp</include>
-                                <include>sucesso.jsp</include>
-                                <include>erro.jsp</include>
                                 <include>include/header.jsp</include>
                                 <include>include/fognmeta.jsp</include>
                                 <include>include/analytics.jsp</include>
+                                <include>include/fb_auth.jsp</include>
                             </includes>
                         </resource>
                         <resource>
