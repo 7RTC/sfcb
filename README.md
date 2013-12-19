@@ -17,7 +17,7 @@ Social Facebook Collage Builder
 
 3) Instale o [plugin](https://developers.google.com/eclipse/?hl=pt-BR) do Google App Engine (GAE) para Eclipse;
 
-4) *Opcional*: Instale o [SDK do GAE](https://developers.google.com/appengine/downloads?hl=pt-br;
+4) *Opcional*: Instale o [SDK do GAE](https://developers.google.com/appengine/downloads?hl=pt-br);
 
 *Caso esteja utilizando o plugin do GAE para o Eclipse, basta instalar o componente "Google App Engine Java SDK" via Atualização de Software do Eclipse. Mais informações na documentação do [Plugin do GAE](https://developers.google.com/eclipse/docs/getting_started?hl=pt-BR);
 
@@ -27,7 +27,7 @@ Social Facebook Collage Builder
 
 7) *Opcional*: Configure a variável de ambiente do usuário M2_HOME apontando para o diretório do maven e adicioná-la na variável PATH
 
-Para integrar o Maven ao Eclipse utilize o plugin [m2e](http://eclipse.org/m2e/) já presente na versão Kepler do Eclipse:
+Para integrar o Maven ao Eclipse utilize o plugin [m2e](http://eclipse.org/m2e/) já presente em versões recentes do IDE:
 
 ### Configuração:
 
@@ -38,7 +38,7 @@ do login no Google App Engine conforme instruções do artigo na Java Magazine.
 
 ### Intruções de uso:
 
-Para construir o projeto no diretório raiz da aplicação execute:
+Para construir o projeto via linha de comando vá para o diretório raiz da aplicação e execute:
 
     mvn package
 
