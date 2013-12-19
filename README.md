@@ -13,11 +13,11 @@ Social Facebook Collage Builder
 ### Setup:
 1) Instale o [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html);
 
-2) Baixe o [Eclipse IDE](http://www.eclipse.org/downloads/) para Java EE;
+2) Baixe o [Eclipse IDE](http://www.eclipse.org/downloads/) para Java EE ou IDE similar;
 
 3) Instale o [plugin](https://developers.google.com/eclipse/?hl=pt-BR) do Google App Engine (GAE) para Eclipse;
 
-4) Instale o [SDK](https://developers.google.com/appengine/downloads?hl=pt-br) do GAE;
+4) *Opcional*: Instale o [SDK do GAE](https://developers.google.com/appengine/downloads?hl=pt-br;
 
 *Caso esteja utilizando o plugin do GAE para o Eclipse, basta instalar o componente "Google App Engine Java SDK" via Atualização de Software do Eclipse. Mais informações na documentação do [Plugin do GAE](https://developers.google.com/eclipse/docs/getting_started?hl=pt-BR);
 
@@ -25,19 +25,9 @@ Social Facebook Collage Builder
 
 6) Instale o [Maven 3.1](http://maven.apache.org/) ou superior;
 
-7) Configure a variável de ambiente do usuário M2_HOME apontando para o diretório do maven e adicioná-la na variável PATH
+7) *Opcional*: Configure a variável de ambiente do usuário M2_HOME apontando para o diretório do maven e adicioná-la na variável PATH
 
-Caso queira usar o plugin do Maven para o Eclipse [m2e](http://eclipse.org/m2e/) já presente na versão Kepler do Eclipse:
-
-8) Insira o [cátalogo de arquétipos](http://repo1.maven.org/maven2/archetype-catalog.xml) no plugin;
-
-9) Crie um novo projeto com o arquétipo [Guestbook](http://search.maven.org/#search%7Cga%7C1%7Ccom.google.appengine.archetypes). 
-
-Caso queira utilizar o Maven por linha de comando:
-
-10) Crie um novo projeto com o arquétipo [Guestbook](http://search.maven.org/#search%7Cga%7C1%7Ccom.google.appengine.archetypes) utilizando o comando:
-
-	mvn archetype:generate -B -DarchetypeGroupId=com.google.appengine.archetypes -DarchetypeArtifactId=guestbook-archetype -DarchetypeVersion=1.8.4 -DgroupId=br.com.javamagazine -DartifactId=sfcb -Dversion=1.0 -Dpackage=br.com.javamagazine.sfcb
+Para integrar o Maven ao Eclipse utilize o plugin [m2e](http://eclipse.org/m2e/) já presente na versão Kepler do Eclipse:
 
 ### Configuração:
 
@@ -48,20 +38,16 @@ do login no Google App Engine conforme instruções do artigo na Java Magazine.
 
 ### Intruções de uso:
 
-Para construir, execute
+Para construir o projeto no diretório raiz da aplicação execute:
 
     mvn package
 
-Ao construir irá executar os testes, mas se desejar executá-los explicitamente você pode executar o target test
-
-    mvn test
-
-Para iniciar a aplicação é necessário executar o comando presente no plugin [App Engine Maven Plugin](http://code.google.com/p/appengine-maven-plugin/).
+Para iniciar a aplicação é necessário executar o comando presente no plugin [App Engine Maven Plugin](http://code.google.com/p/appengine-maven-plugin/):
 
     mvn appengine:devserver
 
 Para mais informações, consulte a documentação do [Java App Engine](https://developers.google.com/appengine/docs/java/overview).
 
-Para ver todos os goals do App Engine Plugin, execute
+Para ver todos os goals do App Engine Plugin execute:
 
     mvn help:describe -Dplugin=appengine
