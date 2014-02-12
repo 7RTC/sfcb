@@ -3,7 +3,6 @@ package br.com.javamagazine.sfcb.endpoints;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.Nullable;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +13,7 @@ import br.com.javamagazine.sfcb.negocio.ServicoImagensFB;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.Nullable;
 import com.google.api.server.spi.response.UnauthorizedException;
 
 @Api(
