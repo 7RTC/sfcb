@@ -1,14 +1,15 @@
 Social Facebook Collage Builder
 ======
 
-## Demonstração de aplicação web que utiliza HTML5, Google App Engine e RestFB para criar colagens de fotos e publicá-las na conta do usuário no Facebook.
+## Aplicação web que utiliza HTML5, Google App Engine e RestFB para criar colagens de fotos e publicá-las na conta do usuário no Facebook.
+
+## Disponível em: [http://sfcb.7rtc.com](http://sfcb.7rtc.com)
 
 ### Requer:
-[JDK 7](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html)  
-[Eclipse](http://www.eclipse.org/downloads/)  
-[Apache Maven](http://maven.apache.org) 3.1 ou superior  
-[App Engine Maven Plugin](http://code.google.com/p/appengine-maven-plugin/)  
-[Google Plugin](https://developers.google.com/eclipse/)  
+* [JDK](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html) 7 ou superior
+* [Apache Maven](http://maven.apache.org) 3.1 ou superior
+* [Eclipse](http://www.eclipse.org/downloads/) - *Opcional*
+* [Google Plugin](https://developers.google.com/eclipse/) - *Opcional*
 
 ### Setup:
 1) Instale o [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html);
