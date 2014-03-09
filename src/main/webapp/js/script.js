@@ -1,13 +1,12 @@
 (function () {
     var jCollage = null;
     var proximaPagina;
-    var paginaAnterior;
     var qtdFotos = -1;
     var qtdFotosCarregadas = 0;
     var debug = false;
 
     function ajaxCall(method, path, callback, errorMessage, requestData) {
-        $("body").css('cursor', 'wait');
+        $("body").addClass('processando');
         $.ajax({
             url: location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + path,
             type: method,
@@ -15,41 +14,41 @@
             dataType: 'json',
             data: requestData,
             statusCode: {
-                400: function (data) {
+                400: function () {
                     if (debug) alert('BadRequestException');
                     window.top.location = '/erro';
                 },
-                401: function (data) {
+                401: function () {
                     if (debug) alert('UnauthorizedException');
                     window.top.location = '/erro';
                 },
-                403: function (data) {
+                403: function () {
                     if (debug) alert('ForbiddenException');
                     window.top.location = '/erro';
                 },
-                404: function (data) {
+                404: function () {
                     if (debug) alert('NotFoundException');
                     window.top.location = '/erro';
                 },
-                409: function (data) {
+                409: function () {
                     if (debug) alert('ConflictException');
                     window.top.location = '/erro';
                 },
-                500: function (data) {
+                500: function () {
                     if (debug) alert('InternalServerErrorException');
                     window.top.location = '/erro';
                 },
-                503: function (data) {
+                503: function () {
                     if (debug) alert('ServiceUnavailableException');
                     window.top.location = '/erro';
                 }
             },
             success: function (data) {
                 callback(data);
-                $('body').css('cursor', 'default');
+                $('body').removeClass('processando');
             },
             error: function () {
-                $('body').css('cursor', 'default');
+                $('body').removeClass('processando');
                 alert(errorMessage);
                 window.top.location = '/erro';
             },
@@ -71,14 +70,16 @@
         jCollage.setBackgroundColor("#fff");
 
         $(document).on("click", ".fotos img", function () {
-            $("body").css('cursor', 'wait');
+            $('body').addClass('processando');
+            $('.fotos img').addClass('processando');
             var img = $(this);
             var imgUrl = document.createElement("img");
             imgUrl.onload = function () {
                 jCollage.addLayer(imgUrl).setTitle(img.attr("title"));
                 updateLayers(jCollage.getLayers());
                 $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
-                $("body").css('cursor', 'default');
+                $('body').removeClass('processando');
+                $('.fotos img').removeClass('processando');
             };
             imgUrl.src = img.data("proxy-url");
         });
@@ -167,7 +168,6 @@
             var canvas = document.getElementById('collage');
             var dataURL = canvas.toDataURL('image/jpeg');
             var requestData = JSON.stringify({ dataURL: dataURL });
-            // console.log(requestData);
 
             ajaxCall('POST', '/_ah/api/sfcb/v1/foto',
                 function (data) {
@@ -210,7 +210,7 @@
 
         if (state == "init") {
             if (debug) alert("itemLoadCallback inicial");
-            qtdFotos != -1;
+            qtdFotos = -1;
             qtdFotosCarregadas = 0;
         }
 
@@ -335,10 +335,11 @@
 ///////////////////////////////////////////////
 
     function getSelectedLayer() {
-        if ($(".camadas .selected").length == 0) {
+        var camadas = $(".camadas .selected");
+        if (camadas.length == 0) {
             return null;
         }
-        return jCollage.getLayer($(".camadas .selected").attr("id").substr(6));
+        return jCollage.getLayer(camadas.attr("id").substr(6));
     }
 
     function setSettings(id) {
@@ -356,7 +357,8 @@
     function updateLayers(layers) {
         $(".camadas li.layer").remove();
         var countCamadas = 0;
-        for (i in layers) {
+        for (var i in layers) {
+            //noinspection JSUnfilteredForInLoop
             $(".camadas > ul").prepend(createLayerRow(i, layers[i], ++countCamadas));
         }
     }
