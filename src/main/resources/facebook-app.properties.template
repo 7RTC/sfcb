@@ -4,7 +4,7 @@
 facebok.app.id= 999999999999999
 facebook.app.secret=99999999999999aaaaaaaaaaaaaaaaaa
 facebook.app.site_url=https://my-app.appspot.com
-facebook.app.permissions=user_photos,friends_photos,publish_actions
+facebook.app.permissions=user_photos
 
 analytics.tracking.id=UA-99999999-9
 

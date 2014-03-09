@@ -59,6 +59,75 @@
 
     }
 
+    function checkPermissions(perms, callback, failCallback) {
+        FB.api('/me/permissions', function (response) {
+            var fbPerms = response.data[0];
+            var haveAllPermissions = true;
+
+            if (typeof perms === 'string') {
+                perms = [ perms ];
+            }
+
+            for (var i in perms) {
+                if (fbPerms[perms[i]] == null) {
+                    haveAllPermissions = false;
+                    break;
+                }
+            }
+
+            if (haveAllPermissions) {
+                callback();
+            } else {
+                failCallback();
+            }
+        });
+    }
+
+    function enviaColagem() {
+        jCollage.redraw();
+        var canvas = document.getElementById('collage');
+        var dataURL = canvas.toDataURL('image/jpeg');
+        var requestData = JSON.stringify({ dataURL: dataURL });
+
+        function generateRequest() {
+            ajaxCall('POST', '/_ah/api/sfcb/v1/foto',
+                function (data) {
+                    var idsDaPostagem = data.postId.split("_");
+                    $("#idUsuario").val(idsDaPostagem[0]);
+                    $("#idPost").val(idsDaPostagem[1]);
+                    $("#idImagem").val(data.id);
+                    if (debug) alert("id usuario: " + $("#idUsuario").val()
+                        + "\nid do post: " + $("#idPost").val()
+                        + "\nid da imagem: " + $("#idImagem").val());
+                    $("#formSucesso").submit();
+                },
+                'Erro ao publicar foto',
+                requestData);
+        }
+
+        // Verifica permissão
+        checkPermissions("publish_actions",
+            // Em caso de sucesso cria o request
+            generateRequest,
+            // Em caso de fracasso
+            function () {
+                // requisita a permissão
+                FB.login(function () {
+                    // Verifica a permissão novamente
+                    checkPermissions("publish_actions",
+                        // Em caso de sucesso cria o request
+                        generateRequest,
+                        // Em caso de fracasso notifica o usuário
+                        function () {
+                            alert("Para postar a colagem o SCFB precisa da sua permissão.\n\n"
+                                + "Para continuar clique novamente em POSTAR e autorize a\n"
+                                + "aplicação a postar em seu nome. ");
+                            $("#gerarColagem").one('click', enviaColagem);
+                        });
+                }, {scope: "publish_actions"});
+            });
+    }
+
     $(document).ready(function () {
 
         $('#mycarousel').jcarousel({
@@ -162,28 +231,7 @@
             }
         });
 
-        $("#gerarColagem").click(function () {
-            $(this).off('click');
-            jCollage.redraw();
-            var canvas = document.getElementById('collage');
-            var dataURL = canvas.toDataURL('image/jpeg');
-            var requestData = JSON.stringify({ dataURL: dataURL });
-
-            ajaxCall('POST', '/_ah/api/sfcb/v1/foto',
-                function (data) {
-                    var idsDaPostagem = data.postId.split("_");
-                    $("#idUsuario").val(idsDaPostagem[0]);
-                    $("#idPost").val(idsDaPostagem[1]);
-                    $("#idImagem").val(data.id);
-                    if (debug) alert("id usuario: " + $("#idUsuario").val()
-                        + "\nid do post: " + $("#idPost").val()
-                        + "\nid da imagem: " + $("#idImagem").val());
-                    $("#formSucesso").submit();
-                },
-                'Erro ao publicar foto',
-                requestData);
-
-        });
+        $("#gerarColagem").one('click', enviaColagem);
 
         $("#comboAlbuns").change(function () {
             if (debug) alert("Mudou album");
