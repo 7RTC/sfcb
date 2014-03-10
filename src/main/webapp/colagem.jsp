@@ -6,7 +6,7 @@
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <title>SFCB - Colagens</title>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/jcollage.js"></script>
     <script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
@@ -110,6 +110,10 @@
 <select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
     <option value="0">Todos</option>
 </select>
+
+<a href="#" id="carregarArquivo" class="botaoGenerico botaoArquivo">ARQUIVO</a>
+
+<input type="file" id="imageLoader" name="imageLoader" accept="image/*"/>
 
 <input type="hidden" id="albumId" value="0"/>
 

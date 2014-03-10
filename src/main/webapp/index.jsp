@@ -6,7 +6,7 @@
       xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <title>Social Facebook Collage Builder</title>
     <%@ include file="/include/fognmeta.jsp" %>

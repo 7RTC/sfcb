@@ -257,6 +257,13 @@ footer ul li img {
 	display: block;
 }
 
+.botaoArquivo {
+    position: fixed;
+    left: 280px;
+    bottom: 160px;
+    display: block;
+}
+
 .colagemSucesso {
 	display: block;
 	margin-left: auto;
@@ -296,6 +303,10 @@ footer ul li img {
 	bottom: 160px;
 	display: block;
 	max-width:270px;
+}
+
+#imageLoader {
+    display: none;
 }
 
 .labelComboAlbuns {

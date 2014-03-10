@@ -128,6 +128,41 @@
             });
     }
 
+    function clickArquivo() {
+        $("body").addClass('processando');
+        $('.fotos img').addClass('processando');
+        $("#imageLoader").trigger('click');
+    }
+
+    function carregarImagem(e) {
+
+        var file = e.target.files[0];
+
+        // Only process image files.
+        if (!file.type.match('image.*')) {
+            alert("Apenas imagens são suportadas");
+            $('body').removeClass('processando');
+            $('.fotos img').removeClass('processando');
+            $("#carregarArquivo").one('click', clickArquivo);
+        }
+        else {
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var img = new Image();
+                img.onload = function () {
+                    jCollage.addLayer(img).setTitle('Arquivo ');
+                    updateLayers(jCollage.getLayers());
+                    $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
+                    $('body').removeClass('processando');
+                    $('.fotos img').removeClass('processando');
+                    $("#carregarArquivo").one('click', clickArquivo);
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
     $(document).ready(function () {
 
         $('#mycarousel').jcarousel({
@@ -232,6 +267,10 @@
         });
 
         $("#gerarColagem").one('click', enviaColagem);
+
+        $("#imageLoader").on('change', carregarImagem);
+
+        $("#carregarArquivo").one('click', clickArquivo);
 
         $("#comboAlbuns").change(function () {
             if (debug) alert("Mudou album");
