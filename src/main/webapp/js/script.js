@@ -83,6 +83,14 @@
         });
     }
 
+    function cursoresProcessamento() {
+        $('body, .fotos img').addClass('processando');
+    }
+
+    function cursoresPadrao() {
+        $('body, .fotos img').removeClass('processando');
+    }
+
     function enviaColagem() {
         jCollage.redraw();
         var canvas = document.getElementById('collage');
@@ -128,34 +136,27 @@
             });
     }
 
-    function clickArquivo() {
-        $("body").addClass('processando');
-        $('.fotos img').addClass('processando');
-        $("#imageLoader").trigger('click');
-    }
-
     function carregarImagem(e) {
+        cursoresProcessamento();
 
         var file = e.target.files[0];
 
         // Only process image files.
-        if (!file.type.match('image.*')) {
-            alert("Apenas imagens são suportadas");
-            $('body').removeClass('processando');
-            $('.fotos img').removeClass('processando');
-            $("#carregarArquivo").one('click', clickArquivo);
+        if (!file) {
+            cursoresPadrao();
+        } else if (!file.type.match('image.*')) {
+            alert("Formato não suportado");
+            cursoresPadrao();
         }
         else {
             var reader = new FileReader();
             reader.onload = function (event) {
                 var img = new Image();
                 img.onload = function () {
-                    jCollage.addLayer(img).setTitle('Arquivo ');
+                    jCollage.addLayer(img).setTitle('Camada ');
                     updateLayers(jCollage.getLayers());
                     $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
-                    $('body').removeClass('processando');
-                    $('.fotos img').removeClass('processando');
-                    $("#carregarArquivo").one('click', clickArquivo);
+                    cursoresPadrao();
                 }
                 img.src = event.target.result;
             }
@@ -174,16 +175,14 @@
         jCollage.setBackgroundColor("#fff");
 
         $(document).on("click", ".fotos img", function () {
-            $('body').addClass('processando');
-            $('.fotos img').addClass('processando');
+            cursoresProcessamento();
             var img = $(this);
             var imgUrl = document.createElement("img");
             imgUrl.onload = function () {
                 jCollage.addLayer(imgUrl).setTitle(img.attr("title"));
                 updateLayers(jCollage.getLayers());
                 $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
-                $('body').removeClass('processando');
-                $('.fotos img').removeClass('processando');
+                cursoresPadrao();
             };
             imgUrl.src = img.data("proxy-url");
         });
@@ -270,7 +269,9 @@
 
         $("#imageLoader").on('change', carregarImagem);
 
-        $("#carregarArquivo").one('click', clickArquivo);
+        $("#carregarArquivo").click(function() {
+            $("#imageLoader").trigger('click');
+        });
 
         $("#comboAlbuns").change(function () {
             if (debug) alert("Mudou album");
