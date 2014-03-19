@@ -10,5 +10,5 @@
     <div class="pushLeft">
         <fb:like href="${facebook.app.site_url}" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
     </div>
-    <h1 class="tituloLogado">Colagem</h1>
+    <h1 class="tituloLogado"><a href="/">Colagem</a></h1>
 </header>

@@ -32,6 +32,11 @@
 
 <p class="mensagemGenerica mensagemErro">Ocorreu um erro!</p>
 
+<p class="erroExplicativo">Ocorreu um erro inesperado ao executar a ação requisitada. Possivelmente estamos lidando com uma indisponibilidade temporária. Por favor tente novamente em alguns minutos.</p>
+<p class="erroExplicativo">Caso o erro persista por favor abra um ticket em nosso <a href="http://code.7rtc.com/sfcb/issues">sistema de ocorrências</a> relatando o ocorrido e verificaremos o problema assim que possível.</p>
+
+<a href="/" id="novaColagem" class="botaoGenerico botaoNovaColagemErro">GERAR NOVA COLAGEM</a>
+
 <hr style="width: 500px"/>
 <footer>
     <%@ include file="/include/footerInfo.jsp" %>

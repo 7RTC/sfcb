@@ -288,6 +288,15 @@
                 carousel.reset();
             }
         });
+        
+        $(".tituloLogado").click(function(e) {
+        	var resposta = confirm("Essa opção descartará a colagem. " +
+        			"Deseja realmente navegar para fora da página?");
+        	if (resposta != true) {
+        		e.preventDefault();
+        	}
+        });
+
     });
 
 
