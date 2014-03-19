@@ -158,7 +158,7 @@ aside .buttons ul li {
 	height: 16px;
 }
 
-footer .fotos {
+footer.fotos {
 	display: block;
 	position: fixed;
 	bottom: 0;

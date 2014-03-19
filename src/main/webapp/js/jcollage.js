@@ -51,6 +51,15 @@ function Collage(canvasId) {
         backgroundImage = img;
         redrawCanvas();
     }
+
+    this.getOffset = function() {
+        return { left: canvasOffsetX, top: canvasOffsetY };
+    }
+
+    this.setOffset = function(offset) {
+        canvasOffsetX = offset.left;
+        canvasOffsetY = offset.top;
+    }
     this.setBackgroundColor = function (color) {
         backgroundColor = color;
         redrawCanvas();

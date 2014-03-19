@@ -265,6 +265,10 @@
             }
         });
 
+        $(window).resize(function () {
+            jCollage.setOffset($("#collage").offset());
+        });
+
         $("#gerarColagem").one('click', enviaColagem);
 
         $("#imageLoader").on('change', carregarImagem);
