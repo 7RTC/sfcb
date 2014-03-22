@@ -17,10 +17,8 @@
         if (response.status === 'connected') {
             setaDadosUsuario();
         } else if (response.status === 'not_authorized') {
-            FB.logout();
             window.top.location = '/logout';
         } else {
-            FB.logout();
             window.top.location = '/logout';
         }
     }

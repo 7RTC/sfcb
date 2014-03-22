@@ -19,16 +19,16 @@
         FB.init({
             appId: '${facebok.app.id}',
             channelUrl: myDomain + '/channel.html', // Channel File
-            status: true,
+            status: false,
             cookie: false,
             xfbml: true
         });
 
-        FB.Event.subscribe('auth.authResponseChange', authResponseChangeCallback);
-
-        FB.Event.subscribe("auth.logout", function () {
-            window.location = '/logout';
+        FB.getLoginStatus(function(response) {
+            authResponseChangeCallback(response);
+            FB.Event.subscribe('auth.authResponseChange', authResponseChangeCallback);
         });
+
     };
 
     // Carrega o SDK do Facebook de modo assíncrono

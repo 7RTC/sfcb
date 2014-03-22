@@ -16,6 +16,7 @@
 
 <script>
     function authResponseChangeCallback(response) {
+        $("#botaoLogar").show();
         if (response.status === 'connected') {
             var accessToken = response.authResponse.accessToken;
             var expiresIn = response.authResponse.expiresIn;
@@ -24,10 +25,6 @@
             $("#carregando").show();
             window.top.location = myDomain + "/login?accessToken=" + accessToken + "&expiresIn=" + expiresIn
                     + "&userID=" + userID;
-        } else if (response.status === 'not_authorized') {
-            FB.login();
-        } else {
-            FB.login();
         }
     }
 </script>
@@ -45,20 +42,13 @@
         <br/>
         <img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/>
     </div>
-    <fb:login-button show-faces="true" max-rows="1" size="xlarge" scope="${facebook.app.permissions}">Logar com
-        Facebook</fb:login-button>
+    <fb:login-button show-faces="true" max-rows="1" size="xlarge" scope="${facebook.app.permissions}"
+                     style="display: none;" id="botaoLogar">Logar com Facebook</fb:login-button>
     <hr style="width: 500px"/>
     <footer>
         <%@ include file="/include/footerInfo.jsp" %>
     </footer>
 </div>
-
-<%--  	<form action="https://www.facebook.com/dialog/oauth" method="GET" class="loginFacebook">
-		<input type="hidden" name="client_id" value="${facebok.app.id}"/>
-		<input type="hidden" name="redirect_uri" value="${facebook.app.site_url}/login"/>
-        <input type="hidden" name="scope" value="${facebook.app.permissions}"/>
-		<input type="image" src="imagens/botao-login-facebook.png" alt="Entrar pelo Facebook">
-	</form> --%>
 
 </body>
 
