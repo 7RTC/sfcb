@@ -10,13 +10,15 @@ body {
 canvas {
 	margin: 0;
 	padding: 0;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-    border: 2px solid #333;
+    border: 5px solid #124A66;
 }
 
 h1  {
 	font-size: 30px;
+}
+
+a {
+	text-decoration: none;
 }
 
 .tituloLogado {
@@ -29,10 +31,7 @@ h1  {
 
 .tituloLogado a {
 	text-decoration: none;
-}
-
-a {
-	color: #555;
+	color: #FFF;
 }
 
 aside.camadas {
@@ -209,8 +208,7 @@ footer ul li img {
 	padding-top: 5px;
 	padding-left: 10px;
 	width: 100%;
-	background-color: #F0F6F9;
-	border-bottom: 1px solid #346F97;
+	background-color: #124A66;
 	box-shadow: 0 0 10px;
 }
 
@@ -232,6 +230,7 @@ footer ul li img {
 .nomeUsuario {
 	vertical-align: middle;
 	font-size: 14px;
+	color: #FFF;
 }
 
 .botaoFb {
@@ -240,18 +239,16 @@ footer ul li img {
 }
 
 .botaoGenerico {
-	border: 1px solid #346F97;
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	background-color: #346F97;
+	background-color: #2E85EE;
 	font-family: Verdana, Helvetica, sans-serif;
 	text-align: center;
 	text-transform: uppercase;
 	text-decoration: none;
-	font-size: 16px;
-	color: #F0F6F9;
-	padding: 10px;
+	font-size: 14px;
+	color: #FFF;
+	padding: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
 	margin-top: 50px;
 }
 
@@ -269,10 +266,20 @@ footer ul li img {
 }
 
 .botaoArquivo {
-    position: fixed;
-    left: 290px;
-    bottom: 160px;
-    display: block;
+	position: fixed;
+	left: 10px;
+	bottom: 240px;
+	display: block;
+}
+
+.labelbotaoArquivo {
+	position: fixed;
+	left: 15px;
+	bottom: 295px;
+	display: block;
+	max-width: 300px;
+	text-align: left;
+	font-size: 14px;
 }
 
 .colagemSucesso {
@@ -338,16 +345,13 @@ footer ul li img {
 }
 
 .comboGenerico {
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	background-color: #346F97;
+	background-color: #2E85EE;
 	font-family: Verdana, Helvetica, sans-serif;
 	text-align: center;
 	text-decoration: none;
 	font-size: 12px;
-	color: #F0F6F9;
-	padding: 5px;
+	color: #FFF;
+	padding: 7px;
 }
 
 .conteudo {
@@ -367,12 +371,10 @@ footer ul li img {
 
 .politicaPrivacidadeWrapper {
 	background: #F0F6F9;
-	border: 1px solid #346F97;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border: 30px solid #124A66;
 	margin: 40px;
 	padding: 15px 25px 25px 20px;
+	color: #555;
 }
 
 .unselectable {
@@ -386,4 +388,48 @@ footer ul li img {
 
 .processando {
     cursor: progress !important;
+}
+
+.menu {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	background-color: #124A66;
+	height: 320px;
+	width: 300px;
+	color: #FFF;
+}
+
+.footerInfo {
+	position: fixed;
+	bottom: 0;
+	color: #FFF;
+	background-color: #124A66;
+	height: 30px;
+	width: 100%;
+	line-height: 30px;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.footerInfo a:link {
+	color: #FFF;
+}   
+	   
+.footerInfo a:visited {
+	color: #FFF;
+}
+	
+.footerInfo a:hover {
+	color: #FFF;
+	text-decoration: underline;
+}
+	
+.footerInfo a:active {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+#carregando {
+	color: #FFF;
 }

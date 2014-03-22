@@ -104,22 +104,27 @@
 
 </section>
 
-<a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">POSTAR</a>
+<section class="menu">
 
-<label for="comboAlbuns" class="labelComboAlbuns">Escolha um álbum do Facebook:</label>
-<select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
-    <option value="0">Todos</option>
-</select>
+	<a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">Postar</a>
+	
+	<label for="carregarArquivo" class="labelbotaoArquivo">Escolha uma foto do seu computador:</label>
+	<a href="#" id="carregarArquivo" name="carregarArquivo" class="botaoGenerico botaoArquivo">Arquivo</a>
+	
+	<label for="comboAlbuns" class="labelComboAlbuns">Escolha um álbum do Facebook:</label>
+	<select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
+	    <option value="0">Todos</option>
+	</select>
+	
+	<input type="file" id="imageLoader" name="imageLoader" accept="image/*"/>
+	
+	<input type="hidden" id="albumId" value="0"/>
 
-<a href="#" id="carregarArquivo" class="botaoGenerico botaoArquivo">ARQUIVO</a>
-
-<input type="file" id="imageLoader" name="imageLoader" accept="image/*"/>
-
-<input type="hidden" id="albumId" value="0"/>
+</section>
 
 <footer class="fotos">
 	<div id="loading_footer" style="margin: 0 auto;">
-	    <h3><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
+	    <h3 id="carregando"><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
 	</div>
 	
 	<div id="sfcb_footer" style="display: none">

@@ -41,12 +41,11 @@
 
 <img id="imagemColagem" alt="colagem" class="colagemSucesso"/>
 
-<a href="/colagem" id="novaColagem" class="botaoGenerico">GERAR NOVA COLAGEM</a>
+<a href="/colagem" id="novaColagem" class="botaoGenerico">Gerar nova colagem</a>
 <a href="https://www.facebook.com/${param.idUsuario}/posts/${param.idPost}" target="blank" id="colagemFacebook"
-   class="botaoGenerico">VER COLAGEM NO FACEBOOK</a>
-<br/><br/>
-<hr style="width: 700px"/>
-<footer>
+   class="botaoGenerico">Ver colagem no Facebook</a>
+
+<footer class="footerInfo">
     <%@ include file="/include/footerInfo.jsp" %>
 </footer>
 
