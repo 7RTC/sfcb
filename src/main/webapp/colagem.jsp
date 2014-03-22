@@ -19,13 +19,28 @@
 <script>
     function authResponseChangeCallback(response) {
         if (response.status === 'connected') {
-            setaDadosUsuario();
-            recuperaAlbuns();
+            if (!$("#token-uuid").val()) {
+                window.top.location = '/';
+            } else {
+                setaDadosUsuario();
+                // Checa permissões
+                FB.api('/me/permissions', function (response) {
+                    var fbPerms = response.data[0];
+                    var autorizado = (fbPerms.publish_actions != null);
+                    var botaoPostar = $("#gerarColagem");
+                    botaoPostar.data("autorizado", autorizado);
+                    botaoPostar.show();
+                });
+                // Carrega carousel
+                $('#mycarousel').jcarousel({
+                    itemLoadCallback: mycarousel_itemLoadCallback,
+                    scroll: 5
+                });
+                recuperaAlbuns();
+            }
         } else if (response.status === 'not_authorized') {
-            FB.logout();
             window.top.location = '/logout';
         } else {
-            FB.logout();
             window.top.location = '/logout';
         }
     }

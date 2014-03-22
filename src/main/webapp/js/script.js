@@ -113,27 +113,28 @@
                 requestData);
         }
 
-        // Verifica permissão
-        checkPermissions("publish_actions",
-            // Em caso de sucesso cria o request
-            generateRequest,
-            // Em caso de fracasso
-            function () {
-                // requisita a permissão
-                FB.login(function () {
-                    // Verifica a permissão novamente
-                    checkPermissions("publish_actions",
-                        // Em caso de sucesso cria o request
-                        generateRequest,
-                        // Em caso de fracasso notifica o usuário
-                        function () {
-                            alert("Para postar a colagem o SCFB precisa da sua permissão.\n\n"
-                                + "Para continuar clique novamente em POSTAR e autorize a\n"
-                                + "aplicação a postar em seu nome. ");
-                            $("#gerarColagem").one('click', enviaColagem);
-                        });
-                }, {scope: "publish_actions"});
-            });
+        var autorizado = $(this).data("autorizado");
+        // Usuario tem permissao para publicar
+        if (autorizado) {
+            generateRequest()
+        }
+        // Usuario não possui permissão para publicar
+        else {
+            // requisita a permissão
+            FB.login(function () {
+                // Verifica a permissão novamente
+                checkPermissions("publish_actions",
+                    // Em caso de sucesso cria o request
+                    generateRequest,
+                    // Em caso de fracasso notifica o usuário
+                    function () {
+                        alert("Para postar a colagem o SCFB precisa da sua permissão.\n\n"
+                            + "Para continuar clique novamente em POSTAR e autorize a\n"
+                            + "aplicação a postar em seu nome. ");
+                        $("#gerarColagem").one('click', enviaColagem);
+                    });
+            }, {scope: "publish_actions"});
+        }
     }
 
     function carregarImagem(e) {
@@ -165,11 +166,6 @@
     }
 
     $(document).ready(function () {
-
-        $('#mycarousel').jcarousel({
-            itemLoadCallback: mycarousel_itemLoadCallback,
-            scroll: 5
-        });
 
         jCollage = new Collage("#collage");
         jCollage.setBackgroundColor("#fff");
@@ -266,7 +262,9 @@
         });
 
         $(window).resize(function () {
-            jCollage.setOffset($("#collage").offset());
+            if (jCollage != null) {
+                jCollage.setOffset($("#collage").offset());
+            }
         });
 
         $("#gerarColagem").one('click', enviaColagem);
@@ -307,7 +305,7 @@
 ///////////////////////////////////////////////////
 
 
-    function mycarousel_itemLoadCallback(carousel, state) {
+    this.mycarousel_itemLoadCallback = function(carousel, state) {
 
         if (state == "init") {
             if (debug) alert("itemLoadCallback inicial");

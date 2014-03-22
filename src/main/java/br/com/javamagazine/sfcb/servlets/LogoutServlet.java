@@ -17,7 +17,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession sessao = request.getSession();
 		sessao.invalidate();
 		log.info("Sessão invalidada");
-		response.sendRedirect("/index.jsp");
+		response.sendRedirect("/");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
