@@ -215,7 +215,8 @@ footer ul li img {
 
 .nomeUsuario {
 	vertical-align: middle;
-	font-size: 14px;
+	font-size: 12px;
+	font-weight: bold;
 	color: #FFF;
 }
 
@@ -227,10 +228,11 @@ footer ul li img {
 .botaoGenerico {
 	background-color: #2E85EE;
 	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
 	text-decoration: none;
-	font-size: 14px;
 	color: #FFF;
 	padding: 10px;
 	padding-left: 20px;
@@ -336,6 +338,7 @@ footer ul li img {
 .comboGenerico {
 	background-color: #2E85EE;
 	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
 	text-align: center;
 	text-decoration: none;
 	font-size: 12px;
