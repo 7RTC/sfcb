@@ -22,9 +22,9 @@
 	<p>A informação pessoal recolhida pode incluir o seu nome, e-mail, número de telefone e/ou celular, endereço, data de
 	    nascimento e/ou outros.</p>
 	
-	<p>O uso do Social Facebook Collage builder pressupõe a aceitação deste Acordo de privacidade. A equipa do Social
+	<p>O uso do Social Facebook Collage builder pressupõe a aceitação deste Acordo de privacidade. A equipe do Social
 	    Facebook Collage builder reserva-se ao direito de alterar este acordo sem aviso prévio. Deste modo, recomendamos que
-	    consulte a nossa política de <a href='http://politicaprivacidade.com/' title='Política de privacidade'
+	    consulte a nossa política de <a href='${facebook.app.site_url}/politica' title='Política de privacidade'
 	                                    style='text-decoration:none;'>privacidade</a> com regularidade de forma a estar
 	    sempre atualizado.</p>
 	
@@ -59,7 +59,7 @@
 	    sites de culinária regularmente, por ex.).</p>
 	
 	<p>Você detém o poder de desligar os seus cookies, nas opções do seu browser, ou efetuando alterações nas ferramentas de
-	    programas Anti-Virus, como o Norton Internet Security. No entanto, isso poderá alterar a forma como interage com o
+	    programas Anti-Virus. No entanto, isso poderá alterar a forma como interage com o
 	    nosso website, ou outros websites. Isso poderá afetar ou não permitir que faça logins em programas, sites ou fóruns
 	    da nossa e de outras redes.</p>
 	

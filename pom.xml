@@ -136,6 +136,7 @@
                             <filtering>true</filtering>
                             <includes>
                                 <include>index.jsp</include>
+                                <include>politica.jsp</include>
                                 <include>include/header.jsp</include>
                                 <include>include/fognmeta.jsp</include>
                                 <include>include/analytics.jsp</include>
