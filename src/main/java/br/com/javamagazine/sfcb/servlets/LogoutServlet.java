@@ -10,17 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LogoutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(LoginServlet.class.getName());
+    private static final long serialVersionUID = 1L;
+    private static final Logger log = Logger.getLogger(LoginServlet.class.getName());
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sessao = request.getSession();
-		sessao.invalidate();
-		log.info("Sessão invalidada");
-		response.sendRedirect("/");
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+        HttpSession sessao = request.getSession();
+        sessao.invalidate();
+        log.info("Sessão invalidada");
+        response.sendRedirect("/");
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 
 }

@@ -49,7 +49,7 @@
         var query = "SELECT object_id, name, photo_count FROM album WHERE owner = me() AND photo_count > 0";
         var queryEncoded = encodeURIComponent(query);
 
-        FB.api("/fql?q=" + queryEncoded , function(response) {
+        FB.api("/fql?q=" + queryEncoded, function (response) {
             var arrayData = response.data;
             for (var i = 0; i < arrayData.length; i++) {
                 $("#comboAlbuns").append($("<option></option>")
@@ -74,18 +74,20 @@
         <br/>
         <img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif"
              alt="Powered by Google App Engine"/>
-        <hr />
+        <hr/>
         <%@ include file="/include/footerInfo.jsp" %>
 
     </div>
     <aside class="camadas">
         <h2>Camadas</h2>
-	        <ul>
-	            <li class="background"><img src="imagens/background.png">
-	                <h3>Background</h3>
-	                <div class="visible"></div>
-	            </li>
-	        </ul>
+        <ul>
+            <li class="background"><img src="imagens/background.png">
+
+                <h3>Background</h3>
+
+                <div class="visible"></div>
+            </li>
+        </ul>
         <div class="options">
             <span>Blending:</span> <select name="blending">
             <option value="source-over">Normal</option>
@@ -121,39 +123,40 @@
 
 <section class="menu">
 
-	<a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">Postar</a>
-	
-	<label for="carregarArquivo" class="labelbotaoArquivo">Escolha uma foto do seu computador:</label>
-	<a href="#" id="carregarArquivo" name="carregarArquivo" class="botaoGenerico botaoArquivo">Arquivo</a>
-	
-	<label for="comboAlbuns" class="labelComboAlbuns">Escolha um álbum do Facebook:</label>
-	<select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
-	    <option value="0">Todos</option>
-	</select>
-	
-	<input type="file" id="imageLoader" name="imageLoader" accept="image/*"/>
-	
-	<input type="hidden" id="albumId" value="0"/>
+    <a href="#" id="gerarColagem" class="botaoGenerico botaoPostar">Postar</a>
+
+    <label for="carregarArquivo" class="labelbotaoArquivo">Escolha uma foto do seu computador:</label>
+    <a href="#" id="carregarArquivo" class="botaoGenerico botaoArquivo">Arquivo</a>
+
+    <label for="comboAlbuns" class="labelComboAlbuns">Escolha um álbum do Facebook:</label>
+    <select id="comboAlbuns" name="comboAlbuns" class="comboGenerico comboAlbuns" disabled="disabled">
+        <option value="0">Todos</option>
+    </select>
+
+    <input type="file" id="imageLoader" name="imageLoader" accept="image/*"/>
+
+    <input type="hidden" id="albumId" value="0"/>
 
 </section>
 
 <footer class="fotos">
-	<div id="loading_footer" style="margin: 0 auto;">
-	    <h3 id="carregando"><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos</h3>
-	</div>
-	
-	<div id="sfcb_footer" style="display: none">
-	    <input type="hidden" value="${sessionScope.tokenUUID}" id="token-uuid"/>
+    <div id="loading_footer" style="margin: 0 auto;">
+        <h3 id="carregando"><img src="${pageContext.request.contextPath}/imagens/ajax-loader.gif"/> Carregando fotos
+        </h3>
+    </div>
 
-	    <form id="formSucesso" action="${pageContext.request.contextPath}/sucesso" method="POST">
-	        <input type="text" id="idUsuario" name="idUsuario">
-	        <input type="text" id="idPost" name="idPost">
-	        <input type="text" id="idImagem" name="idImagem">
-	    </form>
-	
-	    <ul id="mycarousel" class="jcarousel-skin-tango">
-	    </ul>
-	</div>
+    <div id="sfcb_footer" style="display: none">
+        <input type="hidden" value="${sessionScope.tokenUUID}" id="token-uuid"/>
+
+        <form id="formSucesso" action="${pageContext.request.contextPath}/sucesso" method="POST">
+            <input type="text" id="idUsuario" name="idUsuario">
+            <input type="text" id="idPost" name="idPost">
+            <input type="text" id="idImagem" name="idImagem">
+        </form>
+
+        <ul id="mycarousel" class="jcarousel-skin-tango">
+        </ul>
+    </div>
 </footer>
 
 </body>

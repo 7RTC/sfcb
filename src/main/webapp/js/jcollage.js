@@ -52,11 +52,11 @@ function Collage(canvasId) {
         redrawCanvas();
     }
 
-    this.getOffset = function() {
+    this.getOffset = function () {
         return { left: canvasOffsetX, top: canvasOffsetY };
     }
 
-    this.setOffset = function(offset) {
+    this.setOffset = function (offset) {
         canvasOffsetX = offset.left;
         canvasOffsetY = offset.top;
     }
@@ -151,12 +151,12 @@ function Collage(canvasId) {
             layer.width, layer.height);
 
         context.drawImage(scaleImg,
-            (layer.width / 2) - scaleImg.width,
-            (layer.height / 2) - scaleImg.height);
+                (layer.width / 2) - scaleImg.width,
+                (layer.height / 2) - scaleImg.height);
 
         context.drawImage(rotateImg,
-            (layer.width / 2) - rotateImg.width,
-            0 - (layer.height / 2));
+                (layer.width / 2) - rotateImg.width,
+                0 - (layer.height / 2));
 
         context.restore();
     }

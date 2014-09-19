@@ -26,7 +26,7 @@ public class ServicoImagem {
     public Imagem recuperarDaDataURL(String dataURL) {
         log.info("Base 64 String: " + dataURL);
         final Matcher matcher = pattern.matcher(dataURL);
-        if(!matcher.find()) {
+        if (!matcher.find()) {
             throw new IllegalArgumentException("Formato da imagem invalido, apenas png e jpeg são suportados");
         }
         // Decoda o string da imagem do canvas

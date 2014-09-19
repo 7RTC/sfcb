@@ -271,7 +271,7 @@
 
         $("#imageLoader").on('change', carregarImagem);
 
-        $("#carregarArquivo").click(function() {
+        $("#carregarArquivo").click(function () {
             $("#imageLoader").trigger('click');
         });
 
@@ -290,13 +290,13 @@
                 carousel.reset();
             }
         });
-        
-        $(".tituloLogado").click(function(e) {
-        	var resposta = confirm("Essa opção descartará a colagem. " +
-        			"Deseja realmente navegar para fora da página?");
-        	if (resposta != true) {
-        		e.preventDefault();
-        	}
+
+        $(".tituloLogado").click(function (e) {
+            var resposta = confirm("Essa opção descartará a colagem. " +
+                "Deseja realmente navegar para fora da página?");
+            if (resposta != true) {
+                e.preventDefault();
+            }
         });
 
     });
@@ -305,7 +305,7 @@
 ///////////////////////////////////////////////////
 
 
-    this.mycarousel_itemLoadCallback = function(carousel, state) {
+    this.mycarousel_itemLoadCallback = function (carousel, state) {
 
         if (state == "init") {
             if (debug) alert("itemLoadCallback inicial");

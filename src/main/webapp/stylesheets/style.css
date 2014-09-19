@@ -1,184 +1,183 @@
 body {
-	background-color: #FFFFFF;
-	font-family: Verdana, Helvetica, sans-serif;
-	color: #555;
-	margin: 0;
-	padding-top: 55px;
-	text-align: center;
+    background-color: #FFFFFF;
+    font-family: Verdana, Helvetica, sans-serif;
+    color: #555;
+    margin: 0;
+    padding-top: 55px;
+    text-align: center;
 }
 
 canvas {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
     border: 5px solid #124A66;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .tituloLogado {
-	clear: both;
-	margin: 0;
-	top: 5px;
-	left: 45%;
-	position: fixed;
+    clear: both;
+    margin: 0;
+    top: 5px;
+    left: 45%;
+    position: fixed;
 }
 
 .tituloLogado a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 aside.camadas {
-	position: fixed;
-	top: 120px;
-	right: 15px;
-	width: 200px;
-	background-color: #fff;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border: 1px solid #333;
-	font-size: 12px;
+    position: fixed;
+    top: 120px;
+    right: 15px;
+    width: 200px;
+    background-color: #fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border: 1px solid #333;
+    font-size: 12px;
 }
 
 aside h2 {
-	display: block;
-	font-size: 12px;
-	font-weight: normal;
-	padding: 2px 0;
-	margin: 0;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 0;
+    margin: 0;
 }
 
 aside ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	max-height: 156px;
-	overflow: auto;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-height: 156px;
+    overflow: auto;
 }
 
 aside ul li {
-	padding: 3px;
-	cursor: pointer;
-	text-align: left;
+    padding: 3px;
+    cursor: pointer;
+    text-align: left;
 }
 
 aside ul li.selected {
-	background-color: #5f94e2;
+    background-color: #5f94e2;
 }
 
 aside ul li img {
-	width: 40px;
-	height: 40px;
-	vertical-align: middle;
-	border: 1px solid #333;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    border: 1px solid #333;
 }
 
 aside ul li.selected img {
-	border: 1px solid #555;
+    border: 1px solid #555;
 }
 
 aside ul li h3 {
-	display: inline-block;
+    display: inline-block;
 }
 
 aside ul li .visible {
-	float: right;
-	margin: 14px 4px 0 0;
-	width: 12px;
-	height: 12px;
-	border: 1px solid #555;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	font-size: 14px;
-	font-weight: bold;
-	text-align: center;
-	text-shadow: 1px 1px 1px #333;
+    float: right;
+    margin: 14px 4px 0 0;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #555;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 1px #333;
 }
 
 aside .options {
-	border-top: 1px solid #333;
-	padding: 4px 0;
+    border-top: 1px solid #333;
+    padding: 4px 0;
 }
 
 aside .options span {
-	display: inline-block;
-	width: 60px;
-	text-align: right;
-	margin-right: 10px;
+    display: inline-block;
+    width: 60px;
+    text-align: right;
+    margin-right: 10px;
 }
 
 aside .options select {
-	width: 100px;
+    width: 100px;
 }
 
 aside .buttons .remove {
-	background: transparent url(remove.png) no-repeat top left;
+    background: transparent url(remove.png) no-repeat top left;
 }
 
 aside .buttons .up {
-	background: transparent url(up_button.png) no-repeat top left;
+    background: transparent url(up_button.png) no-repeat top left;
 }
 
 aside .buttons .down {
-	background: transparent url(down_button.png) no-repeat top left;
+    background: transparent url(down_button.png) no-repeat top left;
 }
 
 aside .buttons {
-	display: block;
-	position: relative;
-	border-top: 1px solid #333;
-	padding: 4px 12px 2px 0;
-	text-align: right;
+    display: block;
+    position: relative;
+    border-top: 1px solid #333;
+    padding: 4px 12px 2px 0;
+    text-align: right;
 }
 
 aside .buttons ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 aside .buttons ul li {
-	display: inline-block;
-	margin: 0 2px;
-	padding: 0;
-	cursor: pointer;
-	width: 16px;
-	height: 16px;
+    display: inline-block;
+    margin: 0 2px;
+    padding: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
 }
 
 footer.fotos {
-	display: block;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	text-align: left;
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 .fotos form {
-	display: none
+    display: none
 }
 
 footer ul li img {
-	width: 100px;
-	height: 100px;
-	cursor: pointer;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
 }
 
 .about {
-	margin: 0 auto;
-	width: 718px;
-	border: 1px solid #124A66;
-	border-bottom-width: 2px;
-	border-color: #124A66;
-	font-size: 12px;
-	padding: 4px 0;
+    margin: 0 auto;
+    width: 718px;
+    border: 1px solid #124A66;
+    border-bottom-width: 2px;
+    font-size: 12px;
+    padding: 4px 0;
 }
 
 .loginFacebook {
-	padding-top: 20px;
+    padding-top: 20px;
 }
 
 .loginFacebook div {
@@ -186,138 +185,136 @@ footer ul li img {
 }
 
 .loginFacebookColagem {
-	position: fixed;
-	height: 40px;
-	float: left;
-	top: 0;
-	left: 0;
-	padding-top: 5px;
-	padding-left: 10px;
-	width: 100%;
-	background-color: #124A66;
-	box-shadow: 0 0 10px;
+    position: fixed;
+    height: 40px;
+    float: left;
+    top: 0;
+    left: 0;
+    padding-top: 5px;
+    padding-left: 10px;
+    width: 100%;
+    background-color: #124A66;
+    box-shadow: 0 0 10px;
 }
 
 .pushLeft {
-	float: left;
-	line-height: 30px;
+    float: left;
+    line-height: 30px;
 }
 
 .pushRight {
     text-align: right;
-	float: right;
-	margin-right: 20px;
+    float: right;
+    margin-right: 20px;
 }
 
 .imagemUsuario {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .nomeUsuario {
-	vertical-align: middle;
-	font-size: 12px;
-	font-weight: bold;
-	color: #FFF;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
 }
 
 .botaoFb {
     display: inline-block;
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .botaoGenerico {
-	background-color: #2E85EE;
-	font-family: Verdana, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	text-align: center;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #FFF;
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin-top: 50px;
+    background-color: #2E85EE;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FFF;
+    padding: 10px 20px;
+    margin-top: 50px;
 }
 
 .botaoNovaColagemErro {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: inline-block;
 }
 
 .botaoPostar {
-	position: fixed;
-	right: 10px;
-	bottom: 160px;
-	display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 160px;
+    display: block;
 }
 
 .botaoArquivo {
-	position: fixed;
-	left: 10px;
-	bottom: 230px;
-	display: block;
-	font-size: 12px;
+    position: fixed;
+    left: 10px;
+    bottom: 230px;
+    display: block;
+    font-size: 12px;
 }
 
 .labelbotaoArquivo {
-	position: fixed;
-	left: 15px;
-	bottom: 280px;
-	display: block;
-	max-width: 230px;
-	text-align: left;
-	font-size: 12px;
-	font-weight: bold;
+    position: fixed;
+    left: 15px;
+    bottom: 280px;
+    display: block;
+    max-width: 230px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .colagemSucesso {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mensagemGenerica {
-	margin-left: auto;
-	margin-right: auto;
-	width: 700px;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	padding: 5px;
-	font-family: Verdana, Helvetica, sans-serif;
-	text-align: center;
-	font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding: 5px;
+    font-family: Verdana, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 14px;
 }
 
 .mensagemSucesso {
-	border: 1px solid #009900;
-	background-color: #D4FFD4;
-	color: #009900;
-	display: block;
+    border: 1px solid #009900;
+    background-color: #D4FFD4;
+    color: #009900;
+    display: block;
 }
 
 .mensagemErro {
-	border: 1px solid #CC0000;
-	background-color: #FFB2B2;
-	color: #CC0000;
-	display: block;
+    border: 1px solid #CC0000;
+    background-color: #FFB2B2;
+    color: #CC0000;
+    display: block;
 }
 
 .erroExplicativo {
-	margin-top: 20px;
-	font-size: 14px;
-	margin-left: 20%;
-	margin-right: 20%;
+    margin-top: 20px;
+    font-size: 14px;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .comboAlbuns {
-	position: fixed;
-	left: 10px;
-	bottom: 160px;
-	display: block;
-	max-width:220px;
+    position: fixed;
+    left: 10px;
+    bottom: 160px;
+    display: block;
+    max-width: 220px;
 }
 
 #imageLoader {
@@ -325,49 +322,49 @@ footer ul li img {
 }
 
 .labelComboAlbuns {
-	position: fixed;
-	left: 15px;
-	bottom: 200px;
-	display: block;
-	max-width: 230px;
-	text-align: left;
-	font-size: 12px;
-	font-weight: bold;
+    position: fixed;
+    left: 15px;
+    bottom: 200px;
+    display: block;
+    max-width: 230px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .comboGenerico {
-	background-color: #2E85EE;
-	font-family: Verdana, Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
-	font-size: 12px;
-	color: #FFF;
-	padding: 7px;
-	border: 0;
+    background-color: #2E85EE;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    color: #FFF;
+    padding: 7px;
+    border: 0;
 }
 
 .conteudo {
-	height: 750px;
-	overflow: auto;
+    height: 750px;
+    overflow: auto;
 }
 
 .politicaPrivacidadeTitulo {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .politicaPrivacidade {
-	text-align: left;
-	font-size: 12px;
-	padding-top: 0;
+    text-align: left;
+    font-size: 12px;
+    padding-top: 0;
 }
 
 .politicaPrivacidadeWrapper {
-	background: #F0F6F9;
-	border: 30px solid #124A66;
-	margin: 40px;
-	padding: 15px 25px 25px 20px;
-	color: #555;
+    background: #F0F6F9;
+    border: 30px solid #124A66;
+    margin: 40px;
+    padding: 15px 25px 25px 20px;
+    color: #555;
 }
 
 .unselectable {
@@ -384,42 +381,42 @@ footer ul li img {
 }
 
 .menu {
-	position: fixed;
-	left: 0px;
-	bottom: 140px;
-	background-color: #124A66;
-	height: 180px;
-	width: 250px;
-	color: #FFF;
+    position: fixed;
+    left: 0;
+    bottom: 140px;
+    background-color: #124A66;
+    height: 180px;
+    width: 250px;
+    color: #FFF;
 }
 
 .footerInfo {
-	position: fixed;
-	bottom: 0;
-	color: #FFF;
-	background-color: #124A66;
-	height: 30px;
-	width: 100%;
-	line-height: 30px;
-	font-size: 12px;
-	text-decoration: none;
+    position: fixed;
+    bottom: 0;
+    color: #FFF;
+    background-color: #124A66;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
+    font-size: 12px;
+    text-decoration: none;
 }
 
 .footerInfo a:link {
-	color: #FFF;
-}   
-	   
+    color: #FFF;
+}
+
 .footerInfo a:visited {
-	color: #FFF;
+    color: #FFF;
 }
-	
+
 .footerInfo a:hover {
-	color: #FFF;
-	text-decoration: underline;
+    color: #FFF;
+    text-decoration: underline;
 }
-	
+
 .footerInfo a:active {
-	color: #FFF;
-	text-decoration: underline;
+    color: #FFF;
+    text-decoration: underline;
 }
 

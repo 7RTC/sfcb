@@ -16,21 +16,22 @@ import br.com.javamagazine.sfcb.negocio.ServicoAutenticacao;
 import com.restfb.FacebookClient;
 
 public class LoginServlet extends HttpServlet {
-	private static final Logger log = Logger.getLogger(LoginServlet.class.getName());
+    private static final Logger log = Logger.getLogger(LoginServlet.class.getName());
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
 
 
-		final String accessTokenGeradoSDK = request.getParameter("accessToken");
-		final String tempoExpiracaoGeradoSDK = request.getParameter("expiresIn");
+        final String accessTokenGeradoSDK = request.getParameter("accessToken");
+        final String tempoExpiracaoGeradoSDK = request.getParameter("expiresIn");
         final String userIDGeradoSDK = request.getParameter("userID");
 
-		if (accessTokenGeradoSDK == null || accessTokenGeradoSDK.isEmpty()) {
+        if (accessTokenGeradoSDK == null || accessTokenGeradoSDK.isEmpty()) {
             log.info("login inválido");
-			// TODO: Autenticacao falhou, exibir mensagem
-			response.sendRedirect("/index.jsp");
-		}
+            // TODO: Autenticacao falhou, exibir mensagem
+            response.sendRedirect("/index.jsp");
+        }
 
         {
             final int seconds = Integer.parseInt(tempoExpiracaoGeradoSDK);
@@ -40,24 +41,23 @@ public class LoginServlet extends HttpServlet {
             log.info("Expiração Token SDK: " + expires.getTime());
         }
 
-		final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao();
+        final ServicoAutenticacao servicoAutenticacao = new ServicoAutenticacao();
 
-		final FacebookClient.AccessToken token = servicoAutenticacao.extendUserToken(accessTokenGeradoSDK);
+        final FacebookClient.AccessToken token = servicoAutenticacao.extendUserToken(accessTokenGeradoSDK);
 
         final Token tokenEstendido = servicoAutenticacao.storeInMemcache(token, userIDGeradoSDK);
 
-		log.info("Access Token estendido: " + tokenEstendido.getAccessToken());
-		log.info("Expiração Token estendido: " + tokenEstendido.getExpiracao());
+        log.info("Access Token estendido: " + tokenEstendido.getAccessToken());
+        log.info("Expiração Token estendido: " + tokenEstendido.getExpiracao());
 
-		// insere token na sessao
-		final HttpSession session = request.getSession();
-		session.setAttribute("accessToken", tokenEstendido.getAccessToken());
+        // insere token na sessao
+        final HttpSession session = request.getSession();
+        session.setAttribute("accessToken", tokenEstendido.getAccessToken());
         session.setAttribute("tokenUUID", tokenEstendido.getUUID());
 
         log.info("Redirecionando");
-		response.sendRedirect("/colagem");
-	}
-
+        response.sendRedirect("/colagem");
+    }
 
 
 }

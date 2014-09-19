@@ -37,17 +37,18 @@ public class FotoEndpoint {
 
         return imagensFB.listarTodas();
     }
-    
+
     @ApiMethod(
-    		name = "sfcb.album.foto.list",
-    		path = "album/{id}",
-    		httpMethod = ApiMethod.HttpMethod.GET
-    		)
-    public Fotos recuperarAlbum(HttpServletRequest req, @Named("id") long albumId, @Nullable @Named("limit") Integer limit) throws UnauthorizedException {
-    	final String accessToken = getAccessToken(req);
-    	final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken, limit);
-    	
-    	return imagensFB.listarAlbum(albumId);
+            name = "sfcb.album.foto.list",
+            path = "album/{id}",
+            httpMethod = ApiMethod.HttpMethod.GET
+    )
+    public Fotos recuperarAlbum(HttpServletRequest req, @Named("id") long albumId, @Nullable @Named("limit") Integer
+            limit) throws UnauthorizedException {
+        final String accessToken = getAccessToken(req);
+        final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken, limit);
+
+        return imagensFB.listarAlbum(albumId);
     }
 
     @ApiMethod(
@@ -55,12 +56,13 @@ public class FotoEndpoint {
             path = "foto/cursor",
             httpMethod = ApiMethod.HttpMethod.GET
     )
-    public Fotos recuperarPagina(HttpServletRequest req, @Nullable @Named("pagina") String pagina) throws UnauthorizedException {
+    public Fotos recuperarPagina(HttpServletRequest req, @Nullable @Named("pagina") String pagina) throws
+            UnauthorizedException {
         final String accessToken = getAccessToken(req);
         final ServicoImagensFB imagensFB = new ServicoImagensFB(accessToken);
 
         log.info("Página: " + pagina);
-        
+
         return imagensFB.buscarPagina(pagina);
     }
 
@@ -96,11 +98,11 @@ public class FotoEndpoint {
     }
 
     private String getAccessToken(HttpServletRequest req) throws UnauthorizedException {
-    	final String tokenUUID = req.getHeader("token-uuid");
-    	final Token token = servicoAutenticacao.getFromMemcache(tokenUUID);
+        final String tokenUUID = req.getHeader("token-uuid");
+        final Token token = servicoAutenticacao.getFromMemcache(tokenUUID);
         if (tokenUUID == null) {
-    		throw new UnauthorizedException("UUID não consta no header");
-    	} else if (token == null) {
+            throw new UnauthorizedException("UUID não consta no header");
+        } else if (token == null) {
             throw new UnauthorizedException("UUID invalido ou expirado");
         }
 

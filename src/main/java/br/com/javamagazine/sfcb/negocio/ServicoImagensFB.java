@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import com.restfb.BinaryAttachment;
 import com.restfb.Connection;
 import com.restfb.Parameter;
-import com.restfb.json.JsonObject;
 import com.restfb.types.Photo;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
@@ -46,20 +45,20 @@ public class ServicoImagensFB extends ServicoFacebook {
 
     public Fotos listarAlbum(long albumId) {
         log.info("Lista album: " + albumId);
-        log.info("Limit: " + fotosPorPagina );
-        final Connection<Photo> photos = client.fetchConnection(albumId+"/photos", Photo.class,
+        log.info("Limit: " + fotosPorPagina);
+        final Connection<Photo> photos = client.fetchConnection(albumId + "/photos", Photo.class,
                 Parameter.with("fields", "source, picture"), Parameter.with("limit", fotosPorPagina));
         return criarFotos(photos);
     }
-    
+
     public Fotos listarTodas() {
         log.info("Lista todas as fotos: ");
-        log.info("Limit: " + fotosPorPagina );
-    	final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
+        log.info("Limit: " + fotosPorPagina);
+        final Connection<Photo> photos = client.fetchConnection("me/photos", Photo.class,
                 Parameter.with("limit", fotosPorPagina), Parameter.with("fields", "source, picture"),
                 Parameter.with("type", "uploaded"));
-    	
-    	return criarFotos(photos);
+
+        return criarFotos(photos);
     }
 
     public Fotos buscarPagina(String pagina) {

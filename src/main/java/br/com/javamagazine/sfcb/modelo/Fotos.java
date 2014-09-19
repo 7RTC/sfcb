@@ -9,7 +9,7 @@ public class Fotos {
     private String proximaPagina;
     private String paginaAnterior;
 
-	public Fotos () {
+    public Fotos() {
         this.fotos = new ArrayList<>();
     }
 

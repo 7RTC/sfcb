@@ -14,7 +14,7 @@ public class Foto implements Serializable {
     }
 
     public Foto(Photo photo) {
-        this(photo.getPicture(), "/imageProxy?urlImagemFb=" + photo.getSource() , photo.getSource());
+        this(photo.getPicture(), "/imageProxy?urlImagemFb=" + photo.getSource(), photo.getSource());
     }
 
     public Foto(String picture, String proxyURL, String source) {

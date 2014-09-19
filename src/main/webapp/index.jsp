@@ -44,8 +44,9 @@
     </div>
     <fb:login-button show-faces="true" max-rows="1" size="xlarge" scope="${facebook.app.permissions}"
                      style="display: none;" id="botaoLogar">Logar com Facebook</fb:login-button>
-
-	<footer class="footerInfo">
+    <br />
+    <div/>
+    <footer class="footerInfo">
         <%@ include file="/include/footerInfo.jsp" %>
     </footer>
 </div>

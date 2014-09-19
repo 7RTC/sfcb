@@ -32,7 +32,7 @@ public class ServicoAutenticacao extends ServicoFacebook {
     public ServicoAutenticacao() {
         this(null);
     }
-    
+
     // Code é apenas necessário para login sem a utilização do Javascript SDK
     // Utilizado o Javascript SDK é possível obter o access token direto da resposta
     public ServicoAutenticacao(String code) {
@@ -56,7 +56,7 @@ public class ServicoAutenticacao extends ServicoFacebook {
 
         final WebRequestor wr = new DefaultWebRequestor();
         final String urlCall = String.format("https://graph.facebook.com/oauth/access_token" +
-                "?client_id=%s&redirect_uri=%s&client_secret=%s&code=%s&scope=%s",
+                        "?client_id=%s&redirect_uri=%s&client_secret=%s&code=%s&scope=%s",
                 appId, redirectUrl, appSecret, code, scope
         );
         log.info("URL called: " + urlCall);
@@ -68,19 +68,20 @@ public class ServicoAutenticacao extends ServicoFacebook {
 
         final WebRequestor wr = new DefaultWebRequestor();
         final String urlCall = String.format("https://graph.facebook.com/oauth/access_token?" +
-                "grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s",
+                        "grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s",
                 appId, appSecret, shortLivedToken
         );
         log.info("URL called: " + urlCall);
         WebRequestor.Response accessTokenResponse = wr.executeGet(urlCall);
         return FacebookClient.AccessToken.fromQueryString(accessTokenResponse.getBody());
     }
-    
-    public FacebookClient.AccessToken getFacebookUserToken(String accessToken, String tempoExpiracao) throws IOException {
-    	
-    	return FacebookClient.AccessToken.fromQueryString(
-				"access_token=" + accessToken 
-				+ "&expires=" + tempoExpiracao);
+
+    public FacebookClient.AccessToken getFacebookUserToken(String accessToken,
+                                                           String tempoExpiracao) throws IOException {
+
+        return FacebookClient.AccessToken.fromQueryString(
+                "access_token=" + accessToken
+                        + "&expires=" + tempoExpiracao);
     }
 
     private String generateUUID() {
@@ -100,7 +101,7 @@ public class ServicoAutenticacao extends ServicoFacebook {
     }
 
     public Token storeInMemcache(FacebookClient.AccessToken accessToken, String userID) {
-       String uuid;
+        String uuid;
         if (cache.contains(userID + "_uuid")) {
             uuid = (String) cache.get(userID + "_uuid");
         } else {
@@ -124,7 +125,7 @@ public class ServicoAutenticacao extends ServicoFacebook {
     public String getAccessToken(String userID) throws EntityNotFoundException {
         final Key k = KeyFactory.createKey("Token", userID);
 
-        return  Token.fromEntity(datastore.get(k)).getAccessToken();
+        return Token.fromEntity(datastore.get(k)).getAccessToken();
     }
 
     public Token updateExpirationDate(Token t, Date expirationDate) {
