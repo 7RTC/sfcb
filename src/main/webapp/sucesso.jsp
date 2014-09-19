@@ -43,6 +43,9 @@
 <a href="https://www.facebook.com/${param.idUsuario}/posts/${param.idPost}" target="blank" id="colagemFacebook"
    class="botaoGenerico">Ver colagem no Facebook</a>
 
+<br />
+<div style="margin-bottom: 50px;"/>
+
 <footer class="footerInfo">
     <%@ include file="/include/footerInfo.jsp" %>
 </footer>

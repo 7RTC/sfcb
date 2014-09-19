@@ -180,7 +180,8 @@
                 $("#layer_" + (jCollage.getLayers().length - 1)).addClass("selected");
                 cursoresPadrao();
             };
-            imgUrl.src = img.data("proxy-url");
+            imgUrl.crossOrigin = "Anonymous";
+            imgUrl.src = img.data("facebook-source");
         });
 
         $(document).on("click", ".camadas .layer", function () {
@@ -427,6 +428,7 @@
         var img = $("<img/>").attr("src", foto.picture);
         img.attr("title", "Camada ");
         img.data("proxy-url", foto.proxyURL);
+        img.data("facebook-source", foto.source);
 
         return img;
     }

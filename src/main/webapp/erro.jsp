@@ -34,7 +34,7 @@
     uma indisponibilidade temporária. Por favor tente novamente em alguns minutos.</p>
 
 <p class="erroExplicativo">Caso o erro persista por favor abra um ticket em nosso <a
-        href="http://code.7rtc.com/sfcb/issues">sistema de ocorrências</a> relatando o ocorrido e verificaremos o
+        href="https://bitbucket.org/7RTC/sfcb">sistema de ocorrências</a> relatando o ocorrido e verificaremos o
     problema assim que possível.</p>
 
 <a href="/" id="novaColagem" class="botaoGenerico botaoNovaColagemErro">Gerar nova colagem</a>
